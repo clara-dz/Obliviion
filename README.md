@@ -40,3 +40,11 @@
 
 7 - RULES:
 	= neutralizar inimigos deve pontuar
+
+
+How to install:
+	mkdir build
+	cd build
+	cmake ..
+	cmake --build .
+	./Obliviion
