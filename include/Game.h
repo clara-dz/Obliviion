@@ -1,7 +1,8 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "Jogador.h"
+#include "Fase.h"
+#include "GardenOfEden.h"
 
 
 class Game {
@@ -12,8 +13,8 @@ class Game {
         
     private:
         sf::RenderWindow window;
-        sf::Texture playerTexture;
-        Jogador* player;
+
+        Fase* currentLevel;
 
         void processEvents();
         void update();

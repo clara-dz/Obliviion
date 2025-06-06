@@ -3,16 +3,20 @@
 
 
 Game::Game() : window(sf::VideoMode(800, 600), "Obliviion") {
-    if (!playerTexture.loadFromFile("../assets/images/player.png")) {
-        // Handle loading error
+    sf::Texture* playerTexture = new sf::Texture();
+    if (!playerTexture->loadFromFile("../assets/images/player.png")) {
         std::cerr << "Error loading player texture!" << std::endl;
-        exit(1); // Exit or handle more gracefully
+        exit(1);
     }
-    player = new Jogador(playerTexture);
+
+    std::string backgroundPath = "../assets/images/background1.png";
+    
+    currentLevel = new gardenOfEden("Garden of Eden", backgroundPath, *playerTexture);
+    currentLevel->loadLevel();
 }
 
 Game::~Game() {
-    // Cleanup code here if needed
+    delete currentLevel;
 }
 
 void Game::run() {
@@ -33,11 +37,11 @@ void Game::processEvents() {
 }
 
 void Game::update() {
-    player->update();
+    currentLevel->update();
 }
 
 void Game::render() {
     window.clear();
-    player->render(window);
+    currentLevel->render(window);
     window.display();
 }
