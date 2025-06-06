@@ -12,7 +12,8 @@ class Game {
         
     private:
         sf::RenderWindow window;
-        Jogador player;
+        sf::Texture playerTexture;
+        Jogador* player;
 
         void processEvents();
         void update();

@@ -1,17 +1,14 @@
 #pragma once
-
 #include "Personagem.h"
 
-class Jogador : public Personagem, public sf::Drawable {
+
+class Jogador : public Personagem {
     public:
-        Jogador();
-        void move() override;
+        Jogador(const sf::Texture& texture);
+        void update() override;
         void render(sf::RenderWindow& window) override;
+        void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
     private:
         float speed = 5.f;
-    
-
-    protected:
-        void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
