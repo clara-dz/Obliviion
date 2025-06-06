@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Jogador.h"
 
 
 class Game {
@@ -11,7 +12,7 @@ class Game {
         
     private:
         sf::RenderWindow window;
-        sf::RectangleShape player;
+        Jogador player;
 
         void processEvents();
         void update();
