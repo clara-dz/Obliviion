@@ -10,8 +10,9 @@ Game::Game() : window(sf::VideoMode(800, 600), "Obliviion") {
     }
 
     std::string backgroundPath = "../assets/images/background1.png";
+    std::string tileTexturePath = "../assets/images/tile1.png";
     
-    currentLevel = new gardenOfEden("Garden of Eden", backgroundPath, *playerTexture);
+    currentLevel = new gardenOfEden("Garden of Eden", tileTexturePath, backgroundPath, *playerTexture, 1000);
     currentLevel->loadLevel();
 }
 
