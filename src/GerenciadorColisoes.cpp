@@ -6,9 +6,13 @@ void GerenciadorColisoes::checarColisoes(Jogador& jogador, const Floor& floor) {
 
     for (const auto& tileBounds : floor.getBounds()) {
         if (playerBounds.intersects(tileBounds)) {
-            // Simple resolution: push the player up until it no longer intersects
             float overlap = (playerBounds.top + playerBounds.height) - tileBounds.top;
-            jogador.move(sf::Vector2f(0.f, -overlap));
+            jogador.move({0.f, -overlap});
+            jogador.stopFalling(); // sets velocityY = 0 and isOnGround = true
+            return;
         }
     }
+
+    // No collision this frame → start falling
+    jogador.startFalling();
 }

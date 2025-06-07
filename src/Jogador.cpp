@@ -7,14 +7,20 @@ Jogador::Jogador(const sf::Texture& texture) {
 }
 
 void Jogador::update() {
+    // Horizontal movement
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         sprite.move(-speed, 0.f);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         sprite.move(speed, 0.f);
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        sprite.move(0.f, -speed);
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        sprite.move(0.f, speed);
+
+    // Jump
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && isOnGround) {
+        velocityY = -10.f;
+        isOnGround = false;
+    }
+
+    // Apply gravity
+    applyGravity();
 }
 
 void Jogador::render(sf::RenderWindow& window) {
