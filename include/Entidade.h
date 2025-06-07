@@ -27,7 +27,7 @@ class Entidade {
         void setY(int newY) { y = newY; }
 
         // Virtual methods (could be overridden by subclasses)
-        virtual void update() = 0; // For updating entity states (used for player/enemy movements, etc.)
+        virtual void update(float deltaTime) = 0; // For updating entity states (used for player/enemy movements, etc.)
         virtual void render(sf::RenderWindow &window) {
             if (isVisible) window.draw(sprite);
         }

@@ -3,8 +3,9 @@
 
 class Personagem : public Entidade {
     protected:
-        float gravity = 0.5f;
-        float velocityY = 0.0f;
+        float gravity = 980.f;
+        float velocityY = 0.f;
+        float jumpStrength = -300.f;
         bool isOnGround = false;
         int speed;
         bool isAlive;
@@ -15,10 +16,10 @@ class Personagem : public Entidade {
         
         virtual ~Personagem() = default;
 
-        virtual void applyGravity() {
+        virtual void applyGravity(float deltaTime) {
             if (!isOnGround) {
-                velocityY += gravity;
-                sprite.move(0.f, velocityY);
+                velocityY += gravity * deltaTime;
+                sprite.move(0.f, velocityY * deltaTime);
             }
         }
 
@@ -34,7 +35,7 @@ class Personagem : public Entidade {
         float getVelocityY() const { return velocityY; }   
         
         // Override update for character-specific updates (movement, actions, etc.)
-        virtual void update() override {
+        virtual void update(float deltaTime) override {
             // Implement character movement logic here (e.g., for the player or enemy)
         }
 

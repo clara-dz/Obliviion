@@ -19,8 +19,8 @@ class gardenOfEden : public Fase {
         // Load enemies, obstacles etc.
     }
 
-    void update() override {
-        player.update();
+    void update(float deltaTime) override {
+        player.update(deltaTime);
         colisor.checarColisoes(player, floor);
     }
 

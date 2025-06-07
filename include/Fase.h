@@ -26,7 +26,7 @@ class Fase {
         virtual void loadLevel() = 0;
 
         // Pure virtual function to update the level's state
-        virtual void update() = 0;
+        virtual void update(float deltaTime) = 0;
 
         // Pure virtual function to render the level's objects
         virtual void render(sf::RenderWindow& window) = 0;

@@ -15,6 +15,7 @@ class Game {
         sf::RenderWindow window;
 
         Fase* currentLevel;
+        sf::Clock clock;
 
         void processEvents();
         void update();

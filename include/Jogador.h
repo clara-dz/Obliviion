@@ -8,10 +8,10 @@ class Jogador : public Personagem {
         sf::FloatRect getBounds() const { return sprite.getGlobalBounds(); }
         void move(sf::Vector2f delta) { sprite.move(delta); }
         void setPosition(sf::Vector2f pos) { sprite.setPosition(pos); }
-        void update() override;
+        void update(float deltaTime) override;
         void render(sf::RenderWindow& window) override;
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
     private:
-        float speed = 0.1f;
+        float speed = 0150.f;
 };
