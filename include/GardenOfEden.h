@@ -21,12 +21,7 @@ class gardenOfEden : public Fase {
 
     void update() override {
         player.update();
-
-        // for (const auto& tileBounds : floor.getBounds()) {
-        //     if (player.getBounds().intersects(tileBounds)) {
-        //         // Handle collision, stop falling etc.
-        //     }
-        // }
+        colisor.checarColisoes(player, floor);
     }
 
     void render(sf::RenderWindow& window) override {

@@ -4,13 +4,17 @@
 #include <string>
 #include <iostream>
 
+#include "GerenciadorColisoes.h"
+
 
 class Fase {
     protected:
-        std::string levelName;       // Name of the level
-        sf::Texture backgroundTexture;  // Background texture for the level
-        sf::Sprite backgroundSprite;    // Background sprite
-        bool isCompleted;             // Whether the level is completed or not
+        std::string levelName;
+        sf::Texture backgroundTexture;
+        sf::Sprite backgroundSprite;
+        bool isCompleted;
+
+        GerenciadorColisoes colisor;
 
     public:
         Fase(const std::string& name) 
