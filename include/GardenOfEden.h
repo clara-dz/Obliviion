@@ -2,16 +2,27 @@
 #include "Jogador.h"
 #include "Fase.h"
 #include "Floor.h"
+#include "InimigoFraco.h"
+
+#include <vector>
 
 
 class gardenOfEden : public Fase {
     private:
         Floor floor;
         Jogador player;
+        std::vector<InimigoFraco> enemies;
+        sf::Texture inimigoTexture;
 
     public:
-        gardenOfEden(const std::string& name, const std::string& tileTexture, const std::string& bgTextureFile, const sf::Texture& playerTexture, int windowWidht)
-            : Fase(name), floor(tileTexture, windowWidht, 500), player(playerTexture) {
+        gardenOfEden(const std::string& name,
+                     const std::string& tileTexture,
+                     const std::string& bgTextureFile,
+                     const sf::Texture& playerTexture,
+                     int windowWidht)
+
+            : Fase(name), floor(tileTexture, windowWidht, 500), player(playerTexture)
+        {
             loadBackgroundTexture(bgTextureFile);
         }
 
