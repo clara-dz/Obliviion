@@ -33,6 +33,7 @@ void GardenOfEden::update(float deltaTime) {
     for (auto& enemy : weakEnemies) {
         colisor.checarColisoes(enemy, floor);
         enemy.update(deltaTime);
+        colisor.checarColisaoEntrePersonagens(player, enemy);
     }
 }
 

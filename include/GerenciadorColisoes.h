@@ -7,4 +7,5 @@
 class GerenciadorColisoes {
 public:
     void checarColisoes(Personagem& Personagem, const Floor& floor);
+    void checarColisaoEntrePersonagens(Personagem& p1, Personagem& p2);
 };
