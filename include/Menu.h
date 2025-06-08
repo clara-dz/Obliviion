@@ -4,8 +4,11 @@
 class Menu : public Ente {
 
     private:
-        
+    Game* pJog;
 
+    public:
+    Menu();
+    ~Menu();
 
-
+    void executar();
 };
