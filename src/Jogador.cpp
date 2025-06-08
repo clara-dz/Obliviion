@@ -7,19 +7,27 @@ Jogador::Jogador(const sf::Texture& texture) {
 }
 
 void Jogador::update(float deltaTime) {
-    // Horizontal movement
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-        sprite.move(-speed * deltaTime, 0.f);
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-        sprite.move(speed * deltaTime, 0.f);
+    if (knockbackTimer > 0.f) {
+        knockbackTimer -= deltaTime;
+    } else {
+        knockbackTimer = 0.f;
+    
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+            velocityX = -speed;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+            velocityX = speed;
+    }
 
-    // Jumping
+    sprite.move(velocityX * deltaTime, 0.f);
+
+    velocityX *= 0.9f;
+    if (std::abs(velocityX) < 1.f) velocityX = 0.f;
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && isOnGround) {
         velocityY = -300.f;  // higher initial jump impulse (pixels per second)
         isOnGround = false;
     }
 
-    // Gravity
     applyGravity(deltaTime);
 }
 

@@ -19,9 +19,8 @@ GardenOfEden::GardenOfEden(const std::string& name,
 }
 
 void GardenOfEden::loadLevel() {
-    // Example: load 5 enemies in specific positions
     for (int i = 0; i < 1; ++i) {
-        InimigoFraco enemy(400, 200, 400, inimigoFracoTexture);
+        InimigoFraco enemy(600, 200, 400, inimigoFracoTexture);
         weakEnemies.push_back(enemy);
     }
 }

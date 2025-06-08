@@ -22,23 +22,13 @@ void GerenciadorColisoes::checarColisaoEntrePersonagens(Personagem& p1, Personag
     sf::FloatRect bounds2 = p2.getBounds();
 
     if (bounds1.intersects(bounds2)) {
-        // Calculate overlap
-        float overlapX = (bounds1.left + bounds1.width / 2) - (bounds2.left + bounds2.width / 2);
-        float pushback = (overlapX > 0) ? 10.f : -10.f; // push direction
+        float knockbackSpeed = 400.f;
+        float overlapX = (bounds1.left + bounds1.width / 2.f) - (bounds2.left + bounds2.width / 2.f);
+        float direction = (overlapX > 0.f) ? 1.f : -1.f;
 
-        // Apply knockback to p1 only
-        p1.move({pushback, 0.f});
+        p1.setVelocityX(direction * knockbackSpeed);
+        // p1.setVelocityY(-150.f);
+        p1.setKnockbackTimer(0.5f);
 
-        // Optional: reposition to prevent overlap more precisely
-        sf::FloatRect updatedBounds = p1.getBounds();
-        if (updatedBounds.intersects(bounds2)) {
-            float penetration = (overlapX > 0) ?
-                (updatedBounds.left + updatedBounds.width) - bounds2.left :
-                bounds2.left + bounds2.width - updatedBounds.left;
-
-            p1.move({(overlapX > 0 ? -penetration : penetration), 0.f});
-        }
-
-        // Optionally call p1.takeDamage() or play sound/effects
     }
 }

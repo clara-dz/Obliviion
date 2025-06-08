@@ -5,9 +5,11 @@ class Personagem : public Entidade {
     protected:
         float gravity = 980.f;
         float velocityY = 0.f;
+        float velocityX = 0.f;
         float jumpStrength = -300.f;
         bool isOnGround = false;
         int speed;
+        float knockbackTimer = 0.f; // in seconds
         bool isAlive;
 
     public:
@@ -32,8 +34,16 @@ class Personagem : public Entidade {
             isOnGround = false;
         }
 
+        void setVelocityX(float vx) { velocityX = vx; }
+
+        float getVelocityX() const { return velocityX; }
+
+        void setVelocityY(float vy) { velocityY = vy; }
+
         float getVelocityY() const { return velocityY; }   
         
+        void setKnockbackTimer(float t) { knockbackTimer = t; }
+
         virtual void update(float deltaTime) override {
             // Implement character movement logic here (e.g., for the player or enemy)
         }
