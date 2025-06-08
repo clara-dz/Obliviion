@@ -25,8 +25,14 @@ void Jogador::update(float deltaTime) {
     if (std::abs(velocityX) < 1.f) velocityX = 0.f;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && isOnGround) {
-        velocityY = -300.f;  // higher initial jump impulse (pixels per second)
+        velocityY = -150.f;  // higher initial jump impulse (pixels per second)
         isOnGround = false;
+    }
+
+    if (isFlashing && flashClock.getElapsedTime().asSeconds() > flashDuration) {
+
+        sprite.setColor(sf::Color::Red);  // Reset to normal
+        isFlashing = false;
     }
 
     applyGravity(deltaTime);

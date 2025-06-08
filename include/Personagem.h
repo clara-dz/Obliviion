@@ -8,9 +8,12 @@ class Personagem : public Entidade {
         float velocityX = 0.f;
         float jumpStrength = -300.f;
         bool isOnGround = false;
-        int speed;
         float knockbackTimer = 0.f; // in seconds
+        int speed;
         bool isAlive;
+        bool isFlashing = false;
+        float flashDuration = 0.0f;
+        sf::Clock flashClock;
 
     public:
         Personagem() : Entidade(), speed(5), isAlive(true) {}
@@ -57,6 +60,8 @@ class Personagem : public Entidade {
         virtual void move(sf::Vector2f delta) { sprite.move(delta); }
 
         virtual void setPosition(sf::Vector2f pos) { sprite.setPosition(pos); }
+
+        virtual void takeDamage();
     
     // Optionally, methods like takeDamage() or attack()
 };
