@@ -43,8 +43,8 @@ void Game::processEvents() {
 
 void Game::update() {
     float deltaTime = clock.restart().asSeconds();
-    if (deltaTime < 0.0001f)
-        deltaTime = 0.0001f;
+    if (deltaTime < 1.f / 144.f)
+        deltaTime = 1.f / 144.f;
     currentLevel->update(deltaTime);
 }
 

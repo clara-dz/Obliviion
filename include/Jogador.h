@@ -13,5 +13,5 @@ class Jogador : public Personagem {
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
     private:
-        float speed = 0150.f;
+        float speed = 05.f;
 };

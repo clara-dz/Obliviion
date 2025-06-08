@@ -1,4 +1,5 @@
 #include "Jogador.h"
+#include <iostream>
 
 
 Jogador::Jogador(const sf::Texture& texture) {
@@ -14,7 +15,7 @@ void Jogador::update(float deltaTime) {
     
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
             velocityX = -speed;
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
             velocityX = speed;
     }
 
