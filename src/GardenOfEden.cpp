@@ -21,7 +21,7 @@ GardenOfEden::GardenOfEden(const std::string& name,
 void GardenOfEden::loadLevel() {
     // Example: load 5 enemies in specific positions
     for (int i = 0; i < 1; ++i) {
-        InimigoFraco enemy(100, 150, 400, inimigoFracoTexture);
+        InimigoFraco enemy(400, 200, 400, inimigoFracoTexture);
         weakEnemies.push_back(enemy);
     }
 }
@@ -31,8 +31,8 @@ void GardenOfEden::update(float deltaTime) {
     colisor.checarColisoes(player, floor);
 
     for (auto& enemy : weakEnemies) {
-        enemy.update(deltaTime);
         colisor.checarColisoes(enemy, floor);
+        enemy.update(deltaTime);
     }
 }
 

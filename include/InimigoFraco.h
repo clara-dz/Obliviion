@@ -7,12 +7,14 @@ public:
         : Inimigo(x, y, speed) {
         sprite.setTexture(texture);
         sprite.setPosition(static_cast<float>(x), static_cast<float>(y));
+        startFalling();
     }
 
     void update(float deltaTime) override {
         // Simple patrolling logic (placeholder)
         applyGravity(deltaTime);
-        sprite.move(-speed * deltaTime, 0.f); // moves left slowly
+        sprite.move(0.f, 0.f); // moves left slowly
+        // sprite.move(-speed * deltaTime, 0.f); // moves left slowly
     }
 
     void render(sf::RenderWindow& window) override {
