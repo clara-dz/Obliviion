@@ -6,5 +6,5 @@
 
 class GerenciadorColisoes {
 public:
-    void checarColisoes(Jogador& player, const Floor& floor);
+    void checarColisoes(Personagem& Personagem, const Floor& floor);
 };

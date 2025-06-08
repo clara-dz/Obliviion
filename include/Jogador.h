@@ -5,8 +5,8 @@
 class Jogador : public Personagem {
     public:
         Jogador(const sf::Texture& texture);
-        sf::FloatRect getBounds() const { return sprite.getGlobalBounds(); }
-        void move(sf::Vector2f delta) { sprite.move(delta); }
+        // sf::FloatRect getBounds() const { return sprite.getGlobalBounds(); }
+        // void move(sf::Vector2f delta) { sprite.move(delta); }
         void setPosition(sf::Vector2f pos) { sprite.setPosition(pos); }
         void update(float deltaTime) override;
         void render(sf::RenderWindow& window) override;

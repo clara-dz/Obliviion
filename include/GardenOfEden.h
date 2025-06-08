@@ -12,8 +12,8 @@ class GardenOfEden : public Fase {
 private:
     Floor floor;
     Jogador player;
-    std::vector<InimigoFraco> enemies;
-    sf::Texture inimigoTexture;
+    std::vector<InimigoFraco> weakEnemies;
+    sf::Texture inimigoFracoTexture;
 
 public:
     GardenOfEden(const std::string& name,

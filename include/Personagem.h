@@ -34,7 +34,6 @@ class Personagem : public Entidade {
 
         float getVelocityY() const { return velocityY; }   
         
-        // Override update for character-specific updates (movement, actions, etc.)
         virtual void update(float deltaTime) override {
             // Implement character movement logic here (e.g., for the player or enemy)
         }
@@ -43,11 +42,11 @@ class Personagem : public Entidade {
             // Implement collision logic specific to characters (like taking damage or interacting with platforms)
         }
 
-        // Additional methods specific to characters, such as movement, actions, health, etc.
-        void move(int dx, int dy) {
-            x += dx * speed;
-            y += dy * speed;
-        }  
+        virtual sf::FloatRect getBounds() const { return sprite.getGlobalBounds(); }
+
+        virtual void move(sf::Vector2f delta) { sprite.move(delta); }
+
+        virtual void setPosition(sf::Vector2f pos) { sprite.setPosition(pos); }
     
     // Optionally, methods like takeDamage() or attack()
 };
