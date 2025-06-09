@@ -25,7 +25,7 @@ void Jogador::update(float deltaTime) {
     if (std::abs(velocityX) < 1.f) velocityX = 0.f;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && isOnGround) {
-        velocityY = -150.f;  // higher initial jump impulse (pixels per second)
+        velocityY = jumpStrength;
         isOnGround = false;
     }
 

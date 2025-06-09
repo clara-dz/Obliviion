@@ -3,10 +3,11 @@
 
 class Personagem : public Entidade {
     protected:
-        float gravity = 980.f;
+        float gravityUp = 5.f;
+        float gravityDown = 8.f;
         float velocityY = 0.f;
         float velocityX = 0.f;
-        float jumpStrength = -300.f;
+        float jumpStrength = -30.f;
         bool isOnGround = false;
         float knockbackTimer = 0.f; // in seconds
         int speed;
@@ -23,10 +24,17 @@ class Personagem : public Entidade {
 
         virtual void applyGravity(float deltaTime) {
             if (!isOnGround) {
-                velocityY += gravity * deltaTime;
+                float currentGravity = (velocityY < 0.f) ? gravityUp : gravityDown;
+                velocityY += currentGravity * deltaTime;
                 sprite.move(0.f, velocityY * deltaTime);
             }
         }
+        // virtual void applyGravity(float deltaTime) {
+        //     if (!isOnGround) {
+        //         velocityY += gravity * deltaTime;
+        //         sprite.move(0.f, velocityY * deltaTime);
+        //     }
+        // }
 
         void stopFalling() {
             velocityY = 0.f;
