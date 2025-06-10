@@ -1,44 +1,40 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Ente.h"
 
-class Entidade {
-    protected:
-        sf::Sprite sprite;
-        int x, y; // Position of the entity
-        bool isVisible; // Visibility state of the entity (could be useful for obstacles or hidden elements)
+class Entidade : public Ente {
+protected:
+    sf::Sprite sprite;
+    int x, y;
+    bool isVisible;
 
-    public:
-        // Constructors
-        Entidade() : x(0), y(0), isVisible(true) {}
-        Entidade(int x, int y) : x(x), y(y), isVisible(true) {}
+public:
+    Entidade() : x(0), y(0), isVisible(true) {}
+    Entidade(int x, int y) : x(x), y(y), isVisible(true) {}
+    virtual ~Entidade() {}
 
-        // Virtual destructor for proper cleanup of derived classes
-        virtual ~Entidade() {}
-        
-        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const {
-            target.draw(sprite, states);
-        }
-        
-        // Getter and setter for position
-        int getX() const { return x; }
-        int getY() const { return y; }
-        void setX(int newX) { x = newX; }
-        void setY(int newY) { y = newY; }
+    // These override the base Ente methods
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const override {
+        target.draw(sprite, states);
+    }
 
-        // Virtual methods (could be overridden by subclasses)
-        virtual void update(float deltaTime) = 0; // For updating entity states (used for player/enemy movements, etc.)
-        virtual void render(sf::RenderWindow &window) {
-            if (isVisible) window.draw(sprite);
-        }
+    void render(sf::RenderWindow& window) override {
+        if (isVisible)
+            window.draw(sprite);
+    }
 
-        // Virtual method for handling collisions or interactions (platforms, obstacles, etc.)
-        virtual void handleCollision(Entidade& other) = 0;
+    // Must be overridden in derived classes
+    virtual void update(float deltaTime) override = 0;
+    virtual void handleCollision(Entidade& other) = 0;
 
-        // Method to set the sprite (can be reused for any entity type)
-        void setSprite(const sf::Texture &texture) {
-            sprite.setTexture(texture);
-        }
+    // Position accessors
+    int getX() const { return x; }
+    int getY() const { return y; }
+    void setX(int newX) { x = newX; }
+    void setY(int newY) { y = newY; }
 
-        // Additional common methods can be added as needed (like visibility toggling, animations, etc.)
+    void setSprite(const sf::Texture& texture) {
+        sprite.setTexture(texture);
+    }
 };
