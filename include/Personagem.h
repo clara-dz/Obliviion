@@ -3,11 +3,11 @@
 
 class Personagem : public Entidade {
     protected:
-        float gravityUp = 5.f;
-        float gravityDown = 8.f;
+        float gravityUp = 2.f;
+        float gravityDown = 5.f;
         float velocityY = 0.f;
         float velocityX = 0.f;
-        float jumpStrength = -30.f;
+        float jumpStrength = -20.f;
         bool isOnGround = false;
         float knockbackTimer = 0.f; // in seconds
         int speed;

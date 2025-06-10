@@ -22,12 +22,12 @@ void GerenciadorColisoes::checarColisaoEntrePersonagens(Personagem& p1, Personag
     sf::FloatRect bounds2 = p2.getBounds();
 
     if (bounds1.intersects(bounds2)) {
-        float knockbackSpeed = 700.f;
+        float knockbackSpeed = 500.f;
         float overlapX = (bounds1.left + bounds1.width / 2.f) - (bounds2.left + bounds2.width / 2.f);
         float direction = (overlapX > 0.f) ? 1.f : -1.f;
 
         p1.setVelocityX(direction * knockbackSpeed);
-        p1.setVelocityY(-30.f);
+        p1.setVelocityY(-15.f);
         p1.setKnockbackTimer(30.f);
 
     }
