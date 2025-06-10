@@ -13,16 +13,14 @@ Menu::Menu(const std::vector<std::string>& itemLabels, const sf::Font& loadedFon
         texts[i].setPosition(300.f, 180.f + i * 50.f);
     }
 
-    // Set up background box
     backgroundBox.setSize(sf::Vector2f(300.f, items.size() * 50.f + 40.f));
-    backgroundBox.setFillColor(sf::Color(0, 0, 0, 180));  // semi-transparent black
+    backgroundBox.setFillColor(sf::Color(0, 0, 0, 180));
     backgroundBox.setOutlineThickness(2.f);
     backgroundBox.setOutlineColor(sf::Color::White);
     backgroundBox.setPosition(280.f, 160.f);
 
     updateVisual();
 }
-
 
 void Menu::open() {
     isOpen = true;
@@ -58,10 +56,23 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
     }
 }
 
-void Menu::draw(sf::RenderWindow& window) {
+void Menu::update(float /*deltaTime*/) {
+    // Menu does not need regular updates for now.
+}
+
+void Menu::render(sf::RenderWindow& window) {
+    if (!isOpen) return;
     window.draw(backgroundBox);
-    for (auto& text : texts) {
+    for (const auto& text : texts) {
         window.draw(text);
+    }
+}
+
+void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+    if (!isOpen) return;
+    target.draw(backgroundBox, states);
+    for (const auto& text : texts) {
+        target.draw(text, states);
     }
 }
 

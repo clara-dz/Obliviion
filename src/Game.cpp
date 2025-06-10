@@ -73,7 +73,7 @@ void Game::render() {
     window.clear();
     currentLevel->render(window);
     if (menu->isOpened()) {
-        menu->draw(window);
+        menu->draw(window, sf::RenderStates::Default);
     }
     window.display();
 }
