@@ -24,7 +24,7 @@ public:
     void handleEvent(const sf::Event& event, sf::RenderWindow& window);
     
     // Required overrides from Ente
-    void update(float deltaTime) override;
+    void executar(float deltaTime) override;
     void render(sf::RenderWindow& window) override;
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 

@@ -20,6 +20,6 @@ class Game {
         sf::Font font;
 
         void processEvents();
-        void update();
+        void executar();
         void render();
 };

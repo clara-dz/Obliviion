@@ -4,6 +4,7 @@
 #include "Fase.h"
 #include "Floor.h"
 #include "InimigoFraco.h"
+#include "ObstaculoMedio.h"
 #include <vector>
 #include <SFML/Graphics.hpp>
 
@@ -13,6 +14,7 @@ private:
     Floor floor;
     Jogador player;
     std::vector<InimigoFraco> weakEnemies;
+    std::vector<Obst_Medio> ObsMedio;
     sf::Texture inimigoFracoTexture;
 
 public:
@@ -23,6 +25,6 @@ public:
                  int windowWidth);
 
     void loadLevel() override;
-    void update(float deltaTime) override;
+    void executar(float deltaTime) override;
     void render(sf::RenderWindow& window) override;
 };

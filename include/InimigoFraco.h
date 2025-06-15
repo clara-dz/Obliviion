@@ -10,7 +10,7 @@ public:
         startFalling();
     }
 
-    void update(float deltaTime) override {
+    void executar(float deltaTime) override {
         // Simple patrolling logic (placeholder)
         applyGravity(deltaTime);
         sprite.move(0.f, 0.f); // moves left slowly

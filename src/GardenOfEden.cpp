@@ -25,13 +25,13 @@ void GardenOfEden::loadLevel() {
     }
 }
 
-void GardenOfEden::update(float deltaTime) {
-    player.update(deltaTime);
+void GardenOfEden::executar(float deltaTime) {
+    player.executar(deltaTime);
     colisor.checarColisoes(player, floor);
 
     for (auto& enemy : weakEnemies) {
         colisor.checarColisoes(enemy, floor);
-        enemy.update(deltaTime);
+        enemy.executar(deltaTime);
         colisor.checarColisaoEntrePersonagens(player, enemy);
     }
 }

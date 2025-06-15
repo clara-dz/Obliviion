@@ -26,7 +26,7 @@ public:
     ~Chefao();
 
     // Implementação dos métodos virtuais herdados
-    void update(float deltaTime) override;
+    void executar(float deltaTime) override;
     void handleCollision(Entidade& other) override;
     void danificar(Jogador* pJogador);
     void salva();

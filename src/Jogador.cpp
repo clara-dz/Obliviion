@@ -7,7 +7,7 @@ Jogador::Jogador(const sf::Texture& texture) {
     sprite.setPosition(375.f, 275.f);
 }
 
-void Jogador::update(float deltaTime) {
+void Jogador::executar(float deltaTime) {
     if (knockbackTimer > 0.f) {
         knockbackTimer -= deltaTime;
     } else {

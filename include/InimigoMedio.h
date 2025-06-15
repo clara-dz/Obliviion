@@ -11,7 +11,7 @@ public:
     ~InimigoMedio();
 
     // Implementação dos métodos virtuais puros herdados de Inimigo e Entidade
-    void update(float deltaTime) override;
+    void executar(float deltaTime) override;
     void handleCollision(Entidade& other) override;
     // void danificar(Jogador* pJogador) override;
     // void salva() override;

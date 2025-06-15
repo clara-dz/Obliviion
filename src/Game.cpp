@@ -36,7 +36,7 @@ Game::~Game() {
 void Game::run() {
     while (window.isOpen()) {
         processEvents();
-        update();
+        executar();
         render();
     }
 }
@@ -60,12 +60,12 @@ void Game::processEvents() {
     }
 }
 
-void Game::update() {
+void Game::executar() {
     if (!menu->isOpened()) {
         float deltaTime = clock.restart().asSeconds();
         if (deltaTime < 1.f / 144.f)
             deltaTime = 1.f / 144.f;
-        currentLevel->update(deltaTime);
+        currentLevel->executar(deltaTime);
     }
 }
 

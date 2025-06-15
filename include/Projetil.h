@@ -19,7 +19,7 @@ public:
     bool estaAtivo() const;
 
     // Métodos virtuais herdados de Entidade que PRECISAM ser implementados
-    void update(float deltaTime) override;
+    void executar(float deltaTime) override;
     void handleCollision(Entidade& other) override;
     
     // Vamos sobrescrever o render para desenhar apenas se estiver ativo

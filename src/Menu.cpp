@@ -56,7 +56,7 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
     }
 }
 
-void Menu::update(float /*deltaTime*/) {
+void Menu::executar(float /*deltaTime*/) {
     // Menu does not need regular updates for now.
 }
 

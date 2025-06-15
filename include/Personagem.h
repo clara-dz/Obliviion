@@ -55,7 +55,7 @@ class Personagem : public Entidade {
         
         void setKnockbackTimer(float t) { knockbackTimer = t; }
 
-        virtual void update(float deltaTime) override {
+        virtual void executar(float deltaTime) override {
             // Implement character movement logic here (e.g., for the player or enemy)
         }
 
