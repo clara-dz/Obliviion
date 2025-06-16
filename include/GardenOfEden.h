@@ -10,21 +10,27 @@
 
 
 class GardenOfEden : public Fase {
-private:
-    Floor floor;
-    Jogador player;
-    std::vector<InimigoFraco> weakEnemies;
-    std::vector<Obst_Medio> ObsMedio;
-    sf::Texture inimigoFracoTexture;
+    private:
+        const int maxIniminMedio = 10;
+        Floor floor;
+        Jogador player;
+        std::vector<InimigoFraco> weakEnemies;
+        std::vector<Obst_Medio> ObsMedio;
+        sf::Texture inimigoFracoTexture;
 
-public:
-    GardenOfEden(const std::string& name,
-                 const std::string& tileTexture,
-                 const std::string& bgTextureFile,
-                 const sf::Texture& playerTexture,
-                 int windowWidth);
+    protected:
+        void criarInimMedios();
+        void criarObsMedios();
+        void criarInimFracos();
+        void criarObsFracos();
+    public:
+        GardenOfEden(const std::string& name,
+                     const std::string& tileTexture,
+                     const std::string& bgTextureFile,
+                     const sf::Texture& playerTexture,
+                     int windowWidth);
 
-    void loadLevel() override;
-    void executar(float deltaTime) override;
-    void render(sf::RenderWindow& window) override;
+        void loadLevel() override;
+        void executar(float deltaTime) override;
+        void render(sf::RenderWindow& window) override;
 };
