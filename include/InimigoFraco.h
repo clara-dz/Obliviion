@@ -25,7 +25,7 @@ public:
         window.draw(sprite);
     }
 
-    void draw(sf::RenderTarget& target, sf::RenderStates states) const override {
+    void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override {
         target.draw(sprite, states);
     }
 

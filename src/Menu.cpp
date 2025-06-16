@@ -68,7 +68,7 @@ void Menu::renderizar(sf::RenderWindow& window) {
     }
 }
 
-void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+void Menu::desenhar(sf::RenderTarget& target, sf::RenderStates states) const {
     if (!isOpen) return;
     target.draw(backgroundBox, states);
     for (const auto& text : texts) {

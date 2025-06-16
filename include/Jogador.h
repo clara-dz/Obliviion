@@ -14,7 +14,7 @@ class Jogador : public Personagem {
         void executar(float deltaTime) override;
         // void salvar() override;
         void renderizar(sf::RenderWindow& window) override;
-        void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+        void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override;
         void colidir(Inimigo* pIn);
 
     private:

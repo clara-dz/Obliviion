@@ -18,7 +18,7 @@ class Entidade : public Ente {
         virtual ~Entidade() {}
 
         // These override the base Ente methods
-        void draw(sf::RenderTarget& target, sf::RenderStates states) const override {
+        void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override {
             target.draw(sprite, states);
         }
 

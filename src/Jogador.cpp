@@ -42,6 +42,6 @@ void Jogador::renderizar(sf::RenderWindow& window) {
     window.draw(sprite);
 }
 
-void Jogador::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+void Jogador::desenhar(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(sprite, states); // Now this function is implemented, SFML can call it to renderizar the sprite
 }
