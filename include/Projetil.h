@@ -22,6 +22,6 @@ public:
     void executar(float deltaTime) override;
     void handleCollision(Entidade& other) override;
     
-    // Vamos sobrescrever o render para desenhar apenas se estiver ativo
-    void render(sf::RenderWindow& window) override;
+    // Vamos sobrescrever o renderizar para desenhar apenas se estiver ativo
+    void renderizar(sf::RenderWindow& window) override;
 };

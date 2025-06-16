@@ -23,7 +23,7 @@ namespace Listas {
 
         // Funções principais que iteram sobre a lista
         void atualizar(float deltaTime);
-        void render(sf::RenderWindow& window);
+        void renderizar(sf::RenderWindow& window);
         
         // Limpa a lista, deletando todas as entidades
         void limpar();

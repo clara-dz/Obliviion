@@ -27,7 +27,7 @@ class Menu : public Ente {
 
         // Required overrides from Ente
         void executar(float deltaTime) override;
-        void render(sf::RenderWindow& window) override;
+        void renderizar(sf::RenderWindow& window) override;
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
     private:

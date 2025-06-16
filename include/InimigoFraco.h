@@ -21,7 +21,7 @@ public:
         // sprite.move(-speed * deltaTime, 0.f); // moves left slowly
     }
 
-    void render(sf::RenderWindow& window) override {
+    void renderizar(sf::RenderWindow& window) override {
         window.draw(sprite);
     }
 

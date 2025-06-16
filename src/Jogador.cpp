@@ -38,10 +38,10 @@ void Jogador::executar(float deltaTime) {
     applyGravity(deltaTime);
 }
 
-void Jogador::render(sf::RenderWindow& window) {
+void Jogador::renderizar(sf::RenderWindow& window) {
     window.draw(sprite);
 }
 
 void Jogador::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    target.draw(sprite, states); // Now this function is implemented, SFML can call it to render the sprite
+    target.draw(sprite, states); // Now this function is implemented, SFML can call it to renderizar the sprite
 }

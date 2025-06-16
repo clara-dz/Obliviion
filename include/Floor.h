@@ -25,7 +25,7 @@ public:
         }
     }
 
-    void render(sf::RenderWindow& window) const {
+    void renderizar(sf::RenderWindow& window) const {
         for (const auto& tile : tiles) {
             window.draw(tile);
         }

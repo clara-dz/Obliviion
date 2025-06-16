@@ -32,5 +32,5 @@ class GardenOfEden : public Fase {
 
         void loadLevel() override;
         void executar(float deltaTime) override;
-        void render(sf::RenderWindow& window) override;
+        void renderizar(sf::RenderWindow& window) override;
 };

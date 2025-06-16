@@ -29,8 +29,8 @@ class Fase {
         // Pure virtual function to update the level's state
         virtual void executar(float deltaTime) = 0;
 
-        // Pure virtual function to render the level's objects
-        virtual void render(sf::RenderWindow& window) = 0;
+        // Pure virtual function to renderizar the level's objects
+        virtual void renderizar(sf::RenderWindow& window) = 0;
 
         // Getters and setters for level name and completion state
         std::string getLevelName() const { return levelName; }

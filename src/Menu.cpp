@@ -60,7 +60,7 @@ void Menu::executar(float /*deltaTime*/) {
     // Menu does not need regular updates for now.
 }
 
-void Menu::render(sf::RenderWindow& window) {
+void Menu::renderizar(sf::RenderWindow& window) {
     if (!isOpen) return;
     window.draw(backgroundBox);
     for (const auto& text : texts) {

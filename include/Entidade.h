@@ -22,7 +22,7 @@ class Entidade : public Ente {
             target.draw(sprite, states);
         }
 
-        void render(sf::RenderWindow& window) override {
+        void renderizar(sf::RenderWindow& window) override {
             if (isVisible)
                 window.draw(sprite);
         }

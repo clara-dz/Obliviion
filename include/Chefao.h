@@ -31,6 +31,6 @@ public:
     void danificar(Jogador* pJogador);
     void salva();
 
-    // Sobrescrevemos o render para também desenhar os projéteis
-    void render(sf::RenderWindow& window) override;
+    // Sobrescrevemos o renderizar para também desenhar os projéteis
+    void renderizar(sf::RenderWindow& window) override;
 };

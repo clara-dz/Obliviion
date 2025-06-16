@@ -37,7 +37,7 @@ void Game::run() {
     while (window.isOpen()) {
         processEvents();
         executar();
-        render();
+        renderizar();
     }
 }
 
@@ -69,9 +69,9 @@ void Game::executar() {
     }
 }
 
-void Game::render() {
+void Game::renderizar() {
     window.clear();
-    currentLevel->render(window);
+    currentLevel->renderizar(window);
     if (menu->isOpened()) {
         menu->draw(window, sf::RenderStates::Default);
     }

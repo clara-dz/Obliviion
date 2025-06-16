@@ -36,12 +36,12 @@ void GardenOfEden::executar(float deltaTime) {
     }
 }
 
-void GardenOfEden::render(sf::RenderWindow& window) {
+void GardenOfEden::renderizar(sf::RenderWindow& window) {
     drawBackground(window);
-    floor.render(window);
-    player.render(window);
+    floor.renderizar(window);
+    player.renderizar(window);
 
     for (auto& enemy : weakEnemies) {
-        enemy.render(window);
+        enemy.renderizar(window);
     }
 }

@@ -25,5 +25,5 @@ class Game {
 
         void processEvents();
         void executar();
-        void render();
+        void renderizar();
 };
