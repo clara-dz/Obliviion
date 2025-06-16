@@ -4,6 +4,8 @@
 #include "Fase.h"
 #include "GardenOfEden.h"
 #include "Menu.h"
+#include "Jogador.h"
+#include "GerenciadorGrafico.h"
 
 
 class Game {
@@ -13,6 +15,8 @@ class Game {
         void run();
         
     private:
+        // Jogador pJog1;
+        // Gerenciadores::GerenciadorGrafico GG;
         sf::RenderWindow window;
         Fase* currentLevel;
         sf::Clock clock;

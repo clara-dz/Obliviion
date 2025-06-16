@@ -5,7 +5,7 @@
 #include <vector>
 #include <SFML/System/Clock.hpp>
 
-class Chefao : public Inimigo {
+class Chefao : public Inimigo { // Nome: EmoBoss
 private:
     short int forca;
     int vida;

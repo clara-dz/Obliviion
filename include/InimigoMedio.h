@@ -1,7 +1,7 @@
 #pragma once
 #include "Inimigo.h"
 
-class InimigoMedio : public Inimigo {
+class InimigoMedio : public Inimigo { // Nome: EmoBoy
 private:
     int tamanho;
 
