@@ -9,17 +9,30 @@
 #include "Inimigo.h"
 #include "Obstaculo.h"
 #include "Projetil.h"
+#include "Entidade.h"
+
 
 class GerenciadorColisoes {
-static GerenciadorColisoes* instancia;
-    Jogador* pJog1;
-    Jogador* pJog2;
-    std::vector<Inimigo*>   listaInimigos;
-    std::list<Obstaculo*>   listaObstaculos;
-    std::set<Projetil*>     listaProjeteis;
-    // GerenciadorColisoes();
+    static GerenciadorColisoes* instancia;
+        Jogador* pJog1;
+        Jogador* pJog2;
+        std::vector<Inimigo*>   listaInimigos;
+        std::list<Obstaculo*>   listaObstaculos;
+        std::set<Projetil*>     listaProjeteis;
+        // GerenciadorColisoes();
 
-public:
-    void checarColisoes(Personagem& Personagem, const Floor& floor);
-    void checarColisaoEntrePersonagens(Personagem& p1, Personagem& p2);
+    public:
+        void checarColisoes(Personagem& Personagem, const Floor& floor);
+        void checarColisaoEntrePersonagens(Personagem& p1, Personagem& p2);
+        void incluirInimigo(Inimigo* pI);
+        void incluirObstaculo(Obstaculo* pO);
+        void incluirProjetil(Projetil* pJ);
+        void executar();
+
+    private:
+        const bool verificarColisao(Entidade* pE1, Entidade* pE2);
+        void tratarColisaoJogsObstacs();
+        void tratarColisaoJogsInimigs();
+        void tratarColisaoJogsProjeteis();
 };
+
