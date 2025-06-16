@@ -4,15 +4,17 @@
 #include <string>
 #include <iostream>
 #include "GerenciadorColisoes.h"
+#include "ListaEntidades.h"
 
 
 class Fase {
     protected:
+        // Listas::ListaEntidades lista_Ents; Precisa das implementações p descomentar
         std::string levelName;
         sf::Texture backgroundTexture;
         sf::Sprite backgroundSprite;
         bool isCompleted;
-
+        // virtual void criarObstaculos() = 0;
         GerenciadorColisoes colisor;
 
     public:
