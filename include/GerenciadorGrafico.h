@@ -4,7 +4,7 @@
 // Forward-declare Ente para evitar incluir o header e criar dependências circulares.
 class Ente;
 
-//namespace Gerenciadores {
+namespace Gerenciadores {
 
     class GerenciadorGrafico {
     private:
@@ -38,4 +38,4 @@ class Ente;
         void fecharJanela();
     };
 
-//} 
+} 
