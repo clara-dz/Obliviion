@@ -8,6 +8,7 @@ class Inimigo : public Personagem {
         Inimigo() : Personagem() {}
         Inimigo(int x, int y, int speed) : Personagem(x, y, speed) {}
         virtual ~Inimigo() = default;
+        // void salvar() override;
     
         virtual void atacar(Jogador& jogador) = 0;
 
