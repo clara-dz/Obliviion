@@ -3,6 +3,7 @@
 
 class Personagem : public Entidade {
     protected:
+        int numVidas;
         float gravityUp = 2.f;
         float gravityDown = 5.f;
         float velocityY = 0.f;
@@ -29,12 +30,9 @@ class Personagem : public Entidade {
                 sprite.move(0.f, velocityY * deltaTime);
             }
         }
-        // virtual void applyGravity(float deltaTime) {
-        //     if (!isOnGround) {
-        //         velocityY += gravity * deltaTime;
-        //         sprite.move(0.f, velocityY * deltaTime);
-        //     }
-        // }
+        void salvarDataBuffer();
+
+        // virtual void salvar() = 0;
 
         void stopFalling() {
             velocityY = 0.f;
