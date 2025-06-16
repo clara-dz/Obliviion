@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Fase.h"
-#include "GardenOfEden.h"
+#include "JardimDoEden.h"
 #include "Menu.h"
 #include "Jogador.h"
 #include "GerenciadorGrafico.h"

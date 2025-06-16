@@ -1,7 +1,7 @@
-#include "GardenOfEden.h"
+#include "JardimDoEden.h"
 #include <iostream>
 
-GardenOfEden::GardenOfEden(const std::string& name,
+JardimDoEden::JardimDoEden(const std::string& name,
                            const std::string& tileTexture,
                            const std::string& bgTextureFile,
                            const sf::Texture& playerTexture,
@@ -18,14 +18,14 @@ GardenOfEden::GardenOfEden(const std::string& name,
     }
 }
 
-void GardenOfEden::loadLevel() {
+void JardimDoEden::loadLevel() {
     for (int i = 0; i < 1; ++i) {
         InimigoFraco enemy(600, 200, 400, inimigoFracoTexture);
         weakEnemies.push_back(enemy);
     }
 }
 
-void GardenOfEden::executar(float deltaTime) {
+void JardimDoEden::executar(float deltaTime) {
     player.executar(deltaTime);
     colisor.checarColisoes(player, floor);
 
@@ -36,7 +36,7 @@ void GardenOfEden::executar(float deltaTime) {
     }
 }
 
-void GardenOfEden::renderizar(sf::RenderWindow& window) {
+void JardimDoEden::renderizar(sf::RenderWindow& window) {
     drawBackground(window);
     floor.renderizar(window);
     player.renderizar(window);

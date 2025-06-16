@@ -9,7 +9,7 @@
 #include <SFML/Graphics.hpp>
 
 
-class GardenOfEden : public Fase {
+class JardimDoEden : public Fase {
     private:
         const int maxIniminMedio = 10;
         Floor floor;
@@ -24,7 +24,7 @@ class GardenOfEden : public Fase {
         void criarInimFracos();
         void criarObsFracos();
     public:
-        GardenOfEden(const std::string& name,
+        JardimDoEden(const std::string& name,
                      const std::string& tileTexture,
                      const std::string& bgTextureFile,
                      const sf::Texture& playerTexture,
