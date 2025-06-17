@@ -29,10 +29,6 @@ public:
         target.draw(sprite, states);
     }
 
-    void atacar(Jogador& jogador) override {
-        // Simple attack logic (e.g., proximity-based damage)
-    }
-
     void handleCollision(Entidade& other) override {
         // Define reaction to collisions
     }

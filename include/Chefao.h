@@ -17,9 +17,6 @@ private:
     sf::Clock relogioAtaque;
     float cooldownAtaque;
 
-    // Método privado para encapsular a lógica de ataque
-    void atacar();
-
 public:
     // O construtor precisa de duas texturas: uma para o chefe e outra para seus projéteis
     Chefao(const sf::Texture& texture, const sf::Texture& textura_projetil, int x = 0, int y = 0);
