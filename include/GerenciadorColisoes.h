@@ -10,6 +10,7 @@
 #include "Obstaculo.h"
 #include "Projetil.h"
 #include "Entidade.h"
+#include "Plataforma.h"
 
 
 class GerenciadorColisoes {
@@ -22,7 +23,7 @@ class GerenciadorColisoes {
         // GerenciadorColisoes();
 
     public:
-        void checarColisoes(Personagem& Personagem, const Floor& floor);
+        void checarColisoes(Personagem& Personagem, const Floor& floor, const std::vector<Obstaculos::Plataforma>& plataformas);
         void checarColisaoEntrePersonagens(Personagem& p1, Personagem& p2);
         void incluirInimigo(Inimigo* pI);
         void incluirObstaculo(Obstaculo* pO);

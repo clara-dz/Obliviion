@@ -1,22 +1,30 @@
 #pragma once
 
+// using namespace Obstaculos;
+
+#include <SFML/Graphics.hpp>
+#include <vector>
+
 #include "Jogador.h"
 #include "Fase.h"
 #include "Floor.h"
 #include "InimigoFraco.h"
 #include "ObstaculoMedio.h"
-#include <vector>
-#include <SFML/Graphics.hpp>
-
+#include "Plataforma.h"
 
 class JardimDoEden : public Fase {
     private:
         const int maxIniminMedio = 10;
         Floor floor;
         Jogador player;
+
         std::vector<InimigoFraco> weakEnemies;
         std::vector<Obst_Medio> ObsMedio;
         sf::Texture inimigoFracoTexture;
+
+        std::vector<Obstaculos::Plataforma> plataformas;
+        sf::Texture plataformaEsqTex, plataformaDirTex, plataformaMeioTex;
+
 
     protected:
         void criarInimMedios();

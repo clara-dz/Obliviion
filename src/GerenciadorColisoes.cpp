@@ -1,8 +1,9 @@
 #include "GerenciadorColisoes.h"
 
-void GerenciadorColisoes::checarColisoes(Personagem& personagem, const Floor& floor) {
+void GerenciadorColisoes::checarColisoes(Personagem& personagem, const Floor& floor, const std::vector<Obstaculos::Plataforma>& plataformas) {
     sf::FloatRect characterBounds = personagem.getBounds();
 
+    // First check collision with the floor
     for (const auto& tileBounds : floor.getBounds()) {
         if (characterBounds.intersects(tileBounds)) {
             if (personagem.getVelocityY() > 0.f) {
@@ -11,6 +12,20 @@ void GerenciadorColisoes::checarColisoes(Personagem& personagem, const Floor& fl
                 personagem.stopFalling();
             }
             return;
+        }
+    }
+
+    // Now check collision with each platform
+    for (const auto& platform : plataformas) {
+        for (const auto& tileBounds : platform.getBounds()) {
+            if (characterBounds.intersects(tileBounds)) {
+                if (personagem.getVelocityY() > 0.f) {
+                    float overlap = (characterBounds.top + characterBounds.height) - tileBounds.top;
+                    personagem.move({0.f, -overlap});
+                    personagem.stopFalling();
+                }
+                return;
+            }
         }
     }
 

@@ -19,6 +19,18 @@ JardimDoEden::JardimDoEden(const std::string& name,
 }
 
 void JardimDoEden::loadLevel() {
+    // Load textures
+    if (!plataformaEsqTex.loadFromFile("../assets/images/platLeft.png") ||
+        !plataformaMeioTex.loadFromFile("../assets/images/platMid.png") ||
+        !plataformaDirTex.loadFromFile("../assets/images/platRight.png")) {
+        std::cerr << "Error loading platform textures!\n";
+        exit(1);
+    }
+
+    // Add platforms
+    plataformas.emplace_back(plataformaEsqTex, plataformaMeioTex, plataformaDirTex, 200.f, 400.f, 3);
+    plataformas.emplace_back(plataformaEsqTex, plataformaMeioTex, plataformaDirTex, 500.f, 300.f, 2);
+
     for (int i = 0; i < 1; ++i) {
         InimigoFraco enemy(600, 200, 400, inimigoFracoTexture);
         weakEnemies.push_back(enemy);
@@ -27,10 +39,10 @@ void JardimDoEden::loadLevel() {
 
 void JardimDoEden::executar(float deltaTime) {
     player.executar(deltaTime);
-    colisor.checarColisoes(player, floor);
+    colisor.checarColisoes(player, floor, plataformas);
 
     for (auto& enemy : weakEnemies) {
-        colisor.checarColisoes(enemy, floor);
+        colisor.checarColisoes(enemy, floor, plataformas);
         enemy.executar(deltaTime);
         colisor.checarColisaoEntrePersonagens(player, enemy);
     }
@@ -44,4 +56,8 @@ void JardimDoEden::renderizar(sf::RenderWindow& window) {
     for (auto& enemy : weakEnemies) {
         enemy.renderizar(window);
     }
+
+    for (auto& plataforma : plataformas)
+        plataforma.desenhar(window);
+
 }
