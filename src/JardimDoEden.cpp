@@ -1,5 +1,7 @@
 #include "JardimDoEden.h"
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
 JardimDoEden::JardimDoEden(const std::string& name,
                            const std::string& tileTexture,
@@ -27,9 +29,24 @@ void JardimDoEden::loadLevel() {
         exit(1);
     }
 
-    // Add platforms
-    plataformas.emplace_back(plataformaEsqTex, plataformaMeioTex, plataformaDirTex, 200.f, 400.f, 3);
-    plataformas.emplace_back(plataformaEsqTex, plataformaMeioTex, plataformaDirTex, 500.f, 300.f, 2);
+    // Load platform layout from CSV file
+    std::ifstream file("../assets/maps/jardimDoEden.csv");
+    if (!file.is_open()) {
+        std::cerr << "Error opening level map file!\n";
+        exit(1);
+    }
+
+    std::string line;
+    std::getline(file, line); // Skip the first line (header)
+
+    while (std::getline(file, line)) {
+        std::stringstream ss(line);
+        float x, y;
+        int length;
+        char comma;
+        ss >> x >> comma >> y >> comma >> length;
+        plataformas.emplace_back(plataformaEsqTex, plataformaMeioTex, plataformaDirTex, x, y, length);
+    }
 
     for (int i = 0; i < 1; ++i) {
         InimigoFraco enemy(600, 200, 400, inimigoFracoTexture);
