@@ -53,6 +53,8 @@ class Personagem : public Entidade {
         
         void setKnockbackTimer(float t) { knockbackTimer = t; }
 
+        bool isFlashingNow() const { return isFlashing; }
+
         virtual void executar(float deltaTime) override {
             // Implement character movement logic here (e.g., for the player or enemy)
         }
