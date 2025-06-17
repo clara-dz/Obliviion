@@ -45,5 +45,7 @@ void GerenciadorColisoes::checarColisaoEntrePersonagens(Personagem& p1, Personag
         p1.setVelocityY(-15.f);
         p1.setKnockbackTimer(30.f);
 
+        p2.setVelocityX(-direction * knockbackSpeed * 0.01f);
+
     }
 }

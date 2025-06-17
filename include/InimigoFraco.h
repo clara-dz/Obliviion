@@ -17,7 +17,7 @@ public:
     void executar(float deltaTime) override {
         // Simple patrolling logic (placeholder)
         applyGravity(deltaTime);
-        sprite.move(0.f, 0.f); // moves left slowly
+        sprite.move(velocityX * deltaTime, 0.f);
         // sprite.move(-speed * deltaTime, 0.f); // moves left slowly
     }
 
