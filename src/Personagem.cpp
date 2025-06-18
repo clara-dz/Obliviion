@@ -2,6 +2,8 @@
 #include "Personagem.h"
 
 void Personagem::tomarDano(int nivelDano) {
+    std::cout << "Vidas restantes: " << nivelDano << std::endl;
+
     if (isFlashing) return;
 
     numVidas -= nivelDano;
