@@ -33,7 +33,7 @@ void Jogador::executar(float deltaTime) {
 
     if (isFlashing && flashClock.getElapsedTime().asSeconds() > flashDuration) {
 
-        sprite.setColor(sf::Color::Red);  // Reset to normal
+        sprite.setColor(sf::Color::White);  // Reset to normal
         isFlashing = false;
     }
 

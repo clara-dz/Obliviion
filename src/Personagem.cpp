@@ -2,7 +2,7 @@
 #include "Personagem.h"
 
 void Personagem::tomarDano(int nivelDano) {
-    std::cout << "Vidas restantes: " << nivelDano << std::endl;
+    std::cout << "Damage: " << nivelDano << std::endl;
 
     if (isFlashing) return;
 
@@ -12,10 +12,10 @@ void Personagem::tomarDano(int nivelDano) {
         numVidas = 0; // Ensure numVidas does not go below zero
     }
     isFlashing = true;
-    flashDuration = 0.9f;
+    flashDuration = 0.2f;
     sprite.setColor(sf::Color::Red);
     flashClock.restart();
 
-    std::cout << "Vidas restantes: " << numVidas << std::endl;
+    std::cout << "remaining life: " << numVidas << std::endl;
 
 }
