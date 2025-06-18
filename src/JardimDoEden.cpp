@@ -21,7 +21,6 @@ JardimDoEden::JardimDoEden(const std::string& name,
 }
 
 void JardimDoEden::loadLevel() {
-    // Load textures
     if (!plataformaEsqTex.loadFromFile("../assets/images/platLeft.png") ||
         !plataformaMeioTex.loadFromFile("../assets/images/platMid.png") ||
         !plataformaDirTex.loadFromFile("../assets/images/platRight.png")) {
@@ -52,6 +51,10 @@ void JardimDoEden::loadLevel() {
         InimigoFraco enemy(600, 200, 400, inimigoFracoTexture);
         weakEnemies.push_back(enemy);
     }
+
+    colisor->resetar();
+    colisor->setJogadores(&player, nullptr);
+    colisor->incluirInimigos(&weakEnemies[0]); 
 }
 
 void JardimDoEden::executar(float deltaTime) {
