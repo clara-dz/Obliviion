@@ -1,5 +1,9 @@
 #include "GerenciadorColisoes.h"
 
+
+GerenciadorColisoes* GerenciadorColisoes::instancia = nullptr;
+
+
 void GerenciadorColisoes::checarColisoes(Personagem& personagem, const Floor& floor, const std::vector<Obstaculos::Plataforma>& plataformas) {
     sf::FloatRect characterBounds = personagem.getBounds();
 
@@ -51,6 +55,7 @@ void GerenciadorColisoes::checarColisaoEntrePersonagens(Personagem& p1, Personag
 }
 
 const bool GerenciadorColisoes::verificarColisao(Personagem& p1, Personagem& p2) {
+    std::cout << "tratarCols" << std::endl;
     sf::FloatRect bounds1 = p1.getBounds();
     sf::FloatRect bounds2 = p2.getBounds();
 
@@ -61,6 +66,8 @@ const bool GerenciadorColisoes::verificarColisao(Personagem& p1, Personagem& p2)
 }
 
 void GerenciadorColisoes::tratarColisaoJogsInimigs() {
+    std::cout << "p1, p2" << pJog1 << std::endl;
+
     for (auto inimigo : listaInimigos) {
         if (pJog1 && verificarColisao(*pJog1, *inimigo)) {
             inimigo->danificar(*pJog1);

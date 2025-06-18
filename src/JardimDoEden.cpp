@@ -56,13 +56,13 @@ void JardimDoEden::loadLevel() {
 
 void JardimDoEden::executar(float deltaTime) {
     player.executar(deltaTime);
-    colisor.checarColisoes(player, floor, plataformas);
+    colisor->checarColisoes(player, floor, plataformas);
 
     for (auto& enemy : weakEnemies) {
-        colisor.checarColisoes(enemy, floor, plataformas);
+        colisor->checarColisoes(enemy, floor, plataformas);
         enemy.executar(deltaTime);
-        colisor.checarColisaoEntrePersonagens(player, enemy);
-        colisor.tratarColisaoJogsInimigs();
+        colisor->checarColisaoEntrePersonagens(player, enemy);
+        colisor->tratarColisaoJogsInimigs();
     }
 }
 

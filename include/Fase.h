@@ -15,7 +15,7 @@ class Fase {
         sf::Sprite backgroundSprite;
         bool isCompleted;
         // virtual void criarObstaculos() = 0;
-        GerenciadorColisoes colisor;
+        GerenciadorColisoes* colisor = GerenciadorColisoes::getInstancia();
 
     public:
         Fase(const std::string& name) 
