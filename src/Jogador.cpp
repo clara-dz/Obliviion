@@ -25,6 +25,8 @@ void Jogador::executar(float deltaTime) {
     if (std::abs(velocityX) < 1.f) velocityX = 0.f;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && isOnGround) {
+        std::cout << "Jumping" << std::endl;
+
         velocityY = jumpStrength;
         isOnGround = false;
     }

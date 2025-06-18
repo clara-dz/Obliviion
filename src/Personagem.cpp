@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Personagem.h"
 
 void Personagem::tomarDano(int nivelDano) {
@@ -12,4 +13,7 @@ void Personagem::tomarDano(int nivelDano) {
     flashDuration = 0.9f;
     sprite.setColor(sf::Color::Red);
     flashClock.restart();
+
+    std::cout << "Vidas restantes: " << numVidas << std::endl;
+
 }
