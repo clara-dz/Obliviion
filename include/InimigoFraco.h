@@ -6,7 +6,7 @@ private:
     float raio;
 
 public:
-    //void danificar(Jogador* p) override;
+    void danificar(Jogador* p) override {};
     InimigoFraco(int x, int y, int speed, const sf::Texture& texture)
         : Inimigo(x, y, speed) {
         sprite.setTexture(texture);
