@@ -9,7 +9,7 @@ class Inimigo : public Personagem {
         Inimigo() : Personagem() {}
         Inimigo(int x, int y, int speed) : Personagem(x, y, speed) {}
         virtual ~Inimigo() = default;
-        virtual void danificar(Jogador* p) = 0;
+        virtual void danificar(Jogador& p);
         // virtual void salvar() = 0;
         void salvarDataBuffer();
 

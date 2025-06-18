@@ -69,7 +69,5 @@ class Personagem : public Entidade {
 
         virtual void setPosition(sf::Vector2f pos) { sprite.setPosition(pos); }
 
-        virtual void takeDamage();
-    
-    // Optionally, methods like takeDamage() or attack()
+        virtual void tomarDano(int nivelDano);
 };

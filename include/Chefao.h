@@ -25,7 +25,7 @@ public:
     // Implementação dos métodos virtuais herdados
     void executar(float deltaTime) override;
     void handleCollision(Entidade& other) override;
-    void danificar(Jogador* pJogador) override {};
+    // void danificar(Jogador* pJogador) override {};
     void salva();
 
     // Sobrescrevemos o renderizar para também desenhar os projéteis
