@@ -49,3 +49,25 @@ void GerenciadorColisoes::checarColisaoEntrePersonagens(Personagem& p1, Personag
 
     }
 }
+
+const bool GerenciadorColisoes::verificarColisao(Personagem& p1, Personagem& p2) {
+    sf::FloatRect bounds1 = p1.getBounds();
+    sf::FloatRect bounds2 = p2.getBounds();
+
+    if (bounds1.intersects(bounds2)) {
+        return true;
+    }
+    return false;
+}
+
+void GerenciadorColisoes::tratarColisaoJogsInimigs() {
+    for (auto inimigo : listaInimigos) {
+        if (pJog1 && verificarColisao(*pJog1, *inimigo)) {
+            inimigo->danificar(*pJog1);
+        }
+        if (pJog2 && verificarColisao(*pJog2, *inimigo)) {
+            inimigo->danificar(*pJog2);
+        }
+    }
+}
+

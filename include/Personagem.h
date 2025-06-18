@@ -3,7 +3,7 @@
 
 class Personagem : public Entidade {
     protected:
-        int numVidas;
+        int numVidas = 20;
         float gravityUp = 2.f;
         float gravityDown = 5.f;
         float velocityY = 0.f;
@@ -69,5 +69,5 @@ class Personagem : public Entidade {
 
         virtual void setPosition(sf::Vector2f pos) { sprite.setPosition(pos); }
 
-        virtual void tomarDano(int nivelDano);
+        virtual void tomarDano(int nivelDano = 1);
 };

@@ -62,6 +62,7 @@ void JardimDoEden::executar(float deltaTime) {
         colisor.checarColisoes(enemy, floor, plataformas);
         enemy.executar(deltaTime);
         colisor.checarColisaoEntrePersonagens(player, enemy);
+        colisor.tratarColisaoJogsInimigs();
     }
 }
 

@@ -28,12 +28,12 @@ class GerenciadorColisoes {
         void incluirInimigo(Inimigo* pI);
         void incluirObstaculo(Obstaculo* pO);
         void incluirProjetil(Projetil* pJ);
+        void tratarColisaoJogsInimigs();
         void executar();
 
     private:
-        const bool verificarColisao(Entidade* pE1, Entidade* pE2);
+        const bool verificarColisao(Personagem& p1, Personagem& p2);
         void tratarColisaoJogsObstacs();
-        void tratarColisaoJogsInimigs();
         void tratarColisaoJogsProjeteis();
 };
 
