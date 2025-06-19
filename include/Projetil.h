@@ -20,8 +20,17 @@ class Projetil : public Entidade {
 
         ~Projetil() = default;
 
-        void executar(float deltaTime) override;
+        void executar(float deltaTime) override {
+            sprite.move(velocidade * deltaTime);
+        };
+
         void salvar();
 
-        // void renderizar(sf::RenderWindow& window) override;
+        sf::FloatRect getBounds() const {
+            return sprite.getGlobalBounds();
+        }
+    
+        Dono getDono() const { return dono; }
+        bool estaAtivo() const { return ativo; }
+        void desativar() { ativo = false; }
 };

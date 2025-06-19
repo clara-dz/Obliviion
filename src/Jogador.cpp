@@ -1,4 +1,5 @@
 #include "Jogador.h"
+#include "Projetil.h"
 #include <iostream>
 
 
@@ -17,6 +18,8 @@ void Jogador::executar(float deltaTime) {
             velocityX = -speed;
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
             velocityX = speed;
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+            Jogador::atirar();
     }
 
     sprite.move(velocityX * deltaTime, 0.f);
@@ -46,4 +49,13 @@ void Jogador::renderizar(sf::RenderWindow& window) {
 
 void Jogador::desenhar(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(sprite, states); // Now this function is implemented, SFML can call it to renderizar the sprite
+}
+
+void Jogador::setTexProjetil(const sf::Texture* tex) {
+    texProjetil = tex;
+}
+
+Projetil* Jogador::atirar() {
+    sf::Vector2f dir = { 300.f, 0.f };
+    return new Projetil(*texProjetil, sprite.getPosition(), dir, Dono::Jogador);
 }

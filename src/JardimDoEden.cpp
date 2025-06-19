@@ -18,6 +18,9 @@ JardimDoEden::JardimDoEden(const std::string& name,
     if (!inimigoFracoTexture.loadFromFile("../assets/images/inimigoFraco.png")) {
         std::cerr << "Error loading enemy texture!\n";
     }
+    sf::Texture texProjJogador;
+    texProjJogador.loadFromFile("../assets/images/rock.png");
+    player.setTexProjetil(&texProjJogador);
 }
 
 void JardimDoEden::loadLevel() {
