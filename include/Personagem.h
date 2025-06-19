@@ -58,11 +58,7 @@ class Personagem : public Entidade {
         virtual void executar(float deltaTime) override {
             // Implement character movement logic here (e.g., for the player or enemy)
         }
-
-        virtual void handleCollision(Entidade& other) override {
-            // Implement collision logic specific to characters (like taking damage or interacting with platforms)
-        }
-
+        
         virtual sf::FloatRect getBounds() const { return sprite.getGlobalBounds(); }
 
         virtual void move(sf::Vector2f delta) { sprite.move(delta); }

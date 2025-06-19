@@ -45,11 +45,6 @@ namespace Obstaculos {
         // Plataformas são estáticas por padrão, mas podem ter lógica futuramente
     }
 
-    void Plataforma::handleCollision(Entidade& other) {
-        // A lógica exata depende de como você trata colisão no seu motor de jogo
-        // Por ora, deixamos vazio ou com algo genérico
-    }
-
     void Plataforma::salva() {
         // Se for salvar em arquivo ou algo do tipo, coloque aqui
     }

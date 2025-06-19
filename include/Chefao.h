@@ -22,10 +22,9 @@ public:
     Chefao(const sf::Texture& texture, const sf::Texture& textura_projetil, int x = 0, int y = 0);
     ~Chefao();
 
-    // Implementação dos métodos virtuais herdados
     void executar(float deltaTime) override;
-    void handleCollision(Entidade& other) override;
     // void danificar(Jogador* pJogador) override {};
+
     void salva();
 
     // Sobrescrevemos o renderizar para também desenhar os projéteis

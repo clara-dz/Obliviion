@@ -12,7 +12,6 @@
         ~Obst_Medio();
         
         void executar(float deltaTime) override;
-        void handleCollision(Entidade& other) override;
         void salva() override;
     };
 //}

@@ -27,9 +27,7 @@ class Entidade : public Ente {
                 window.draw(sprite);
         }
 
-        // Must be overridden in derived classes
         virtual void executar(float deltaTime) override = 0;
-        virtual void handleCollision(Entidade& other) = 0;
 
         // Position accessors
         int getX() const { return x; }

@@ -29,8 +29,4 @@ public:
     void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override {
         target.draw(sprite, states);
     }
-
-    void handleCollision(Entidade& other) override {
-        // Define reaction to collisions
-    }
 };

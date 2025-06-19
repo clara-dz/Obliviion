@@ -2,26 +2,26 @@
 
 #include "Entidade.h"
 
+enum class Dono { Jogador, Inimigo };
+
 class Projetil : public Entidade {
-protected:
-    sf::Vector2f velocidade;
-    bool ativo;
+    protected:
+        sf::Sprite sprite;
+        sf::Vector2f velocidade;
+        Dono dono;
+        bool ativo = true;
 
-public:
-    // O construtor precisa de uma textura para o sprite do projétil
-    Projetil(const sf::Texture& texture);
-    ~Projetil();
+    public:
+        Projetil(const sf::Texture& tex, const sf::Vector2f& pos, const sf::Vector2f& vel, Dono dono)
+            : velocidade(vel), dono(dono) {
+            sprite.setTexture(tex);
+            sprite.setPosition(pos);
+        }
 
-    // Ativa o projétil, definindo sua posição e velocidade iniciais
-    void disparar(sf::Vector2f pos, sf::Vector2f vel);
+        ~Projetil() = default;
 
-    // Verifica se o projétil está atualmente em movimento
-    bool estaAtivo() const;
+        void executar(float deltaTime) override;
+        void salvar();
 
-    // Métodos virtuais herdados de Entidade que PRECISAM ser implementados
-    void executar(float deltaTime) override;
-    void handleCollision(Entidade& other) override;
-    
-    // Vamos sobrescrever o renderizar para desenhar apenas se estiver ativo
-    void renderizar(sf::RenderWindow& window) override;
+        // void renderizar(sf::RenderWindow& window) override;
 };

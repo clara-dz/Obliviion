@@ -15,6 +15,5 @@ public:
     // Métodos virtuais puros que as classes filhas DEVERÃO implementar
     // Note que estamos usando os nomes da nossa arquitetura base
     virtual void executar(float deltaTime) override = 0;
-    virtual void handleCollision(Entidade& other) override = 0;
     virtual void salva() = 0; // Para o sistema de save futuro
 };

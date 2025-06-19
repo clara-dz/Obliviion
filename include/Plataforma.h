@@ -22,9 +22,7 @@ namespace Obstaculos {
         void desenhar(sf::RenderWindow& window);
         const std::vector<sf::FloatRect> getBounds() const;
 
-        // Implementação dos métodos herdados
         void executar(float deltaTime) override;
-        void handleCollision(Entidade& other) override;
         void salva() override;
         void obstaculizar(Jogador*p); //ainda n sei para que serve
     };
