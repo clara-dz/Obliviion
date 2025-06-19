@@ -65,6 +65,6 @@ void Jogador::setTexProjetil(const sf::Texture* tex) {
 
 Projetil* Jogador::atirar() {
     std::cout << "Atirando" << std::endl;
-    sf::Vector2f dir = { 300.f, 0.f };
-    return new Projetil(*texProjetil, sprite.getPosition(), dir, Dono::Jogador);
+    sf::Vector2f vel = { 10.f, 0.f };
+    return new Projetil(*texProjetil, sprite.getPosition(), vel, Dono::Jogador);
 }

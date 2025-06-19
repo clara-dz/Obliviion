@@ -5,14 +5,16 @@
 enum class Dono { Jogador, Inimigo };
 
 class Projetil : public Entidade {
-    protected:
+    protected:        
         sf::Vector2f velocidade;
         Dono dono;
         bool ativo = true;
+        
+        float tempoDeVida; // seconds
 
     public:
-        Projetil(const sf::Texture& tex, const sf::Vector2f& pos, const sf::Vector2f& vel, Dono dono)
-            : Entidade(static_cast<int>(pos.x), static_cast<int>(pos.y)), velocidade(vel), dono(dono) {
+        Projetil(const sf::Texture& tex, const sf::Vector2f& pos, const sf::Vector2f& vel, Dono dono, float vida = 50.f)
+            : Entidade(static_cast<int>(pos.x), static_cast<int>(pos.y)), velocidade(vel), dono(dono), tempoDeVida(vida) {
             sprite.setTexture(tex);        // inherited from Entidade
             sprite.setPosition(pos);       // sets initial position
         }
@@ -20,6 +22,14 @@ class Projetil : public Entidade {
         ~Projetil() = default;
 
         void executar(float deltaTime) override {
+            if (!ativo) return;
+
+            tempoDeVida -= deltaTime;
+            if (tempoDeVida <= 0.f) {
+                desativar();
+                return;
+            }
+
             sprite.move(velocidade * deltaTime);
         };
 
