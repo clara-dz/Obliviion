@@ -145,3 +145,15 @@ void GerenciadorColisoes::renderizarProjeteis(sf::RenderWindow& window) {
         }
     }
 }
+
+void GerenciadorColisoes::removerProjeteisInativos() {
+    for (auto it = listaProjeteis.begin(); it != listaProjeteis.end(); ) {
+        if (!(*it)->estaAtivo()) {
+            delete *it;
+            it = listaProjeteis.erase(it);
+        } else {
+            ++it;
+        }
+    }
+}
+

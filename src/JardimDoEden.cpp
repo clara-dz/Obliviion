@@ -71,6 +71,7 @@ void JardimDoEden::executar(float deltaTime) {
     }
     colisor->atualizarProjeteis(deltaTime);
     colisor->tratarColisaoProjeteis();
+    colisor->removerProjeteisInativos();
 }
 
 void JardimDoEden::renderizar(sf::RenderWindow& window) {
