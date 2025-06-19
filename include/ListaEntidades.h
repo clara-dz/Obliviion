@@ -18,14 +18,13 @@ namespace Listas {
         ListaEntidades();
         ~ListaEntidades();
 
-        // Adiciona uma nova entidade (ponteiro) à lista
         void incluir(Entidade* pE);
-
-        // Funções principais que iteram sobre a lista
         void atualizar(float deltaTime);
-        void renderizar(sf::RenderWindow& window);
-        
-        // Limpa a lista, deletando todas as entidades
+        void renderizar(sf::RenderWindow& window);        
         void limpar();
+
+        Lista<Entidade>& getLista() {
+            return LEs;
+        }
     };
 }
