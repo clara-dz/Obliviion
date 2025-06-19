@@ -24,8 +24,8 @@ class Entidade : public Ente {
         }
 
         void renderizar(sf::RenderWindow& window) override {
-            std::cerr << "Rendering Entidade at (" << x << ", " << y << ")" << std::endl;
-            window.draw(sprite);
+            if (isVisible)
+                window.draw(sprite);
         }
 
         virtual void executar(float deltaTime) override = 0;

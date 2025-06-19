@@ -7,7 +7,7 @@
 Jogador::Jogador(const sf::Texture& texture) {
     sprite.setTexture(texture);
     sprite.setPosition(375.f, 275.f);
-    numVidas = 20;
+    numVidas = 5;
     isAlive = true;
     isVisible = true;
 }

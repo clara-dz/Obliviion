@@ -17,6 +17,12 @@ Game::Game() : window(sf::VideoMode(800, 600), "Obliviion") {
         exit(1);
     }
 
+    sf::Texture* player2Texture = new sf::Texture();
+    if (!player2Texture->loadFromFile("../assets/images/owlet.png")) {
+        std::cerr << "Error loading player texture!" << std::endl;
+        exit(1);
+    }
+
     std::string backgroundPath = "../assets/images/background1.png";
     std::string tileTexturePath = "../assets/images/tile1.png";
     
@@ -24,6 +30,7 @@ Game::Game() : window(sf::VideoMode(800, 600), "Obliviion") {
                                     tileTexturePath,
                                     backgroundPath,
                                     *playerTexture,
+                                    *player2Texture,
                                     1000);
     currentLevel->loadLevel();
 }

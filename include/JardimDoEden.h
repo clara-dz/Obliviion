@@ -17,6 +17,7 @@ class JardimDoEden : public Fase {
         const int maxIniminMedio = 10;
         Floor floor;
         Jogador player;
+        Jogador player2;
 
         std::vector<InimigoFraco> weakEnemies;
         std::vector<Obst_Medio> ObsMedio;
@@ -37,6 +38,7 @@ class JardimDoEden : public Fase {
                      const std::string& tileTexture,
                      const std::string& bgTextureFile,
                      const sf::Texture& playerTexture,
+                     const sf::Texture& player2Texture,
 
                      int windowWidth);
 
@@ -51,4 +53,7 @@ class JardimDoEden : public Fase {
             return true;
         }
 
+        bool jogadoresMortos() {
+            return (!player.estaVivo() && !player2.estaVivo());
+        }
 };

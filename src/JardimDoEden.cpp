@@ -7,10 +7,12 @@ JardimDoEden::JardimDoEden(const std::string& name,
                            const std::string& tileTexture,
                            const std::string& bgTextureFile,
                            const sf::Texture& playerTexture,
+                           const sf::Texture& player2Texture,
                            int windowWidth)
     : Fase(name), 
       floor(tileTexture, windowWidth, 500), 
-      player(playerTexture)
+      player(playerTexture),
+      player2(player2Texture)
 {
     loadBackgroundTexture(bgTextureFile);
 

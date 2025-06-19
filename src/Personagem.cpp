@@ -10,6 +10,7 @@ void Personagem::tomarDano(int nivelDano) {
     if (numVidas <= 0) {
         isAlive = false;
         numVidas = 0; // Ensure numVidas does not go below zero
+        isVisible = false;
     }
     isFlashing = true;
     flashDuration = 0.2f;
