@@ -18,8 +18,15 @@ void Jogador::executar(float deltaTime) {
             velocityX = -speed;
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
             velocityX = speed;
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-            Jogador::atirar();
+        bool upNow = sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
+
+        if (upNow && !upKeyPressedLastFrame) {
+            Projetil* novoProj = atirar();  // Or store or add to manager
+            // e.g., gerenciadorColisoes->incluirProjetil(novoProj);
+        }
+
+        upKeyPressedLastFrame = upNow; // update state for next frame
+
     }
 
     sprite.move(velocityX * deltaTime, 0.f);
@@ -56,6 +63,7 @@ void Jogador::setTexProjetil(const sf::Texture* tex) {
 }
 
 Projetil* Jogador::atirar() {
+    std::cout << "Atirando" << std::endl;
     sf::Vector2f dir = { 300.f, 0.f };
     return new Projetil(*texProjetil, sprite.getPosition(), dir, Dono::Jogador);
 }

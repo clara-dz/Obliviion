@@ -12,6 +12,7 @@ class Jogador : public Personagem {
     public:
         Jogador(const sf::Texture& texture);
 
+        bool upKeyPressedLastFrame = false;
         void setTexProjetil(const sf::Texture* tex);
         Projetil* atirar();
 
