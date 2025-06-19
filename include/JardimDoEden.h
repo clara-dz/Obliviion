@@ -21,6 +21,7 @@ class JardimDoEden : public Fase {
         std::vector<InimigoFraco> weakEnemies;
         std::vector<Obst_Medio> ObsMedio;
         sf::Texture inimigoFracoTexture;
+        sf::Texture texProjJogador;
 
         std::vector<Obstaculos::Plataforma> plataformas;
         sf::Texture plataformaEsqTex, plataformaDirTex, plataformaMeioTex;
@@ -36,6 +37,7 @@ class JardimDoEden : public Fase {
                      const std::string& tileTexture,
                      const std::string& bgTextureFile,
                      const sf::Texture& playerTexture,
+
                      int windowWidth);
 
         void loadLevel() override;

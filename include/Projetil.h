@@ -6,16 +6,15 @@ enum class Dono { Jogador, Inimigo };
 
 class Projetil : public Entidade {
     protected:
-        sf::Sprite sprite;
         sf::Vector2f velocidade;
         Dono dono;
         bool ativo = true;
 
     public:
         Projetil(const sf::Texture& tex, const sf::Vector2f& pos, const sf::Vector2f& vel, Dono dono)
-            : velocidade(vel), dono(dono) {
-            sprite.setTexture(tex);
-            sprite.setPosition(pos);
+            : Entidade(static_cast<int>(pos.x), static_cast<int>(pos.y)), velocidade(vel), dono(dono) {
+            sprite.setTexture(tex);        // inherited from Entidade
+            sprite.setPosition(pos);       // sets initial position
         }
 
         ~Projetil() = default;

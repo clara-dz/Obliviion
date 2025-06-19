@@ -1,5 +1,6 @@
 #include "Jogador.h"
 #include "Projetil.h"
+#include "GerenciadorColisoes.h"
 #include <iostream>
 
 
@@ -21,8 +22,8 @@ void Jogador::executar(float deltaTime) {
         bool upNow = sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
 
         if (upNow && !upKeyPressedLastFrame) {
-            Projetil* novoProj = atirar();  // Or store or add to manager
-            // e.g., gerenciadorColisoes->incluirProjetil(novoProj);
+            Projetil* novoProj = atirar();
+            GerenciadorColisoes::getInstancia()->incluirProjetil(novoProj);
         }
 
         upKeyPressedLastFrame = upNow; // update state for next frame

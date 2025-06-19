@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Ente.h"
+#include <iostream>
 
 class Entidade : public Ente {
     protected:
@@ -23,8 +24,8 @@ class Entidade : public Ente {
         }
 
         void renderizar(sf::RenderWindow& window) override {
-            if (isVisible)
-                window.draw(sprite);
+            std::cerr << "Rendering Entidade at (" << x << ", " << y << ")" << std::endl;
+            window.draw(sprite);
         }
 
         virtual void executar(float deltaTime) override = 0;
