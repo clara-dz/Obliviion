@@ -3,23 +3,27 @@
 
 class Personagem : public Entidade {
     protected:
-        int numVidas = 20;
+        int numVidas;
+
         float gravityUp = 2.f;
         float gravityDown = 5.f;
         float velocityY = 0.f;
         float velocityX = 0.f;
         float jumpStrength = -30.f;
-        bool isOnGround = false;
-        float knockbackTimer = 0.f; // in seconds
         int speed;
+        
         bool isAlive;
         bool isFlashing = false;
+        bool isOnGround = false;
+        
+        float knockbackTimer = 0.f; // in seconds
         float flashDuration = 0.0f;
         sf::Clock flashClock;
 
     public:
-        Personagem() : Entidade(), speed(5), isAlive(true) {}
-        Personagem(int x, int y, int speed) : Entidade(x, y), speed(speed), isAlive(true) {}
+        Personagem() : Entidade(), speed(5), isAlive(true), numVidas(1) {}
+        Personagem(int x, int y, int speed, int vidas = 1)
+            : Entidade(x, y), speed(speed), isAlive(true), numVidas(vidas) {}
         
         virtual ~Personagem() = default;
 
@@ -54,6 +58,8 @@ class Personagem : public Entidade {
         void setKnockbackTimer(float t) { knockbackTimer = t; }
 
         bool isFlashingNow() const { return isFlashing; }
+
+        bool estaVivo() const { return isAlive; }
 
         virtual void executar(float deltaTime) override {
             // Implement character movement logic here (e.g., for the player or enemy)

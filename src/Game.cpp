@@ -61,11 +61,24 @@ void Game::processEvents() {
 }
 
 void Game::executar() {
-    if (!menu->isOpened()) {
-        float deltaTime = clock.restart().asSeconds();
-        if (deltaTime < 1.f / 144.f)
-            deltaTime = 1.f / 144.f;
+    if (menu->isOpened()) return;
+    
+    float deltaTime = clock.restart().asSeconds();
+    if (deltaTime < 1.f / 144.f)
+        deltaTime = 1.f / 144.f;
+    
+    if (gameState == GameState::Playing) {
         currentLevel->executar(deltaTime);
+
+        if (currentLevel->getIsCompleted()) {
+            gameState = GameState::NextLevel;
+            std::cout << "Level completed!" << std::endl;
+        }
+    } else if (gameState == GameState::NextLevel) {
+        // Here you can load the next level or reset the current one
+        std::cout << "Loading next level..." << std::endl;
+        // For now, we just reset the current level
+        window.close();
     }
 }
 

@@ -72,6 +72,11 @@ void JardimDoEden::executar(float deltaTime) {
     colisor->atualizarProjeteis(deltaTime);
     colisor->tratarColisaoProjeteis();
     colisor->removerProjeteisInativos();
+
+    if (todosInimigosMortos()) {
+        std::cout << "Fase Concluída!\n";
+        setCompleted(true);
+    }
 }
 
 void JardimDoEden::renderizar(sf::RenderWindow& window) {

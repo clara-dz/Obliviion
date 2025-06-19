@@ -8,6 +8,13 @@
 #include "GerenciadorGrafico.h"
 
 
+enum class GameState {
+    Playing,
+    GameOver,
+    Victory,
+    NextLevel
+};
+
 class Game {
     public:
         Game();
@@ -15,6 +22,7 @@ class Game {
         void run();
         
     private:
+        GameState gameState = GameState::Playing;
         // Jogador pJog1;
         // Gerenciadores::GerenciadorGrafico GG;
         sf::RenderWindow window;

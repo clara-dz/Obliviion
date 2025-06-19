@@ -43,4 +43,12 @@ class JardimDoEden : public Fase {
         void loadLevel() override;
         void executar(float deltaTime) override;
         void renderizar(sf::RenderWindow& window) override;
+
+        bool todosInimigosMortos() const {
+            for (const auto& enemy : weakEnemies) {
+                if (enemy.estaVivo()) return false;
+            }
+            return true;
+        }
+
 };
