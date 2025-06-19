@@ -46,9 +46,14 @@ class GerenciadorColisoes {
         void incluirInimigos(Inimigo* pI);
         void incluirObstaculo(Obstaculo* pO);
         void incluirProjetil(Projetil* pJ);
+
+        void renderizarProjeteis(sf::RenderWindow& window);
         
         void checarColisaoEntrePersonagens(Personagem& p1, Personagem& p2);
         void tratarColisaoJogsInimigs();
+        void tratarColisaoProjeteis();
+        void atualizarProjeteis(float dt);   // ✅ Declare method
+        void removerProjeteisInativos();     // optional
         void checarColisoes(Personagem& Personagem, const Floor& floor, const std::vector<Obstaculos::Plataforma>& plataformas);
         
         // void executar();

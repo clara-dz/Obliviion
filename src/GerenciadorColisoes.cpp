@@ -98,3 +98,50 @@ void GerenciadorColisoes::tratarColisaoJogsInimigs() {
     }
 }
 
+void GerenciadorColisoes::tratarColisaoProjeteis() {
+    for (auto proj : listaProjeteis) {
+        if (!proj || !proj->estaAtivo())
+            continue;
+
+        if (proj->getDono() == Dono::Jogador) {
+            for (auto inimigo : listaInimigos) {
+                if (inimigo && proj->getBounds().intersects(inimigo->getBounds())) {
+                    inimigo->tomarDano(1);  // Or proj->getDano() if you add damage as a member
+                    proj->desativar();
+                    break;
+                }
+            }
+        }
+        else if (proj->getDono() == Dono::Inimigo) {
+            if (pJog1 && proj->getBounds().intersects(pJog1->getBounds())) {
+                pJog1->tomarDano(1);
+                proj->desativar();
+            }
+            if (pJog2 && proj->getBounds().intersects(pJog2->getBounds())) {
+                pJog2->tomarDano(1);
+                proj->desativar();
+            }
+        }
+    }
+}
+
+
+void GerenciadorColisoes::atualizarProjeteis(float dt) {
+    for (auto it = listaProjeteis.begin(); it != listaProjeteis.end();) {
+        (*it)->executar(dt);
+        if (!(*it)->estaAtivo()) {
+            delete *it;
+            it = listaProjeteis.erase(it);
+        } else {
+            ++it;
+        }
+    }
+}
+
+void GerenciadorColisoes::renderizarProjeteis(sf::RenderWindow& window) {
+    for (auto proj : listaProjeteis) {
+        if (proj && proj->estaAtivo()) {
+            proj->renderizar(window);  // ✅ uses Entidade::renderizar
+        }
+    }
+}

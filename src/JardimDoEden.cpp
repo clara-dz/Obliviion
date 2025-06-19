@@ -70,6 +70,8 @@ void JardimDoEden::executar(float deltaTime) {
         colisor->checarColisaoEntrePersonagens(player, enemy);
         colisor->tratarColisaoJogsInimigs();
     }
+    colisor->atualizarProjeteis(deltaTime);
+    colisor->tratarColisaoProjeteis();
 }
 
 void JardimDoEden::renderizar(sf::RenderWindow& window) {
@@ -84,4 +86,5 @@ void JardimDoEden::renderizar(sf::RenderWindow& window) {
     for (auto& plataforma : plataformas)
         plataforma.desenhar(window);
 
+    colisor->renderizarProjeteis(window);
 }
