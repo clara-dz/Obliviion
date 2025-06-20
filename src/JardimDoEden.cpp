@@ -28,6 +28,7 @@ JardimDoEden::JardimDoEden(const std::string& name,
     player2.setTexProjetil(&texProjJogador);
     player.setPosition(sf::Vector2f(100, 400));
     player2.setPosition(sf::Vector2f(200, 400));
+    player2.setEhJog2(true); // Set player2 as the second player
 }
 
 void JardimDoEden::loadLevel() {
@@ -75,20 +76,28 @@ void JardimDoEden::loadLevel() {
 void JardimDoEden::executar(float deltaTime) {
     player.executar(deltaTime);
     player2.executar(deltaTime);
-    colisor->checarColisoes(player, floor, plataformas);
-    colisor->checarColisoes(player2, floor, plataformas);
+    if (player.isAlive)
+        colisor->checarColisoes(player, floor, plataformas);
+
+    if (player2.isAlive)
+        colisor->checarColisoes(player2, floor, plataformas);
     
     // if (mode == PlayerMode::TwoPlayers) {}
 
     for (auto& enemy : weakEnemies) {
         if (!enemy.isAlive) continue; // Skip dead enemies
         
-        colisor->checarColisoes(enemy, floor, plataformas);
         enemy.executar(deltaTime);
-        colisor->checarColisaoEntrePersonagens(player, enemy);
-        colisor->checarColisaoEntrePersonagens(player2, enemy);
-        colisor->tratarColisaoJogsInimigs(player, enemy);
-        colisor->tratarColisaoJogsInimigs(player2, enemy);
+        colisor->checarColisoes(enemy, floor, plataformas);
+        
+        if (player.isAlive) {
+            colisor->checarColisaoEntrePersonagens(player, enemy);
+            colisor->tratarColisaoJogsInimigs(player, enemy);
+        }
+        if (player2.isAlive) {
+            colisor->checarColisaoEntrePersonagens(player2, enemy);
+            colisor->tratarColisaoJogsInimigs(player2, enemy);
+        }
     }
     colisor->atualizarProjeteis(deltaTime);
     colisor->tratarColisaoProjeteis();
@@ -103,9 +112,11 @@ void JardimDoEden::executar(float deltaTime) {
 void JardimDoEden::renderizar(sf::RenderWindow& window) {
     drawBackground(window);
     floor.renderizar(window);
-    player.renderizar(window);
-    player2.renderizar(window);
-    player2.setEhJog2(true); // Set player2 as the second player
+    if (player.isAlive)
+        player.renderizar(window);
+    
+    if (player2.isAlive)
+        player2.renderizar(window);
 
     // if (mode == PlayerMode::TwoPlayers) {}
 
