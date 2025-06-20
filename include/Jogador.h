@@ -7,13 +7,15 @@ class Inimigo;
 
 class Jogador : public Personagem {
     protected:
-        int pontos;
+        int pontos = 0;
         const sf::Texture* texProjetil;
     public:
         Jogador(const sf::Texture& texture);
 
         bool upKeyPressedLastFrame = false;
         void setTexProjetil(const sf::Texture* tex);
+        void addPontos(int pts) { pontos += pts; }
+        int getPontos() const { return pontos; }
         Projetil* atirar();
 
         void setPosition(sf::Vector2f pos) { sprite.setPosition(pos); }

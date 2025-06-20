@@ -103,8 +103,13 @@ void GerenciadorColisoes::tratarColisaoProjeteis() {
                 if (!inimigo || !inimigo->isAlive)
                     continue;
                 if (inimigo && proj->getBounds().intersects(inimigo->getBounds())) {
-                    inimigo->tomarDano(1);  // Or proj->getDano() if you add damage as a member
+                    bool estavaVivo = inimigo->isAlive;
+                    inimigo->tomarDano(1);
                     proj->desativar();
+                    if (!inimigo->isAlive && estavaVivo) {
+                        pJog1->addPontos(10); // No futuro, posso atribuir pts especificos p inimigo
+                        pJog2->addPontos(10);
+                    }
                     break;
                 }
             }
