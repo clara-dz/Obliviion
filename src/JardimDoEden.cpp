@@ -63,8 +63,13 @@ void JardimDoEden::loadLevel() {
     }
 
     colisor->resetar();
-    colisor->setJogadores(&player, nullptr);
-    colisor->incluirInimigos(&weakEnemies[0]); 
+    // colisor->setJogadores(&player, nullptr);
+    for (auto& inimigo : weakEnemies) {
+        colisor->incluirInimigos(&inimigo);
+    }
+    for (auto& inimigo : mediumEnemies) {
+        colisor->incluirInimigos(&inimigo);
+    }
 }
 
 void JardimDoEden::executar(float deltaTime) {
