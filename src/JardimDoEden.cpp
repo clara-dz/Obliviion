@@ -1,4 +1,5 @@
 #include "JardimDoEden.h"
+#include "Game.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -8,11 +9,13 @@ JardimDoEden::JardimDoEden(const std::string& name,
                            const std::string& bgTextureFile,
                            const sf::Texture& playerTexture,
                            const sf::Texture& player2Texture,
-                           int windowWidth)
+                           int windowWidth,
+                           PlayerMode mode)
     : Fase(name), 
       floor(tileTexture, windowWidth, 500), 
       player(playerTexture),
-      player2(player2Texture)
+      player2(player2Texture),
+      mode(mode)
 {
     loadBackgroundTexture(bgTextureFile);
 
@@ -22,6 +25,8 @@ JardimDoEden::JardimDoEden(const std::string& name,
     }
     texProjJogador.loadFromFile("../assets/images/rock.png");
     player.setTexProjetil(&texProjJogador);
+    player2.setTexProjetil(&texProjJogador);
+    player2.setPosition(sf::Vector2f(100, 400));
 }
 
 void JardimDoEden::loadLevel() {
@@ -64,6 +69,11 @@ void JardimDoEden::loadLevel() {
 void JardimDoEden::executar(float deltaTime) {
     player.executar(deltaTime);
     colisor->checarColisoes(player, floor, plataformas);
+
+    if (mode == PlayerMode::TwoPlayers) {
+        player2.executar(deltaTime);
+        colisor->checarColisoes(player2, floor, plataformas);
+    }
 
     for (auto& enemy : weakEnemies) {
         colisor->checarColisoes(enemy, floor, plataformas);

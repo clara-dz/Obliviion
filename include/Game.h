@@ -6,9 +6,11 @@
 #include "Menu.h"
 #include "Jogador.h"
 #include "GerenciadorGrafico.h"
+#include "PlayerMode.h"
 
 
 enum class GameState {
+    StartMenu,
     Playing,
     GameOver,
     Victory,
@@ -19,16 +21,21 @@ class Game {
     public:
         Game();
         ~Game();
+        
+        PlayerMode playerMode = PlayerMode::SinglePlayer;
+        
         void run();
         
     private:
-        GameState gameState = GameState::Playing;
+        GameState gameState = GameState::StartMenu;
+
         // Jogador pJog1;
         // Gerenciadores::GerenciadorGrafico GG;
-        sf::RenderWindow window;
         Fase* currentLevel;
-        sf::Clock clock;
         Menu* menu;
+        
+        sf::RenderWindow window;
+        sf::Clock clock;
         sf::Font font;
 
         void processEvents();

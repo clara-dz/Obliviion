@@ -11,10 +11,14 @@
 #include "InimigoFraco.h"
 #include "ObstaculoMedio.h"
 #include "Plataforma.h"
+#include "PlayerMode.h"
+
 
 class JardimDoEden : public Fase {
     private:
         const int maxIniminMedio = 10;
+        PlayerMode mode = PlayerMode::SinglePlayer;
+
         Floor floor;
         Jogador player;
         Jogador player2;
@@ -33,14 +37,16 @@ class JardimDoEden : public Fase {
         void criarObsMedios();
         void criarInimFracos();
         void criarObsFracos();
+
+        
     public:
         JardimDoEden(const std::string& name,
                      const std::string& tileTexture,
                      const std::string& bgTextureFile,
                      const sf::Texture& playerTexture,
                      const sf::Texture& player2Texture,
-
-                     int windowWidth);
+                     int windowWidth,
+                     PlayerMode mode);
 
         void loadLevel() override;
         void executar(float deltaTime) override;

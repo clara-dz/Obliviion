@@ -31,7 +31,8 @@ Game::Game() : window(sf::VideoMode(800, 600), "Obliviion") {
                                     backgroundPath,
                                     *playerTexture,
                                     *player2Texture,
-                                    1000);
+                                    1000,
+                                    playerMode);
     currentLevel->loadLevel();
 }
 
@@ -53,6 +54,20 @@ void Game::processEvents() {
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed)
             window.close();
+
+
+        if (gameState == GameState::StartMenu) {
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::Num1) {
+                    playerMode = PlayerMode::SinglePlayer;
+                    gameState = GameState::Playing;
+                } else if (event.key.code == sf::Keyboard::Num2) {
+                    playerMode = PlayerMode::TwoPlayers;
+                    gameState = GameState::Playing;
+                }
+            }
+            return;
+        }
 
         if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
             if (menu->isOpened())
@@ -91,9 +106,18 @@ void Game::executar() {
 
 void Game::renderizar() {
     window.clear();
-    currentLevel->renderizar(window);
-    if (menu->isOpened()) {
-        menu->desenhar(window, sf::RenderStates::Default);
+
+    if (gameState == GameState::StartMenu) {
+        sf::Text title("Choose Game Mode:\nPress 1 for Single Player\nPress 2 for Two Players", font, 30);
+        title.setPosition(100, 200);
+        title.setFillColor(sf::Color::White);
+        window.draw(title);
     }
+    else {
+        currentLevel->renderizar(window);
+        if (menu->isOpened())
+            menu->desenhar(window, sf::RenderStates::Default);
+    }
+    
     window.display();
 }
