@@ -89,18 +89,32 @@ void Game::executar() {
     if (deltaTime < 1.f / 144.f)
         deltaTime = 1.f / 144.f;
     
-    if (gameState == GameState::Playing) {
-        currentLevel->executar(deltaTime);
+    switch (gameState) {
+        case GameState::Playing:
+            currentLevel->executar(deltaTime);
+            
+            if (currentLevel->todosInimigosMortos()) {
+                gameState = GameState::NextLevel;
+            }else if (currentLevel->jogadoresMortos()) {
+                gameState = GameState::GameOver;
+            }
+            break;
 
-        if (currentLevel->getIsCompleted()) {
-            gameState = GameState::NextLevel;
-            std::cout << "Level completed!" << std::endl;
-        }
-    } else if (gameState == GameState::NextLevel) {
-        // Here you can load the next level or reset the current one
-        std::cout << "Loading next level..." << std::endl;
-        // For now, we just reset the current level
-        window.close();
+        case GameState::NextLevel:
+            // carregarProximoNivel();
+            // Here you can load the next level or reset the current one
+            std::cout << "Loading next level..." << std::endl;
+            // For now, we just reset the current level
+            window.close();
+            break;
+
+        case GameState::GameOver:
+            // mostrarTelaGameOver();
+            // Here you can load the next level or reset the current one
+            std::cout << "Game Over..." << std::endl;
+            // For now, we just reset the current level
+            window.close();
+            break;
     }
 }
 

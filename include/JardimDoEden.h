@@ -61,7 +61,7 @@ class JardimDoEden : public Fase {
             return true;
         }
 
-        bool jogadoresMortos() {
+        bool jogadoresMortos() const override {
             return (!player.estaVivo() && !player2.estaVivo());
         }
 };
