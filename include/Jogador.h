@@ -22,7 +22,9 @@ class Jogador : public Personagem {
         void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override;
 
         void colidir(Inimigo* pIn);
+        void setEhJog2(bool flag) { ehJog2 = flag; }
         // void salvar() override;
     private:
+        bool ehJog2 = false;
         float speed = 5.f;
 };

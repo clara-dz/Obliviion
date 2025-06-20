@@ -26,7 +26,8 @@ JardimDoEden::JardimDoEden(const std::string& name,
     texProjJogador.loadFromFile("../assets/images/rock.png");
     player.setTexProjetil(&texProjJogador);
     player2.setTexProjetil(&texProjJogador);
-    player2.setPosition(sf::Vector2f(100, 400));
+    player.setPosition(sf::Vector2f(100, 400));
+    player2.setPosition(sf::Vector2f(200, 400));
 }
 
 void JardimDoEden::loadLevel() {
@@ -68,12 +69,11 @@ void JardimDoEden::loadLevel() {
 
 void JardimDoEden::executar(float deltaTime) {
     player.executar(deltaTime);
+    player2.executar(deltaTime);
     colisor->checarColisoes(player, floor, plataformas);
-
-    if (mode == PlayerMode::TwoPlayers) {
-        player2.executar(deltaTime);
-        colisor->checarColisoes(player2, floor, plataformas);
-    }
+    colisor->checarColisoes(player2, floor, plataformas);
+    
+    // if (mode == PlayerMode::TwoPlayers) {}
 
     for (auto& enemy : weakEnemies) {
         colisor->checarColisoes(enemy, floor, plataformas);
@@ -95,6 +95,10 @@ void JardimDoEden::renderizar(sf::RenderWindow& window) {
     drawBackground(window);
     floor.renderizar(window);
     player.renderizar(window);
+    player2.renderizar(window);
+    player2.setEhJog2(true); // Set player2 as the second player
+
+    // if (mode == PlayerMode::TwoPlayers) {}
 
     for (auto& enemy : weakEnemies) {
         enemy.renderizar(window);
