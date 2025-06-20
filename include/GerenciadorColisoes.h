@@ -50,7 +50,7 @@ class GerenciadorColisoes {
         void renderizarProjeteis(sf::RenderWindow& window);
         
         void checarColisaoEntrePersonagens(Personagem& p1, Personagem& p2);
-        void tratarColisaoJogsInimigs();
+        void tratarColisaoJogsInimigs(Jogador& jogador, Inimigo& inimigo);
         void tratarColisaoProjeteis();
         void atualizarProjeteis(float dt);   // ✅ Declare method
         void removerProjeteisInativos();     // optional

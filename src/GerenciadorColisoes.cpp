@@ -86,17 +86,12 @@ const bool GerenciadorColisoes::verificarColisao(Personagem& p1, Personagem& p2)
     return false;
 }
 
-void GerenciadorColisoes::tratarColisaoJogsInimigs() {
-
-    for (auto inimigo : listaInimigos) {
-        if (pJog1 && verificarColisao(*pJog1, *inimigo)) {
-            inimigo->danificar(*pJog1);
-        }
-        if (pJog2 && verificarColisao(*pJog2, *inimigo)) {
-            inimigo->danificar(*pJog2);
-        }
+void GerenciadorColisoes::tratarColisaoJogsInimigs(Jogador& jogador, Inimigo& inimigo) {
+    if (verificarColisao(jogador, inimigo)) {
+        inimigo.danificar(jogador);
     }
 }
+
 
 void GerenciadorColisoes::tratarColisaoProjeteis() {
     for (auto proj : listaProjeteis) {

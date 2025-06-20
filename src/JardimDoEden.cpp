@@ -80,7 +80,8 @@ void JardimDoEden::executar(float deltaTime) {
         enemy.executar(deltaTime);
         colisor->checarColisaoEntrePersonagens(player, enemy);
         colisor->checarColisaoEntrePersonagens(player2, enemy);
-        colisor->tratarColisaoJogsInimigs();
+        colisor->tratarColisaoJogsInimigs(player, enemy);
+        colisor->tratarColisaoJogsInimigs(player2, enemy);
     }
     colisor->atualizarProjeteis(deltaTime);
     colisor->tratarColisaoProjeteis();
