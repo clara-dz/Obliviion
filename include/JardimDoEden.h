@@ -5,10 +5,11 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-#include "Jogador.h"
 #include "Fase.h"
 #include "Floor.h"
+#include "InimigoMedio.h"
 #include "InimigoFraco.h"
+#include "Jogador.h"
 #include "ObstaculoMedio.h"
 #include "Plataforma.h"
 #include "PlayerMode.h"
@@ -24,6 +25,7 @@ class JardimDoEden : public Fase {
         Jogador player2;
 
         std::vector<InimigoFraco> weakEnemies;
+        std::vector<InimigoMedio> mediumEnemies;
         std::vector<Obst_Medio> ObsMedio;
         sf::Texture inimigoFracoTexture;
         sf::Texture texProjJogador;

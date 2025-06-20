@@ -57,8 +57,8 @@ void JardimDoEden::loadLevel() {
         plataformas.emplace_back(plataformaEsqTex, plataformaMeioTex, plataformaDirTex, x, y, length);
     }
 
-    for (int i = 0; i < 1; ++i) {
-        InimigoFraco enemy(600, 200, 400, inimigoFracoTexture);
+    for (int i = 0; i < 3; ++i) {
+        InimigoFraco enemy(750 - (70 * i), 200, 20, inimigoFracoTexture);
         weakEnemies.push_back(enemy);
     }
 
