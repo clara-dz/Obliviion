@@ -22,11 +22,11 @@ public:
         // sprite.move(-speed * deltaTime, 0.f); // moves left slowly
     }
 
-    void renderizar(sf::RenderWindow& window) override {
-        window.draw(sprite);
-    }
+    // void renderizar(sf::RenderWindow& window) override {
+    //     window.draw(sprite);
+    // }
 
-    void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override {
-        target.draw(sprite, states);
-    }
+    // void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override {
+    //     target.draw(sprite, states);
+    // }
 };

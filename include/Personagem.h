@@ -12,7 +12,6 @@ class Personagem : public Entidade {
         float jumpStrength = -30.f;
         int speed;
         
-        bool isAlive;
         bool isFlashing = false;
         bool isOnGround = false;
         
@@ -21,6 +20,8 @@ class Personagem : public Entidade {
         sf::Clock flashClock;
 
     public:
+        bool isAlive;
+
         Personagem() : Entidade(), speed(5), isAlive(true), numVidas(1) {}
         Personagem(int x, int y, int speed, int vidas = 1)
             : Entidade(x, y), speed(speed), isAlive(true), numVidas(vidas) {}

@@ -100,6 +100,8 @@ void GerenciadorColisoes::tratarColisaoProjeteis() {
 
         if (proj->getDono() == Dono::Jogador) {
             for (auto inimigo : listaInimigos) {
+                if (!inimigo || !inimigo->isAlive)
+                    continue;
                 if (inimigo && proj->getBounds().intersects(inimigo->getBounds())) {
                     inimigo->tomarDano(1);  // Or proj->getDano() if you add damage as a member
                     proj->desativar();

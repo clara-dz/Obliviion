@@ -20,6 +20,7 @@ class Entidade : public Ente {
 
         // These override the base Ente methods
         void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override {
+            if (!isVisible) return;
             target.draw(sprite, states);
         }
 

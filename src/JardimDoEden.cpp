@@ -81,6 +81,8 @@ void JardimDoEden::executar(float deltaTime) {
     // if (mode == PlayerMode::TwoPlayers) {}
 
     for (auto& enemy : weakEnemies) {
+        if (!enemy.isAlive) continue; // Skip dead enemies
+        
         colisor->checarColisoes(enemy, floor, plataformas);
         enemy.executar(deltaTime);
         colisor->checarColisaoEntrePersonagens(player, enemy);
@@ -108,6 +110,7 @@ void JardimDoEden::renderizar(sf::RenderWindow& window) {
     // if (mode == PlayerMode::TwoPlayers) {}
 
     for (auto& enemy : weakEnemies) {
+        if (enemy.isAlive) // Only render alive enemies
         enemy.renderizar(window);
     }
 
