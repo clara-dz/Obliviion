@@ -88,7 +88,6 @@ void Game::processEvents() {
         if (event.type == sf::Event::Closed)
             window.close();
 
-
         if (gameState == GameState::StartMenu) {
             if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == sf::Keyboard::Num1) {
@@ -266,6 +265,7 @@ void Game::salvarPontuacao(const std::string& nome, int pontos) {
 void Game::salvarJogo() {
     json saveData;
 
+    saveData["playerMode"] = playerMode;
     saveData = currentLevel->salvar(saveData);
 
     salvarDataBuffer(saveData);

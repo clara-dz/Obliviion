@@ -15,6 +15,6 @@ Fase::~Fase() {
 }
 
 json Fase::salvar(json data) const {
-    data["Nome"] = levelName;
+    data["level"] = levelName;
     return data;
 }
