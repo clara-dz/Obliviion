@@ -7,6 +7,7 @@
 #include "Jogador.h"
 #include "GerenciadorGrafico.h"
 #include "PlayerMode.h"
+#include "TelaGameOver.h"
 
 
 enum class GameState {
@@ -28,6 +29,7 @@ class Game {
         
     private:
         GameState gameState = GameState::StartMenu;
+        TelaGameOver telaGameOver;
 
         // Jogador pJog1;
         // Gerenciadores::GerenciadorGrafico GG;
@@ -38,6 +40,7 @@ class Game {
         sf::Clock clock;
         sf::Font font;
 
+        void processarTelaGameOver();
         void processEvents();
         void executar();
         void renderizar();

@@ -82,6 +82,26 @@ void Game::processEvents() {
     }
 }
 
+void Game::processarTelaGameOver() {
+    sf::Event event;
+    while (window.pollEvent(event)) {
+        if (event.type == sf::Event::Closed)
+            window.close();
+        telaGameOver.processarEvento(event);
+    }
+
+    telaGameOver.atualizar();
+    telaGameOver.desenhar(window);
+
+    if (telaGameOver.terminouEntrada()) {
+        std::string nome = telaGameOver.getNomeJogador();
+        std::cout << "Player name: " << nome << std::endl;
+        // TODO: Save score, reset game, or go to main menu
+
+        window.close();  // Temporary action
+    }
+}
+
 void Game::executar() {
     if (menu->isOpened()) return;
     
@@ -109,11 +129,7 @@ void Game::executar() {
             break;
 
         case GameState::GameOver:
-            // mostrarTelaGameOver();
-            // Here you can load the next level or reset the current one
-            std::cout << "Game Over..." << std::endl;
-            // For now, we just reset the current level
-            window.close();
+            processarTelaGameOver();
             break;
     }
 }
@@ -121,17 +137,30 @@ void Game::executar() {
 void Game::renderizar() {
     window.clear();
 
-    if (gameState == GameState::StartMenu) {
-        sf::Text title("Choose Game Mode:\nPress 1 for Single Player\nPress 2 for Two Players", font, 30);
-        title.setPosition(100, 200);
-        title.setFillColor(sf::Color::White);
-        window.draw(title);
+    switch (gameState) {
+        case GameState::StartMenu: {
+            sf::Text title("Choose Game Mode:\nPress 1 for Single Player\nPress 2 for Two Players", font, 30);
+            title.setPosition(100, 200);
+            title.setFillColor(sf::Color::White);
+            window.draw(title);
+            break;
+        }
+
+        case GameState::Playing: {
+            currentLevel->renderizar(window);
+            if (menu->isOpened())
+                menu->desenhar(window, sf::RenderStates::Default);
+            break;
+        }
+
+        case GameState::NextLevel:
+            // optionally show a transition screen
+            break;
+
+        case GameState::GameOver:
+            // Do nothing here, as rendering is handled inside processarTelaGameOver()
+            return;  // prevent window.display() from being called again
     }
-    else {
-        currentLevel->renderizar(window);
-        if (menu->isOpened())
-            menu->desenhar(window, sf::RenderStates::Default);
-    }
-    
+
     window.display();
 }
