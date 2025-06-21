@@ -14,9 +14,7 @@ Fase::~Fase() {
     }
 }
 
-json Fase::salvar() const {
-    json data;
-    // (Opcional) adicionar conteúdo básico
-    data["tipo"] = "Fase";
+json Fase::salvar(json data) const {
+    data["Nome"] = levelName;
     return data;
 }

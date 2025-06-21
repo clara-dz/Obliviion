@@ -36,7 +36,7 @@ class Fase {
         virtual void renderizar(sf::RenderWindow& window) = 0;
         virtual bool todosInimigosMortos() const = 0;
         virtual bool jogadoresMortos() const = 0;
-        virtual json salvar() const;
+        virtual json salvar(json data) const;
 
         virtual int getPontuacaoTotalJogadores() const = 0;
         

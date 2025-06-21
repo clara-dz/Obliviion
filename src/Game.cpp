@@ -266,7 +266,7 @@ void Game::salvarPontuacao(const std::string& nome, int pontos) {
 void Game::salvarJogo() {
     json saveData;
 
-    saveData["level"] = "TESTE222";
+    saveData = currentLevel->salvar(saveData);
 
     salvarDataBuffer(saveData);
 }
