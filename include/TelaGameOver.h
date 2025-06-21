@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <string>
+#include <fstream>
 
 class TelaGameOver {
 private:
@@ -9,10 +10,16 @@ private:
     sf::Text inputText;
     bool terminou = false;
 
+    // Cursor
+    bool mostrarCursor = true;
+    sf::Clock cursorClock;
+    float cursorInterval = 0.5f;
+
 public:
     TelaGameOver() {
         if (!fonte.loadFromFile("../assets/fonts/arial.ttf")) {
-            // handle error
+            std::cerr << "Failed to load font.\n";
+
         }
         inputText.setFont(fonte);
         inputText.setCharacterSize(32);
@@ -25,7 +32,7 @@ public:
             if (event.text.unicode == '\b' && !nomeJogador.empty()) {
                 nomeJogador.pop_back();
             } else if (event.text.unicode == '\r' || event.text.unicode == '\n') {
-                terminou = true; // Enter pressed
+                terminou = true;
             } else if (event.text.unicode < 128 && isprint(event.text.unicode)) {
                 nomeJogador += static_cast<char>(event.text.unicode);
             }
@@ -33,7 +40,14 @@ public:
     }
 
     void atualizar() {
-        inputText.setString("Digite seu nome: " + nomeJogador);
+        if (cursorClock.getElapsedTime().asSeconds() >= cursorInterval) {
+            mostrarCursor = !mostrarCursor;
+            cursorClock.restart();
+        }
+
+        std::string textoFinal = "Digite seu nome: " + nomeJogador;
+        if (mostrarCursor) textoFinal += "|";
+        inputText.setString(textoFinal);
     }
 
     void desenhar(sf::RenderWindow& window) {

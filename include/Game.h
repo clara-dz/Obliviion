@@ -7,6 +7,7 @@
 #include "Jogador.h"
 #include "GerenciadorGrafico.h"
 #include "PlayerMode.h"
+#include "TelaGameOver.h"
 
 
 enum class GameState {
@@ -14,7 +15,8 @@ enum class GameState {
     Playing,
     GameOver,
     Victory,
-    NextLevel
+    NextLevel,
+    Ranking
 };
 
 class Game {
@@ -28,6 +30,7 @@ class Game {
         
     private:
         GameState gameState = GameState::StartMenu;
+        TelaGameOver telaGameOver;
 
         // Jogador pJog1;
         // Gerenciadores::GerenciadorGrafico GG;
@@ -38,7 +41,9 @@ class Game {
         sf::Clock clock;
         sf::Font font;
 
+        void processarTelaGameOver();
         void processEvents();
         void executar();
         void renderizar();
+        void salvarPontuacao(const std::string& nome, int pontos);
 };

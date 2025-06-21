@@ -1,6 +1,33 @@
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <string>
+#include <algorithm>
 #include <iostream>
 #include "Game.h"
 
+
+std::vector<std::pair<std::string, int>> lerPontuacoes() {
+    std::ifstream arquivo("../assets/ranking.csv");
+    std::vector<std::pair<std::string, int>> pontuacoes;
+    std::string linha;
+
+    while (std::getline(arquivo, linha)) {
+        std::istringstream ss(linha);
+        std::string nome;
+        int pontos;
+        if (std::getline(ss, nome, ',') && ss >> pontos) {
+            pontuacoes.emplace_back(nome, pontos);
+        }
+    }
+
+    // Optional: sort descending
+    std::sort(pontuacoes.begin(), pontuacoes.end(), [](auto& a, auto& b) {
+        return a.second > b.second;
+    });
+
+    return pontuacoes;
+}
 
 Game::Game() : window(sf::VideoMode(800, 600), "Obliviion") {
     if (!font.loadFromFile("../assets/fonts/arial.ttf")) {
@@ -8,7 +35,7 @@ Game::Game() : window(sf::VideoMode(800, 600), "Obliviion") {
         exit(1);
     }
 
-    std::vector<std::string> options = {"Resume", "Option", "Sair"};
+    std::vector<std::string> options = {"Continuar", "Score", "Sair"};
     menu = new Menu(options, font);
 
     sf::Texture* playerTexture = new sf::Texture();
@@ -50,6 +77,9 @@ void Game::run() {
 }
 
 void Game::processEvents() {
+    if (gameState == GameState::GameOver)
+        return;
+    
     sf::Event event;
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed)
@@ -70,10 +100,15 @@ void Game::processEvents() {
         }
 
         if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-            if (menu->isOpened())
-                menu->close();
-            else
-                menu->open();
+            if (gameState == GameState::Ranking) {
+                std::cout << "Returning to game..." << std::endl;
+                gameState = GameState::Playing;  
+            } else {
+                if (menu->isOpened())
+                    menu->close();
+                else
+                    menu->open();
+            }
         }
 
         if (menu->isOpened()) {
@@ -82,8 +117,46 @@ void Game::processEvents() {
     }
 }
 
+void Game::processarTelaGameOver() {
+    sf::Event event;
+    while (window.pollEvent(event)) {
+        if (event.type == sf::Event::Closed)
+            window.close();
+        telaGameOver.processarEvento(event);
+    }
+
+    telaGameOver.atualizar();
+    telaGameOver.desenhar(window);
+
+    if (telaGameOver.terminouEntrada()) {
+        std::string nome = telaGameOver.getNomeJogador();
+        
+        // Safeguard: fallback name
+        if (nome.empty()) nome = "Anonimo";
+
+        // Get score from currentLevel
+        int pontos = currentLevel->getPontuacaoTotalJogadores();  // <-- implement this
+
+        salvarPontuacao(nome, pontos);
+        std::cout << "Pontuação salva: " << nome << ", " << pontos << " pontos." << std::endl;
+
+        window.close();  // or reset game
+    }
+}
+
 void Game::executar() {
-    if (menu->isOpened()) return;
+    // if (menu->isOpened()) return;
+    if (menu->isOpened()) {
+        return;
+    }
+    
+    std::string selected = menu->getSelectedOption();
+    menu->resetSelection();
+    if (selected == "Score" && gameState == GameState::Playing) {
+        std::cout << "Opening ranking screen..." << std::endl;
+        gameState = GameState::Ranking;
+        return;
+    };
     
     float deltaTime = clock.restart().asSeconds();
     if (deltaTime < 1.f / 144.f)
@@ -109,11 +182,7 @@ void Game::executar() {
             break;
 
         case GameState::GameOver:
-            // mostrarTelaGameOver();
-            // Here you can load the next level or reset the current one
-            std::cout << "Game Over..." << std::endl;
-            // For now, we just reset the current level
-            window.close();
+            processarTelaGameOver();
             break;
     }
 }
@@ -121,17 +190,67 @@ void Game::executar() {
 void Game::renderizar() {
     window.clear();
 
-    if (gameState == GameState::StartMenu) {
-        sf::Text title("Choose Game Mode:\nPress 1 for Single Player\nPress 2 for Two Players", font, 30);
-        title.setPosition(100, 200);
-        title.setFillColor(sf::Color::White);
-        window.draw(title);
+    switch (gameState) {
+        case GameState::StartMenu: {
+            sf::Text title("Choose Game Mode:\nPress 1 for Single Player\nPress 2 for Two Players", font, 30);
+            title.setPosition(100, 200);
+            title.setFillColor(sf::Color::White);
+            window.draw(title);
+            break;
+        }
+
+        case GameState::Playing: {
+            currentLevel->renderizar(window);
+            if (menu->isOpened())
+                menu->desenhar(window, sf::RenderStates::Default);
+            break;
+        }
+
+        case GameState::NextLevel:
+            // optionally show a transition screen
+            break;
+
+        case GameState::GameOver:
+            // Do nothing here, as rendering is handled inside processarTelaGameOver()
+            return;  // prevent window.display() from being called again
+        
+        case GameState::Ranking: {
+            sf::Text titulo("Score", font, 36);
+            titulo.setPosition(300, 50);
+            titulo.setFillColor(sf::Color::White);
+            window.draw(titulo);
+
+            auto scores = lerPontuacoes();
+            int y = 120;
+            int count = 0;
+            for (const auto& [nome, pontos] : scores) {
+                if (++count > 5) break;  // only show top 5
+                sf::Text linha(nome + " - " + std::to_string(pontos), font, 28);
+                linha.setPosition(280, y);
+                linha.setFillColor(sf::Color::Cyan);
+                window.draw(linha);
+                y += 40;
+            }
+
+            sf::Text hint("Pressione ESC para voltar", font, 20);
+            hint.setPosition(250, y + 20);
+            hint.setFillColor(sf::Color(150, 150, 150));
+            window.draw(hint);
+            break;
+        }
     }
-    else {
-        currentLevel->renderizar(window);
-        if (menu->isOpened())
-            menu->desenhar(window, sf::RenderStates::Default);
-    }
-    
+
     window.display();
 }
+
+
+void Game::salvarPontuacao(const std::string& nome, int pontos) {
+    std::ofstream arquivo("../assets/ranking.csv", std::ios::app); // append mode
+    if (arquivo.is_open()) {
+        arquivo << nome << "," << pontos << "\n";
+        arquivo.close();
+    } else {
+        std::cerr << "Erro ao abrir o arquivo de ranking!" << std::endl;
+    }
+}
+

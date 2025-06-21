@@ -46,7 +46,12 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
                 updateVisual();
                 break;
             case sf::Keyboard::Enter:
-                if (items[selectedIndex] == "Sair") {
+                if (items[selectedIndex] == "Continuar") {
+                    close();
+                } else if (items[selectedIndex] == "Score") {
+                    close();
+
+                } else if (items[selectedIndex] == "Sair") {
                     window.close();
                 }
                 break;
@@ -80,4 +85,13 @@ void Menu::updateVisual() {
     for (std::size_t i = 0; i < texts.size(); ++i) {
         texts[i].setFillColor(i == selectedIndex ? sf::Color::Yellow : sf::Color::White);
     }
+}
+
+std::string Menu::getSelectedOption() const {
+    return items[selectedIndex];
+}
+
+void Menu::resetSelection() {
+    selectedIndex = 0;
+    updateVisual();
 }

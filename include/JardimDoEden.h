@@ -60,6 +60,9 @@ class JardimDoEden : public Fase {
         void loadLevel() override;
         void executar(float deltaTime) override;
         void renderizar(sf::RenderWindow& window) override;
+        int getPontuacaoTotalJogadores() const override {
+            return player.getPontos();
+        }
 
         bool todosInimigosMortos() const {
             for (const auto& enemy : weakEnemies) {
