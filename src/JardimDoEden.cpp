@@ -80,7 +80,7 @@ void JardimDoEden::loadLevel() {
     }
 
     for (int i = 0; i < maxIniminMedio; ++i) {
-        EmoBoy emo(750 - (40 * i), 200, 20, emoBoyTexture);
+        EmoBoy emo(400 - (70 * i), 200, 20, emoBoyTexture);
         mediumEnemies.push_back(emo);
     }
 

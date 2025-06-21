@@ -8,11 +8,12 @@ void Personagem::tomarDano(int nivelDano) {
 
     numVidas -= nivelDano;
     if (numVidas <= 0) {
+        std::cout << "dead" << std::endl;
         isAlive = false;
         numVidas = 0; // Ensure numVidas does not go below zero
         isVisible = false;
     }
-    isFlashing = true;
+    // isFlashing = true;
     flashDuration = 0.2f;
     sprite.setColor(sf::Color::Red);
     flashClock.restart();
