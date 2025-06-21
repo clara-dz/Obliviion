@@ -10,7 +10,11 @@ class Smoke : public Obstaculo {
         }
 
         void afetar(Jogador& jogador) override {
-            jogador.reduzirVelocidade(0.8f);
+            float knockbackSpeed = 500.f;
+
+            jogador.setVelocityX(-1 * knockbackSpeed);
+            jogador.setVelocityY(-15.f);
+            jogador.setKnockbackTimer(30.f);
         }
 
         void executar(float deltaTime) override {}

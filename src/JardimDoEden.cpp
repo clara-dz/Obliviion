@@ -39,13 +39,13 @@ void JardimDoEden::loadLevel() {
         exit(1);
     }
 
-    if (!smokeTex.loadFromFile("../assets/images/smoke.gif") ||
+    if (!smokeTex.loadFromFile("../assets/images/smoke.png") ||
         !fireTex.loadFromFile("../assets/images/fire.gif")) {
         std::cerr << "Error loading platform textures!\n";
         exit(1);
     }
 
-    obstaculos.push_back(new Smoke(smokeTex, 400, 356));
+    obstaculos.push_back(new Smoke(smokeTex, 400, 450));
 
     // Load platform layout from CSV file
     std::ifstream file("../assets/maps/jardimDoEden.csv");
@@ -94,8 +94,6 @@ void JardimDoEden::executar(float deltaTime) {
     if (player2.isAlive)
         colisor->checarColisoes(player2, floor, plataformas);
     
-    std::cout << "[DEBUG] Obstáculos ativos: " << colisor->getListaObstaculosSize() << std::endl;
-
     // if (mode == PlayerMode::TwoPlayers) {}
 
     for (auto& enemy : weakEnemies) {
