@@ -6,19 +6,22 @@
 
 class Entidade : public Ente {
     protected:
-        sf::Sprite sprite;
-        int x, y;
+        sf::Sprite sprite; //tirar daqui pois já está em ENTE.H
+        int x, y; //é passada para as classes filhas
         bool isVisible;
-        // ostream buffer;
         void salvarDataBuffer();
 
     public:
-        // virtual void salvar() = 0;
-        Entidade() : x(0), y(0), isVisible(true) {}
+
+        Entidade() : x(0), y(0), isVisible(true) {}              //a classe tem duas funções inicializadoras
+
         Entidade(int x, int y) : x(x), y(y), isVisible(true) {}
+        
+        
         virtual ~Entidade() {}
 
-        // These override the base Ente methods
+       // virtual void salvar();
+
         void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override {
             if (!isVisible) return;
             target.draw(sprite, states);
@@ -30,12 +33,6 @@ class Entidade : public Ente {
         }
 
         virtual void executar(float deltaTime) override = 0;
-
-        // Position accessors
-        int getX() const { return x; }
-        int getY() const { return y; }
-        void setX(int newX) { x = newX; }
-        void setY(int newY) { y = newY; }
 
         void setSprite(const sf::Texture& texture) {
             sprite.setTexture(texture);
