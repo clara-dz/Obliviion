@@ -12,7 +12,7 @@
 #include "Plataforma.h"
 #include "Floor.h"
 
-#include "InimigoMedio.h"
+#include "EmoBoy.h"
 #include "InimigoFraco.h"
 
 #include "ObstaculoMedio.h"
@@ -31,7 +31,7 @@ class JardimDoEden : public Fase {
         std::vector<InimigoFraco> weakEnemies;
         sf::Texture inimigoFracoTexture;
 
-        std::vector<InimigoMedio> mediumEnemies;
+        std::vector<EmoBoy> mediumEnemies;
         sf::Texture texProjJogador;
         
         // std::vector<Obstaculo*> obstaculos;
