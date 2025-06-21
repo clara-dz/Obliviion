@@ -1,10 +1,13 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <nlohmann/json.hpp>
 #include <string>
 #include <iostream>
 #include "GerenciadorColisoes.h"
 #include "ListaEntidades.h"
+
+using json = nlohmann::json;
 
 
 class Fase {
@@ -26,21 +29,14 @@ class Fase {
         Fase(const std::string& name) 
             : levelName(name), isCompleted(false) {}
 
-        virtual ~Fase() {
-            for (auto* obstaculo : obstaculos) {
-                delete obstaculo; // Clean up dynamically allocated obstacles
-            }
-            obstaculos.clear();
-            if (colisor) {
-                colisor->resetar(); // Reset collision manager
-            }
-        }
+        virtual ~Fase();
 
         virtual void loadLevel() = 0;
         virtual void executar(float deltaTime) = 0;
         virtual void renderizar(sf::RenderWindow& window) = 0;
         virtual bool todosInimigosMortos() const = 0;
         virtual bool jogadoresMortos() const = 0;
+        virtual json salvar() const;
 
         virtual int getPontuacaoTotalJogadores() const = 0;
         
