@@ -2,7 +2,7 @@
 #include "Personagem.h"
 
 void Personagem::tomarDano(int nivelDano) {
-    std::cout << "Damage: " << nivelDano << std::endl;
+    std::cout << "Damage: " << nivelDano << "|" << numVidas << std::endl;
 
     if (isFlashing) return;
 

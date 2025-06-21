@@ -21,7 +21,8 @@
 
 class JardimDoEden : public Fase {
     private:
-        const int maxIniminMedio = 10;
+        const int maxInimigosFracos = 3;    
+        const int maxIniminMedio = 2;
         PlayerMode mode = PlayerMode::SinglePlayer;
 
         Floor floor;
@@ -32,7 +33,7 @@ class JardimDoEden : public Fase {
         sf::Texture inimigoFracoTexture;
 
         std::vector<EmoBoy> mediumEnemies;
-        sf::Texture texProjJogador;
+        sf::Texture emoBoyTexture;
         
         // std::vector<Obstaculo*> obstaculos;
         // sf::Texture smokeTex, fireTex;
@@ -40,6 +41,7 @@ class JardimDoEden : public Fase {
         std::vector<Obstaculos::Plataforma> plataformas;
         sf::Texture plataformaEsqTex, plataformaDirTex, plataformaMeioTex;
 
+        sf::Texture texProjJogador;
 
     protected:
         void criarInimMedios();

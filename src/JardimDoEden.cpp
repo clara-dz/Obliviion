@@ -23,6 +23,10 @@ JardimDoEden::JardimDoEden(const std::string& name,
     if (!inimigoFracoTexture.loadFromFile("../assets/images/inimigoFraco.png")) {
         std::cerr << "Error loading enemy texture!\n";
     }
+    if (!emoBoyTexture.loadFromFile("../assets/images/emoboy.png")) {
+        std::cerr << "Error loading emoBoy texture!\n";
+    }
+
     texProjJogador.loadFromFile("../assets/images/rock.png");
     player.setTexProjetil(&texProjJogador);
     player2.setTexProjetil(&texProjJogador);
@@ -70,9 +74,14 @@ void JardimDoEden::loadLevel() {
         colisor->incluirObstaculo(o);
     }
 
-    for (int i = 0; i < 3; ++i) {
+    for (int i = 0; i < maxInimigosFracos; ++i) {
         InimigoFraco enemy(750 - (70 * i), 200, 20, inimigoFracoTexture);
         weakEnemies.push_back(enemy);
+    }
+
+    for (int i = 0; i < maxIniminMedio; ++i) {
+        EmoBoy emo(750 - (40 * i), 200, 20, emoBoyTexture);
+        mediumEnemies.push_back(emo);
     }
 
     // colisor->resetar();
@@ -97,6 +106,22 @@ void JardimDoEden::executar(float deltaTime) {
     // if (mode == PlayerMode::TwoPlayers) {}
 
     for (auto& enemy : weakEnemies) {
+        if (!enemy.isAlive) continue; // Skip dead enemies
+        
+        enemy.executar(deltaTime);
+        colisor->checarColisoes(enemy, floor, plataformas);
+        
+        if (player.isAlive) {
+            colisor->checarColisaoEntrePersonagens(player, enemy);
+            colisor->tratarColisaoJogsInimigs(player, enemy);
+        }
+        if (player2.isAlive) {
+            colisor->checarColisaoEntrePersonagens(player2, enemy);
+            colisor->tratarColisaoJogsInimigs(player2, enemy);
+        }
+    }
+
+        for (auto& enemy : mediumEnemies) {
         if (!enemy.isAlive) continue; // Skip dead enemies
         
         enemy.executar(deltaTime);
@@ -141,6 +166,11 @@ void JardimDoEden::renderizar(sf::RenderWindow& window) {
     // if (mode == PlayerMode::TwoPlayers) {}
 
     for (auto& enemy : weakEnemies) {
+        if (enemy.isAlive) // Only render alive enemies
+        enemy.renderizar(window);
+    }
+
+    for (auto& enemy : mediumEnemies) {
         if (enemy.isAlive) // Only render alive enemies
         enemy.renderizar(window);
     }
