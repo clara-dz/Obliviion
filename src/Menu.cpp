@@ -50,7 +50,8 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
                     close();
                 } else if (items[selectedIndex] == "Score") {
                     close();
-
+                } else if (items[selectedIndex] == "Salvar") {
+                    close(); 
                 } else if (items[selectedIndex] == "Sair") {
                     window.close();
                 }

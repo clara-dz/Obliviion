@@ -27,6 +27,7 @@ class Game {
         PlayerMode playerMode = PlayerMode::SinglePlayer;
         
         void run();
+        void salvarJogo();
         
     private:
         GameState gameState = GameState::StartMenu;

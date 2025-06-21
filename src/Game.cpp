@@ -4,7 +4,10 @@
 #include <string>
 #include <algorithm>
 #include <iostream>
+#include <nlohmann/json.hpp>
 #include "Game.h"
+
+using json = nlohmann::json;
 
 
 std::vector<std::pair<std::string, int>> lerPontuacoes() {
@@ -35,7 +38,7 @@ Game::Game() : window(sf::VideoMode(800, 600), "Obliviion") {
         exit(1);
     }
 
-    std::vector<std::string> options = {"Continuar", "Score", "Sair"};
+    std::vector<std::string> options = {"Continuar", "Score", "Salvar", "Carregar", "Sair"};
     menu = new Menu(options, font);
 
     sf::Texture* playerTexture = new sf::Texture();
@@ -152,6 +155,12 @@ void Game::executar() {
     
     std::string selected = menu->getSelectedOption();
     menu->resetSelection();
+
+    if (selected == "Salvar") {
+        salvarJogo();
+        std::cout << "Game saved successfully." << std::endl;
+    }
+
     if (selected == "Score" && gameState == GameState::Playing) {
         std::cout << "Opening ranking screen..." << std::endl;
         gameState = GameState::Ranking;
@@ -254,3 +263,17 @@ void Game::salvarPontuacao(const std::string& nome, int pontos) {
     }
 }
 
+void Game::salvarJogo() {
+    json saveData;
+
+    saveData["level"] = "TESTE";
+
+    std::ofstream out("../assets/savegame.json");
+    if (out.is_open()) {
+        out << saveData.dump(4);
+        out.close();
+        std::cout << "Jogo salvo com sucesso.\n";
+    } else {
+        std::cerr << "Erro ao salvar jogo.\n";
+    }
+}
