@@ -225,7 +225,7 @@ void Game::renderizar() {
             int count = 0;
             for (const auto& [nome, pontos] : scores) {
                 if (++count > 5) break;  // only show top 5
-                sf::Text linha(nome + " - " + std::to_string(pontos), font, 28);
+                sf::Text linha(nome + ": " + std::to_string(pontos), font, 28);
                 linha.setPosition(280, y);
                 linha.setFillColor(sf::Color::Cyan);
                 window.draw(linha);
