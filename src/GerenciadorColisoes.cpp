@@ -159,3 +159,13 @@ void GerenciadorColisoes::removerProjeteisInativos() {
     }
 }
 
+void GerenciadorColisoes::tratarColisaoJogsObstacs() {
+    for (auto* obst : listaObstaculos) {
+        if (pJog1 && obst->getBounds().intersects(pJog1->getBounds())) {
+            obst->afetar(*pJog1);
+        }
+        if (pJog2 && obst->getBounds().intersects(pJog2->getBounds())) {
+            obst->afetar(*pJog2);
+        }
+    }
+}

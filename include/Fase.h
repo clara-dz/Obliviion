@@ -9,11 +9,16 @@
 
 class Fase {
     protected:
-        // Listas::ListaEntidades lista_Ents; Precisa das implementações p descomentar
+        bool isCompleted;
+
         std::string levelName;
+
         sf::Texture backgroundTexture;
         sf::Sprite backgroundSprite;
-        bool isCompleted;
+
+        std::vector<Obstaculo*> obstaculos;
+        sf::Texture smokeTex, fireTex;
+        
         // virtual void criarObstaculos() = 0;
         GerenciadorColisoes* colisor = GerenciadorColisoes::getInstancia();
 
@@ -21,7 +26,15 @@ class Fase {
         Fase(const std::string& name) 
             : levelName(name), isCompleted(false) {}
 
-        virtual ~Fase() {}
+        virtual ~Fase() {
+            for (auto* obstaculo : obstaculos) {
+                delete obstaculo; // Clean up dynamically allocated obstacles
+            }
+            obstaculos.clear();
+            if (colisor) {
+                colisor->resetar(); // Reset collision manager
+            }
+        }
 
         virtual void loadLevel() = 0;
         virtual void executar(float deltaTime) = 0;

@@ -39,6 +39,14 @@ void JardimDoEden::loadLevel() {
         exit(1);
     }
 
+    if (!smokeTex.loadFromFile("../assets/images/smoke.gif") ||
+        !fireTex.loadFromFile("../assets/images/fire.gif")) {
+        std::cerr << "Error loading platform textures!\n";
+        exit(1);
+    }
+
+    obstaculos.push_back(new Smoke(smokeTex, 400, 356));
+
     // Load platform layout from CSV file
     std::ifstream file("../assets/maps/jardimDoEden.csv");
     if (!file.is_open()) {
@@ -56,6 +64,10 @@ void JardimDoEden::loadLevel() {
         char comma;
         ss >> x >> comma >> y >> comma >> length;
         plataformas.emplace_back(plataformaEsqTex, plataformaMeioTex, plataformaDirTex, x, y, length);
+    }
+
+    for (auto& o : obstaculos) {
+        colisor->incluirObstaculo(o);
     }
 
     for (int i = 0; i < 3; ++i) {
@@ -93,10 +105,12 @@ void JardimDoEden::executar(float deltaTime) {
         if (player.isAlive) {
             colisor->checarColisaoEntrePersonagens(player, enemy);
             colisor->tratarColisaoJogsInimigs(player, enemy);
+            colisor->tratarColisaoJogsObstacs();
         }
         if (player2.isAlive) {
             colisor->checarColisaoEntrePersonagens(player2, enemy);
             colisor->tratarColisaoJogsInimigs(player2, enemy);
+            colisor->tratarColisaoJogsObstacs();
         }
     }
     colisor->atualizarProjeteis(deltaTime);
@@ -112,6 +126,12 @@ void JardimDoEden::executar(float deltaTime) {
 void JardimDoEden::renderizar(sf::RenderWindow& window) {
     drawBackground(window);
     floor.renderizar(window);
+    for (auto* obst : obstaculos) {
+        if (obst) {
+            obst->renderizar(window);
+        }
+    }
+
     if (player.isAlive)
         player.renderizar(window);
     
