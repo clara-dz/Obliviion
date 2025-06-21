@@ -11,7 +11,13 @@ class Jogador : public Personagem {
         const sf::Texture* texProjetil;
     public:
         Jogador(const sf::Texture& texture);
-
+        
+        void die() {
+            isAlive = false;
+            isVisible = false;
+            numVidas = 0; // Ensure numVidas does not go below zero
+        }
+        
         bool upKeyPressedLastFrame = false;
         void setTexProjetil(const sf::Texture* tex);
         void addPontos(int pts) { pontos += pts; }

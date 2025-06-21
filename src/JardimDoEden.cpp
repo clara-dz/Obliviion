@@ -33,6 +33,9 @@ JardimDoEden::JardimDoEden(const std::string& name,
     player.setPosition(sf::Vector2f(100, 400));
     player2.setPosition(sf::Vector2f(200, 400));
     player2.setEhJog2(true); // Set player2 as the second player
+    if (mode == PlayerMode::SinglePlayer){
+        player2.die();
+    }
 }
 
 void JardimDoEden::loadLevel() {
