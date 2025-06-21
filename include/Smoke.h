@@ -1,5 +1,6 @@
 #pragma once
 #include "Obstaculo.h"
+#include <iostream>
 
 class Smoke : public Obstaculo {
     public:
@@ -9,7 +10,7 @@ class Smoke : public Obstaculo {
         }
 
         void afetar(Jogador& jogador) override {
-            jogador.reduzirVelocidade(0.5f); // Reduz pela metade
+            jogador.reduzirVelocidade(0.8f);
         }
 
         void executar(float deltaTime) override {}

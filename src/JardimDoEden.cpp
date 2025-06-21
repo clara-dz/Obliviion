@@ -75,7 +75,7 @@ void JardimDoEden::loadLevel() {
         weakEnemies.push_back(enemy);
     }
 
-    colisor->resetar();
+    // colisor->resetar();
     colisor->setJogadores(&player, &player2);
     for (auto& inimigo : weakEnemies) {
         colisor->incluirInimigos(&inimigo);
@@ -94,6 +94,8 @@ void JardimDoEden::executar(float deltaTime) {
     if (player2.isAlive)
         colisor->checarColisoes(player2, floor, plataformas);
     
+    std::cout << "[DEBUG] Obstáculos ativos: " << colisor->getListaObstaculosSize() << std::endl;
+
     // if (mode == PlayerMode::TwoPlayers) {}
 
     for (auto& enemy : weakEnemies) {
@@ -105,17 +107,17 @@ void JardimDoEden::executar(float deltaTime) {
         if (player.isAlive) {
             colisor->checarColisaoEntrePersonagens(player, enemy);
             colisor->tratarColisaoJogsInimigs(player, enemy);
-            colisor->tratarColisaoJogsObstacs();
         }
         if (player2.isAlive) {
             colisor->checarColisaoEntrePersonagens(player2, enemy);
             colisor->tratarColisaoJogsInimigs(player2, enemy);
-            colisor->tratarColisaoJogsObstacs();
         }
     }
     colisor->atualizarProjeteis(deltaTime);
     colisor->tratarColisaoProjeteis();
     colisor->removerProjeteisInativos();
+    colisor->tratarColisaoJogsObstacs();
+
 
     if (todosInimigosMortos()) {
         std::cout << "Fase Concluída!\n";

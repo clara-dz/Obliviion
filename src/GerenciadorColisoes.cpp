@@ -1,4 +1,5 @@
 #include "GerenciadorColisoes.h"
+#include <iostream>
 
 
 GerenciadorColisoes* GerenciadorColisoes::instancia = nullptr;
@@ -161,6 +162,7 @@ void GerenciadorColisoes::removerProjeteisInativos() {
 
 void GerenciadorColisoes::tratarColisaoJogsObstacs() {
     for (auto* obst : listaObstaculos) {
+        sf::FloatRect bounds = obst->getBounds();       
         if (pJog1 && obst->getBounds().intersects(pJog1->getBounds())) {
             obst->afetar(*pJog1);
         }
