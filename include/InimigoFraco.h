@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Inimigo.h"
 
 class InimigoFraco : public Inimigo { //Nome: EmoGirl

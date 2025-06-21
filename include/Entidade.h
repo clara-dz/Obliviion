@@ -20,7 +20,7 @@ class Entidade : public Ente {
         
         virtual ~Entidade() {}
 
-       // virtual void salvar();
+        //virtual void salvar() override = 0;
 
         void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override {
             if (!isVisible) return;
