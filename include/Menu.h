@@ -8,12 +8,13 @@ class Jogo;
 class Menu : public Ente {
     private:
         Jogo* pJog;
-        std::vector<std::string> items;
-        std::vector<sf::Text> texts;
-        sf::Font font;
-        std::size_t selectedIndex;
         bool isOpen;
 
+        std::vector<std::string> items;
+        std::vector<sf::Text> texts;
+        std::size_t selectedIndex;
+
+        sf::Font font;
         sf::RectangleShape backgroundBox;
 
     public:
@@ -29,6 +30,8 @@ class Menu : public Ente {
         void executar(float deltaTime) override;
         void renderizar(sf::RenderWindow& window) override;
         void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override;
+
+        std::string getSelectedOption() const;
 
     private:
         void updateVisual();

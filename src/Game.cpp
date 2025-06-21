@@ -1,7 +1,33 @@
-#include <iostream>
 #include <fstream>
+#include <sstream>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <iostream>
 #include "Game.h"
 
+
+std::vector<std::pair<std::string, int>> lerPontuacoes() {
+    std::ifstream arquivo("../assets/ranking.csv");
+    std::vector<std::pair<std::string, int>> pontuacoes;
+    std::string linha;
+
+    while (std::getline(arquivo, linha)) {
+        std::istringstream ss(linha);
+        std::string nome;
+        int pontos;
+        if (std::getline(ss, nome, ',') && ss >> pontos) {
+            pontuacoes.emplace_back(nome, pontos);
+        }
+    }
+
+    // Optional: sort descending
+    std::sort(pontuacoes.begin(), pontuacoes.end(), [](auto& a, auto& b) {
+        return a.second > b.second;
+    });
+
+    return pontuacoes;
+}
 
 Game::Game() : window(sf::VideoMode(800, 600), "Obliviion") {
     if (!font.loadFromFile("../assets/fonts/arial.ttf")) {
@@ -9,7 +35,7 @@ Game::Game() : window(sf::VideoMode(800, 600), "Obliviion") {
         exit(1);
     }
 
-    std::vector<std::string> options = {"Resume", "Option", "Sair"};
+    std::vector<std::string> options = {"Continuar", "Score", "Sair"};
     menu = new Menu(options, font);
 
     sf::Texture* playerTexture = new sf::Texture();
@@ -74,10 +100,14 @@ void Game::processEvents() {
         }
 
         if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-            if (menu->isOpened())
-                menu->close();
-            else
-                menu->open();
+            if (gameState == GameState::Ranking) {
+                gameState = GameState::Playing;  
+            } else {
+                if (menu->isOpened())
+                    menu->close();
+                else
+                    menu->open();
+            }
         }
 
         if (menu->isOpened()) {
@@ -114,7 +144,16 @@ void Game::processarTelaGameOver() {
 }
 
 void Game::executar() {
-    if (menu->isOpened()) return;
+    // if (menu->isOpened()) return;
+    if (menu->isOpened()) {
+        return;
+    }
+    
+    std::string selected = menu->getSelectedOption();
+    if (selected == "Score" && gameState == GameState::Playing) {
+        gameState = GameState::Ranking;
+        return;
+    };
     
     float deltaTime = clock.restart().asSeconds();
     if (deltaTime < 1.f / 144.f)
@@ -171,6 +210,31 @@ void Game::renderizar() {
         case GameState::GameOver:
             // Do nothing here, as rendering is handled inside processarTelaGameOver()
             return;  // prevent window.display() from being called again
+        
+        case GameState::Ranking: {
+            sf::Text titulo("Score", font, 36);
+            titulo.setPosition(300, 50);
+            titulo.setFillColor(sf::Color::White);
+            window.draw(titulo);
+
+            auto scores = lerPontuacoes();
+            int y = 120;
+            int count = 0;
+            for (const auto& [nome, pontos] : scores) {
+                if (++count > 5) break;  // only show top 5
+                sf::Text linha(nome + " - " + std::to_string(pontos), font, 28);
+                linha.setPosition(280, y);
+                linha.setFillColor(sf::Color::Cyan);
+                window.draw(linha);
+                y += 40;
+            }
+
+            sf::Text hint("Pressione ESC para voltar", font, 20);
+            hint.setPosition(250, y + 20);
+            hint.setFillColor(sf::Color(150, 150, 150));
+            window.draw(hint);
+            break;
+        }
     }
 
     window.display();
@@ -186,3 +250,4 @@ void Game::salvarPontuacao(const std::string& nome, int pontos) {
         std::cerr << "Erro ao abrir o arquivo de ranking!" << std::endl;
     }
 }
+

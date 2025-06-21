@@ -15,7 +15,8 @@ enum class GameState {
     Playing,
     GameOver,
     Victory,
-    NextLevel
+    NextLevel,
+    Ranking
 };
 
 class Game {
