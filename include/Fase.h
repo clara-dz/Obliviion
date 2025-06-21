@@ -41,6 +41,8 @@ class Fase {
         virtual void renderizar(sf::RenderWindow& window) = 0;
         virtual bool todosInimigosMortos() const = 0;
         virtual bool jogadoresMortos() const = 0;
+
+        virtual int getPontuacaoTotalJogadores() const = 0;
         
         // Getters and setters for level name and completion state
         std::string getLevelName() const { return levelName; }

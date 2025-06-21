@@ -44,4 +44,5 @@ class Game {
         void processEvents();
         void executar();
         void renderizar();
+        void salvarPontuacao(const std::string& nome, int pontos);
 };

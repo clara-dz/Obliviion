@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "Game.h"
 
 
@@ -50,6 +51,9 @@ void Game::run() {
 }
 
 void Game::processEvents() {
+    if (gameState == GameState::GameOver)
+        return;
+    
     sf::Event event;
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed)
@@ -95,10 +99,17 @@ void Game::processarTelaGameOver() {
 
     if (telaGameOver.terminouEntrada()) {
         std::string nome = telaGameOver.getNomeJogador();
-        std::cout << "Player name: " << nome << std::endl;
-        // TODO: Save score, reset game, or go to main menu
+        
+        // Safeguard: fallback name
+        if (nome.empty()) nome = "Anonimo";
 
-        window.close();  // Temporary action
+        // Get score from currentLevel
+        int pontos = currentLevel->getPontuacaoTotalJogadores();  // <-- implement this
+
+        salvarPontuacao(nome, pontos);
+        std::cout << "Pontuação salva: " << nome << ", " << pontos << " pontos." << std::endl;
+
+        window.close();  // or reset game
     }
 }
 
@@ -163,4 +174,15 @@ void Game::renderizar() {
     }
 
     window.display();
+}
+
+
+void Game::salvarPontuacao(const std::string& nome, int pontos) {
+    std::ofstream arquivo("../assets/ranking.csv", std::ios::app); // append mode
+    if (arquivo.is_open()) {
+        arquivo << nome << "," << pontos << "\n";
+        arquivo.close();
+    } else {
+        std::cerr << "Erro ao abrir o arquivo de ranking!" << std::endl;
+    }
 }
