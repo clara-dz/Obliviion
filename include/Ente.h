@@ -4,18 +4,19 @@
 
 class Ente {
     protected:
-        int id;
-        static int id_count;
-        static Gerenciadores::GerenciadorGrafico* pGG;
+        int id;                      //id das instâncias
+        static int id_contador;     //id da classe
+        static Gerenciadores::GerenciadorGrafico* pG;
+        sf::Sprite* sprite;
 
     public:
         Ente();
         virtual ~Ente();
 
-        // Replace old pure virtuals with more meaningful names
+        void setGG(Gerenciadores::GerenciadorGrafico* pGG);
+
+        // Funções a serem usadas por suas classes filhas
         virtual void executar(float deltaTime) = 0;
         virtual void renderizar(sf::RenderWindow& window) = 0;
         virtual void desenhar(sf::RenderTarget& target, sf::RenderStates states) const = 0;
-
-        void setGG(Gerenciadores::GerenciadorGrafico* pG);
 };

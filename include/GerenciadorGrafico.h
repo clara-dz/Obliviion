@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-// Forward-declare Ente para evitar incluir o header e criar dependências circulares.
+// Ente para evitar incluir o header e criar dependências circulares
 class Ente;
 
 namespace Gerenciadores {
@@ -11,7 +11,7 @@ namespace Gerenciadores {
             // Ponteiro para a janela principal do jogo.
             sf::RenderWindow* window;
 
-            // A única instância da classe (padrão Singleton).
+            // A única instância da classe 
             static GerenciadorGrafico* instancia;
 
             // Construtor privado para garantir que apenas um objeto seja criado.
@@ -20,15 +20,13 @@ namespace Gerenciadores {
         public:
             ~GerenciadorGrafico();
 
-            // Método de acesso estático para obter a instância única.
+            // Método de acesso estático para obter a instância única //Sugestão do ChatGPT
             static GerenciadorGrafico* getInstance();
 
-            // Apagamos o construtor de cópia e o operador de atribuição
-            // para garantir que a instância não possa ser clonada.
             GerenciadorGrafico(const GerenciadorGrafico&) = delete;
             GerenciadorGrafico& operator=(const GerenciadorGrafico&) = delete;
 
-            // Retorna um ponteiro para a janela, para que outros objetos possam desenhar nela.
+            // Retorna um ponteiro para a janela, para que outros objetos possam desenhar nela 
             sf::RenderWindow* getJanela();
 
             // Funções de controle da janela
@@ -39,4 +37,4 @@ namespace Gerenciadores {
             void desenharEnte(Ente* pE);
         };
 
-} 
+} //Essa classe foi criada com base no diagrama UML disponibilizado pelo professor e códigos sugeridos pelo ChatGPT
