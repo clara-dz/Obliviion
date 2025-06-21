@@ -266,7 +266,13 @@ void Game::salvarPontuacao(const std::string& nome, int pontos) {
 void Game::salvarJogo() {
     json saveData;
 
-    saveData["level"] = "TESTE";
+    saveData["level"] = "TESTE222";
+
+    salvarDataBuffer(saveData);
+}
+
+void Game::salvarDataBuffer(json saveData) {
+    std::cout << "Salvando dados do buffer no arquivo." << std::endl;
 
     std::ofstream out("../assets/savegame.json");
     if (out.is_open()) {

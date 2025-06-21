@@ -17,10 +17,12 @@ class Entidade : public Ente {
 
         Entidade(int x, int y) : x(x), y(y), isVisible(true) {}
         
-        
         virtual ~Entidade() {}
 
-        //virtual void salvar() override = 0;
+        virtual void executar(float deltaTime) override = 0;
+        
+        // virtual void salvar() = 0;
+        // virtual void carregar() = 0;
 
         void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override {
             if (!isVisible) return;
@@ -31,8 +33,6 @@ class Entidade : public Ente {
             if (isVisible)
                 window.draw(sprite);
         }
-
-        virtual void executar(float deltaTime) override = 0;
 
         void setSprite(const sf::Texture& texture) {
             sprite.setTexture(texture);

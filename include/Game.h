@@ -1,6 +1,8 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <nlohmann/json.hpp>
+
 #include "Fase.h"
 #include "JardimDoEden.h"
 #include "Menu.h"
@@ -8,6 +10,8 @@
 #include "GerenciadorGrafico.h"
 #include "PlayerMode.h"
 #include "TelaGameOver.h"
+
+using json = nlohmann::json;
 
 
 enum class GameState {
@@ -28,6 +32,8 @@ class Game {
         
         void run();
         void salvarJogo();
+
+        void salvarDataBuffer(json saveData);
         
     private:
         GameState gameState = GameState::StartMenu;
