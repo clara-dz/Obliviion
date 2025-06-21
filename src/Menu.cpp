@@ -90,3 +90,8 @@ void Menu::updateVisual() {
 std::string Menu::getSelectedOption() const {
     return items[selectedIndex];
 }
+
+void Menu::resetSelection() {
+    selectedIndex = 0;
+    updateVisual();
+}

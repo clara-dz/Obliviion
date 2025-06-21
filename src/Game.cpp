@@ -101,6 +101,7 @@ void Game::processEvents() {
 
         if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
             if (gameState == GameState::Ranking) {
+                std::cout << "Returning to game..." << std::endl;
                 gameState = GameState::Playing;  
             } else {
                 if (menu->isOpened())
@@ -150,7 +151,9 @@ void Game::executar() {
     }
     
     std::string selected = menu->getSelectedOption();
+    menu->resetSelection();
     if (selected == "Score" && gameState == GameState::Playing) {
+        std::cout << "Opening ranking screen..." << std::endl;
         gameState = GameState::Ranking;
         return;
     };

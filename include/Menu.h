@@ -30,6 +30,7 @@ class Menu : public Ente {
         void executar(float deltaTime) override;
         void renderizar(sf::RenderWindow& window) override;
         void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override;
+        void resetSelection();
 
         std::string getSelectedOption() const;
 
