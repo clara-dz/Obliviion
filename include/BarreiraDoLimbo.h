@@ -3,13 +3,13 @@
 
 //namespace Obstaculos {
 
-    class Obst_Medio : public Obstaculo {
+    class BarreiraDoLimbo : public Obstaculo {
     private:
         float largura;
 
     public:
-        Obst_Medio(const sf::Texture& texture, int x = 0, int y = 0);
-        ~Obst_Medio();
+        BarreiraDoLimbo(const sf::Texture& texture, int x = 0, int y = 0);
+        ~BarreiraDoLimbo();
         
         void executar(float deltaTime) override;
         void salva() override;

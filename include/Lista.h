@@ -62,9 +62,6 @@ namespace Listas {
             return pPrimeiro;
         }
 
-        // ================================
-        // Custom Iterator Implementation
-        // ================================
         class Iterator {
         private:
             Elemento<TL>* atual;

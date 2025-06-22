@@ -17,7 +17,7 @@
 #include "EmoBoy.h"
 #include "InimigoFraco.h"
 
-#include "ObstaculoMedio.h"
+#include "BarreiraDoLimbo.h"
 #include "Smoke.h"
 
 
