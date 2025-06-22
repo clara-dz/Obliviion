@@ -24,7 +24,7 @@ namespace Obstaculos {
         void afetar(Jogador& jogador) override {};
 
         void executar(float deltaTime) override;
-        void salva() override;
+        void salvar() override {};
         void obstaculizar(Jogador*p); //ainda n sei para que serve
     };
 

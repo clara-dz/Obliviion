@@ -21,8 +21,8 @@ class Entidade : public Ente {
 
         virtual void executar(float deltaTime) override = 0;
         
-        // virtual void salvar() = 0;
-        // virtual void carregar() = 0;
+        virtual void salvar() = 0;
+        virtual void carregar() = 0;
 
         void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override {
             if (!isVisible) return;

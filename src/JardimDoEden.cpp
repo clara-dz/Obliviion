@@ -189,5 +189,19 @@ void JardimDoEden::renderizar(sf::RenderWindow& window) {
 json JardimDoEden::salvar(json data) const {
     data["levelName"] = levelName;
 
+    if (pJog1->isAlive) {
+        // data["player1"] = pJog1->salvar(json::object());
+        data["player1"] = "ok";
+    } else {
+        data["player1"] = nullptr;
+    }
+
+    if (pJog2->isAlive) {
+        // data["player2"] = pJog2->salvar(json::object());
+        data["player2"] = "ok";
+    } else {
+        data["player2"] = nullptr;
+    }
+
     return data;
 }   

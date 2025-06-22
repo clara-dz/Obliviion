@@ -58,11 +58,12 @@ class JardimDoEden : public Fase {
     public:
         JardimDoEden(Jogador* j1, Jogador* j2);
 
+        json salvar(json data) const override;
         void loadLevel() override;
+        
         void executar(float deltaTime) override;
         void renderizar(sf::RenderWindow& window) override;
 
-        json salvar(json data) const override;
 
         int getPontuacaoTotalJogadores() const override {
             return pJog1->getPontos();

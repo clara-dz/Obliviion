@@ -45,10 +45,6 @@ namespace Obstaculos {
         // Plataformas são estáticas por padrão, mas podem ter lógica futuramente
     }
 
-    void Plataforma::salva() {
-        // Se for salvar em arquivo ou algo do tipo, coloque aqui
-    }
-
     void Plataforma::obstaculizar(Jogador* p) {
         // Sem função clara no momento
     }

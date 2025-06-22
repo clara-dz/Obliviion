@@ -35,9 +35,13 @@ class Personagem : public Entidade {
                 sprite.move(0.f, velocityY * deltaTime);
             }
         }
-        void salvarDataBuffer();
 
-        // virtual void salvar() = 0;
+        void salvar() override {
+            // Implement saving logic here
+        };
+        void carregar() override {
+            // Implement loading logic here
+        };
 
         void stopFalling() {
             velocityY = 0.f;

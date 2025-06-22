@@ -18,6 +18,4 @@ class Smoke : public Obstaculo {
         }
 
         void executar(float deltaTime) override {}
-        void salva() override {}
-
     };

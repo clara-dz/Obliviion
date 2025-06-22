@@ -12,6 +12,5 @@
         ~Obst_Medio();
         
         void executar(float deltaTime) override;
-        void salva() override;
     };
 //}

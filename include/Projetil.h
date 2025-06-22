@@ -33,7 +33,8 @@ class Projetil : public Entidade {
             sprite.move(velocidade * deltaTime);
         };
 
-        void salvar();
+        void salvar() override {};
+        void carregar() override {};
 
         sf::FloatRect getBounds() const {
             return sprite.getGlobalBounds();

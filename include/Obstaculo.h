@@ -20,5 +20,6 @@ public:
     virtual void afetar(Jogador& jogador) = 0;
 
     virtual void executar(float deltaTime) override = 0;
-    virtual void salva() = 0; // Para o sistema de save futuro
+    void salvar() override {};
+    void carregar() override {};
 };
