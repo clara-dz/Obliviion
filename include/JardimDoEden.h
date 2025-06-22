@@ -26,8 +26,8 @@ class JardimDoEden : public Fase {
         PlayerMode mode = PlayerMode::SinglePlayer;
 
         Floor floor;
-        Jogador player;
-        Jogador player2;
+        // Jogador player;
+        // Jogador player2;
 
         std::vector<InimigoFraco> weakEnemies;
         sf::Texture inimigoFracoTexture;
@@ -51,19 +51,13 @@ class JardimDoEden : public Fase {
 
         
     public:
-        JardimDoEden(const std::string& name,
-                     const std::string& tileTexture,
-                     const std::string& bgTextureFile,
-                     const sf::Texture& playerTexture,
-                     const sf::Texture& player2Texture,
-                     int windowWidth,
-                     PlayerMode mode);
+        JardimDoEden(Jogador* j1, Jogador* j2);
 
         void loadLevel() override;
         void executar(float deltaTime) override;
         void renderizar(sf::RenderWindow& window) override;
         int getPontuacaoTotalJogadores() const override {
-            return player.getPontos();
+            return pJog1->getPontos();
         }
 
         bool todosInimigosMortos() const {
@@ -74,6 +68,6 @@ class JardimDoEden : public Fase {
         }
 
         bool jogadoresMortos() const override {
-            return (!player.estaVivo() && !player2.estaVivo());
+            return (!pJog1->estaVivo() && !pJog2->estaVivo());
         }
 };

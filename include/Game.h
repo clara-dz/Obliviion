@@ -24,6 +24,9 @@ enum class GameState {
 };
 
 class Game {
+    protected:
+        Jogador* pJog1;
+        Jogador* pJog2;
     public:
         Game();
         ~Game();
@@ -34,12 +37,15 @@ class Game {
         void salvarJogo();
 
         void salvarDataBuffer(json saveData);
+        void iniciarFase(std::string NomeFase);
         
     private:
+        sf::Texture playerTexture;
+        sf::Texture player2Texture;
+        
         GameState gameState = GameState::StartMenu;
         TelaGameOver telaGameOver;
 
-        // Jogador pJog1;
         // Gerenciadores::GerenciadorGrafico GG;
         Fase* currentLevel;
         Menu* menu;

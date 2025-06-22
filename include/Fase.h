@@ -26,8 +26,10 @@ class Fase {
         GerenciadorColisoes* colisor = GerenciadorColisoes::getInstancia();
 
     public:
-        Fase(const std::string& name) 
-            : levelName(name), isCompleted(false) {}
+        Jogador* pJog1;
+        Jogador* pJog2;
+        Fase(const std::string& name, Jogador* j1, Jogador* j2) 
+            : levelName(name), isCompleted(false), pJog1(j1), pJog2(j2) {}
 
         virtual ~Fase();
 

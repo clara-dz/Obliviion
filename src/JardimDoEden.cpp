@@ -3,23 +3,16 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include "Floor.h"
 
-JardimDoEden::JardimDoEden(const std::string& name,
-                           const std::string& tileTexture,
-                           const std::string& bgTextureFile,
-                           const sf::Texture& playerTexture,
-                           const sf::Texture& player2Texture,
-                           int windowWidth,
-                           PlayerMode mode)
-    : Fase(name), 
-      floor(tileTexture, windowWidth, 500), 
-      player(playerTexture),
-      player2(player2Texture),
-      mode(mode)
-{
-    loadBackgroundTexture(bgTextureFile);
+JardimDoEden::JardimDoEden(Jogador* j1, Jogador* j2)
+    : Fase("Jardim do Eden", j1, j2),
+      floor("../assets/images/tile1.png", 1000, 500)
+    {}
 
-    // Load enemy texture (if needed for future enemies)
+void JardimDoEden::loadLevel() {
+    loadBackgroundTexture("../assets/images/background1.png");
+
     if (!inimigoFracoTexture.loadFromFile("../assets/images/inimigoFraco.png")) {
         std::cerr << "Error loading enemy texture!\n";
     }
@@ -27,18 +20,6 @@ JardimDoEden::JardimDoEden(const std::string& name,
         std::cerr << "Error loading emoBoy texture!\n";
     }
 
-    texProjJogador.loadFromFile("../assets/images/rock.png");
-    player.setTexProjetil(&texProjJogador);
-    player2.setTexProjetil(&texProjJogador);
-    player.setPosition(sf::Vector2f(100, 400));
-    player2.setPosition(sf::Vector2f(200, 400));
-    player2.setEhJog2(true); // Set player2 as the second player
-    if (mode == PlayerMode::SinglePlayer){
-        player2.die();
-    }
-}
-
-void JardimDoEden::loadLevel() {
     if (!plataformaEsqTex.loadFromFile("../assets/images/platLeft.png") ||
         !plataformaMeioTex.loadFromFile("../assets/images/platMid.png") ||
         !plataformaDirTex.loadFromFile("../assets/images/platRight.png")) {
@@ -88,7 +69,7 @@ void JardimDoEden::loadLevel() {
     }
 
     // colisor->resetar();
-    colisor->setJogadores(&player, &player2);
+    colisor->setJogadores(pJog1, pJog2);
     for (auto& inimigo : weakEnemies) {
         colisor->incluirInimigos(&inimigo);
     }
@@ -98,13 +79,13 @@ void JardimDoEden::loadLevel() {
 }
 
 void JardimDoEden::executar(float deltaTime) {
-    player.executar(deltaTime);
-    player2.executar(deltaTime);
-    if (player.isAlive)
-        colisor->checarColisoes(player, floor, plataformas);
+    pJog1->executar(deltaTime);
+    pJog2->executar(deltaTime);
+    if (pJog1->isAlive)
+        colisor->checarColisoes(*pJog1, floor, plataformas);
 
-    if (player2.isAlive)
-        colisor->checarColisoes(player2, floor, plataformas);
+    if (pJog2->isAlive)
+        colisor->checarColisoes(*pJog2, floor, plataformas);
     
     // if (mode == PlayerMode::TwoPlayers) {}
 
@@ -114,13 +95,13 @@ void JardimDoEden::executar(float deltaTime) {
         enemy.executar(deltaTime);
         colisor->checarColisoes(enemy, floor, plataformas);
         
-        if (player.isAlive) {
-            colisor->checarColisaoEntrePersonagens(player, enemy);
-            colisor->tratarColisaoJogsInimigs(player, enemy);
+        if (pJog1->isAlive) {
+            colisor->checarColisaoEntrePersonagens(*pJog1, enemy);
+            colisor->tratarColisaoJogsInimigs(*pJog1, enemy);
         }
-        if (player2.isAlive) {
-            colisor->checarColisaoEntrePersonagens(player2, enemy);
-            colisor->tratarColisaoJogsInimigs(player2, enemy);
+        if (pJog2->isAlive) {
+            colisor->checarColisaoEntrePersonagens(*pJog2, enemy);
+            colisor->tratarColisaoJogsInimigs(*pJog2, enemy);
         }
     }
 
@@ -130,13 +111,13 @@ void JardimDoEden::executar(float deltaTime) {
         enemy.executar(deltaTime);
         colisor->checarColisoes(enemy, floor, plataformas);
         
-        if (player.isAlive) {
-            colisor->checarColisaoEntrePersonagens(player, enemy);
-            colisor->tratarColisaoJogsInimigs(player, enemy);
+        if (pJog1->isAlive) {
+            colisor->checarColisaoEntrePersonagens(*pJog1, enemy);
+            colisor->tratarColisaoJogsInimigs(*pJog1, enemy);
         }
-        if (player2.isAlive) {
-            colisor->checarColisaoEntrePersonagens(player2, enemy);
-            colisor->tratarColisaoJogsInimigs(player2, enemy);
+        if (pJog2->isAlive) {
+            colisor->checarColisaoEntrePersonagens(*pJog2, enemy);
+            colisor->tratarColisaoJogsInimigs(*pJog2, enemy);
         }
     }
     colisor->atualizarProjeteis(deltaTime);
@@ -160,11 +141,11 @@ void JardimDoEden::renderizar(sf::RenderWindow& window) {
         }
     }
 
-    if (player.isAlive)
-        player.renderizar(window);
+    if (pJog1->isAlive)
+        pJog1->renderizar(window);
     
-    if (player2.isAlive)
-        player2.renderizar(window);
+    if (pJog2->isAlive)
+        pJog2->renderizar(window);
 
     // if (mode == PlayerMode::TwoPlayers) {}
 

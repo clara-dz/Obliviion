@@ -6,6 +6,7 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 #include "Game.h"
+#include "Jogador.h"
 
 using json = nlohmann::json;
 
@@ -41,29 +42,42 @@ Game::Game() : window(sf::VideoMode(800, 600), "Obliviion") {
     std::vector<std::string> options = {"Continuar", "Score", "Salvar", "Carregar", "Sair"};
     menu = new Menu(options, font);
 
-    sf::Texture* playerTexture = new sf::Texture();
-    if (!playerTexture->loadFromFile("../assets/images/player.png")) {
+    if (!playerTexture.loadFromFile("../assets/images/player.png")) {
         std::cerr << "Error loading player texture!" << std::endl;
         exit(1);
     }
 
-    sf::Texture* player2Texture = new sf::Texture();
-    if (!player2Texture->loadFromFile("../assets/images/owlet.png")) {
+    if (!player2Texture.loadFromFile("../assets/images/owlet.png")) {
         std::cerr << "Error loading player texture!" << std::endl;
         exit(1);
     }
 
-    std::string backgroundPath = "../assets/images/background1.png";
-    std::string tileTexturePath = "../assets/images/tile1.png";
+    pJog1 = new Jogador(playerTexture);
+    pJog2 = new Jogador(player2Texture);
+
+
+    sf::Texture texProjJogador;
+    texProjJogador.loadFromFile("../assets/images/rock.png");
+    pJog1->setTexProjetil(&texProjJogador);
+    pJog2->setTexProjetil(&texProjJogador);
+    pJog1->setPosition(sf::Vector2f(50, 400));
+    pJog2->setPosition(sf::Vector2f(200, 400));
+    pJog2->setEhJog2(true); // Set player2 as the second player
+}
+
+void Game::iniciarFase(std::string NomeFase) {
+    // if (currentLevel) {
+    //     delete currentLevel;  // Clean up previous level
+    //     currentLevel = nullptr;
+    // }
     
-    currentLevel = new JardimDoEden("Garden of Eden",
-                                    tileTexturePath,
-                                    backgroundPath,
-                                    *playerTexture,
-                                    *player2Texture,
-                                    1000,
-                                    playerMode);
+    if (playerMode == PlayerMode::SinglePlayer) {
+        std::cout << "Why are you playing alone? :(" << std::endl;
+        pJog2->die();
+    }
+    currentLevel = new JardimDoEden(pJog1, pJog2);
     currentLevel->loadLevel();
+    gameState = GameState::Playing;
 }
 
 Game::~Game() {
@@ -91,11 +105,13 @@ void Game::processEvents() {
         if (gameState == GameState::StartMenu) {
             if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == sf::Keyboard::Num1) {
+                    std::cout << "Single Player Mode Selected" << std::endl;
                     playerMode = PlayerMode::SinglePlayer;
-                    gameState = GameState::Playing;
+                    iniciarFase("Jardim do Éden");
                 } else if (event.key.code == sf::Keyboard::Num2) {
+                    std::cout << "Two Players Mode Selected" << std::endl;
                     playerMode = PlayerMode::TwoPlayers;
-                    gameState = GameState::Playing;
+                    iniciarFase("Jardim do Éden");
                 }
             }
             return;
