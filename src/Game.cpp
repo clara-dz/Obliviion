@@ -174,6 +174,10 @@ void Game::executar() {
         std::cout << "Game saved successfully." << std::endl;
     }
 
+    if (selected == "Carregar") {
+        carregarJogo();
+    }
+
     if (selected == "Score" && gameState == GameState::Playing) {
         std::cout << "Opening ranking screen..." << std::endl;
         gameState = GameState::Ranking;
@@ -301,6 +305,8 @@ void Game::salvarDataBuffer(json saveData) {
 
 
 void Game::carregarJogo() {
+    std::cout << "Carregando jogo..." << std::endl;
+
     std::ifstream in("../assets/savegame.json");
     if (!in.is_open()) {
         std::cerr << "Erro ao abrir o arquivo de salvamento." << std::endl;
@@ -317,6 +323,5 @@ void Game::carregarJogo() {
 
     // playerMode = saveData["playerMode"];
     // currentLevel->carregar(saveData);
-
-    iniciarFase("Jardim do Éden");
+    iniciarFase(saveData["levelName"]);
 }

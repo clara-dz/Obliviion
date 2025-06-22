@@ -7,6 +7,12 @@
             "numVida": 2,
             "x": 400,
             "y": 200
+        },
+        {
+            "nivelMaldade": 2,
+            "numVida": 2,
+            "x": 330,
+            "y": 200
         }
     ],
     "player1": {
@@ -15,60 +21,20 @@
         "numVidas": 5,
         "velocityX": 0.0,
         "velocityY": 0.0,
-        "x": -10.488969802856445,
+        "x": 103.61490631103516,
         "y": 444.0
     },
     "player2": {
-        "isAlive": true,
-        "isOnGround": true,
-        "numVidas": 5,
+        "isAlive": false,
+        "isOnGround": false,
+        "numVidas": 0,
         "velocityX": 0.0,
-        "velocityY": 0.0,
+        "velocityY": 1064.4739990234375,
         "x": 200.0,
-        "y": 347.0
+        "y": 113721.484375
     },
-    "playerMode": 1,
-    "projectiles": [
-        {
-            "ativo": true,
-            "dono": 0,
-            "posicao": [
-                396.894287109375,
-                444.0
-            ],
-            "tempoDeVida": 9.267589569091797,
-            "velocidade": [
-                10.0,
-                0.0
-            ]
-        },
-        {
-            "ativo": true,
-            "dono": 0,
-            "posicao": [
-                279.371337890625,
-                444.0
-            ],
-            "tempoDeVida": 21.017948150634766,
-            "velocidade": [
-                10.0,
-                0.0
-            ]
-        },
-        {
-            "ativo": true,
-            "dono": 0,
-            "posicao": [
-                149.99436950683594,
-                444.0
-            ],
-            "tempoDeVida": 33.95530700683594,
-            "velocidade": [
-                10.0,
-                0.0
-            ]
-        }
-    ],
+    "playerMode": 0,
+    "projectiles": [],
     "token": "ObliviionSaveData",
     "weakEnemies": [
         {
