@@ -15,7 +15,7 @@
 
 #include "EmoBoss.h"
 #include "EmoBoy.h"
-#include "InimigoFraco.h"
+#include "EmoGirl.h"
 
 #include "BarreiraDoLimbo.h"
 
@@ -31,14 +31,14 @@ class JardimDoEden : public Fase {
 
         Floor floor;
 
-        std::vector<InimigoFraco> weakEnemies;
+        std::vector<EmoGirl>weakEnemies;
         sf::Texture inimigoFracoTexture;
 
         std::vector<EmoBoy> mediumEnemies;
         sf::Texture emoBoyTexture;
         
-        std::vector<EmoBoss> bosses;
-        sf::Texture emoBossTexture;
+       // std::vector<EmoBoss> bosses;
+        // sf::Texture emoBossTexture;
 
         std::vector<Obstaculos::Plataforma> plataformas;
         sf::Texture plataformaEsqTex, plataformaDirTex, plataformaMeioTex;
@@ -61,18 +61,9 @@ class JardimDoEden : public Fase {
         void renderizar(sf::RenderWindow& window) override;
 
 
-        int getPontuacaoTotalJogadores() const override {
-            return pJog1->getPontos();
-        }
+        int getPontuacaoTotalJogadores() const override;
 
-        bool todosInimigosMortos() const {
-            for (const auto& enemy : weakEnemies) {
-                if (enemy.estaVivo()) return false;
-            }
-            return true;
-        }
+        bool todosInimigosMortos() const;
 
-        bool jogadoresMortos() const override {
-            return (!pJog1->estaVivo() && !pJog2->estaVivo());
-        }
+        bool jogadoresMortos() const override;
 };
