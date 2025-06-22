@@ -8,6 +8,7 @@
 
 using json = nlohmann::json;
 
+//A implementação desta classe foi realizada com auxílio da AI ChatGPT
 
 JardimDoEden::JardimDoEden(Jogador* j1, Jogador* j2)
     : Fase("Jardim do Eden", j1, j2),
@@ -54,15 +55,16 @@ void JardimDoEden::criarPlataformas() {
         exit(1);
     }
 
-    // Load platform layout from CSV file
+    //mapa para as posições das plataformas. Sugestão do ChatGPT
     std::ifstream file("../assets/maps/jardimDoEden.csv");
     if (!file.is_open()) {
         std::cerr << "Error opening level map file!\n";
         exit(1);
     }
 
+    //Como o programa lê os arquivos
     std::string line;
-    std::getline(file, line); // Skip the first line (header)
+    std::getline(file, line); // pula a primeira linha
 
     while (std::getline(file, line)) {
         std::stringstream ss(line);
@@ -105,11 +107,9 @@ void JardimDoEden::executar(float deltaTime) {
 
     if (pJog2->isAlive)
         colisor->checarColisoes(*pJog2, floor, plataformas);
-    
-    // if (mode == PlayerMode::TwoPlayers) {}
 
     for (auto& enemy : weakEnemies) {
-        if (!enemy.isAlive) continue; // Skip dead enemies
+        if (!enemy.isAlive) continue; 
         
         enemy.executar(deltaTime);
         colisor->checarColisoes(enemy, floor, plataformas);
@@ -125,7 +125,7 @@ void JardimDoEden::executar(float deltaTime) {
     }
 
         for (auto& enemy : mediumEnemies) {
-        if (!enemy.isAlive) continue; // Skip dead enemies
+        if (!enemy.isAlive) continue; 
         
         enemy.executar(deltaTime);
         colisor->checarColisoes(enemy, floor, plataformas);
@@ -182,6 +182,22 @@ void JardimDoEden::renderizar(sf::RenderWindow& window) {
     colisor->renderizarProjeteis(window);
 }
 
+int JardimDoEden::getPontuacaoTotalJogadores() const {
+    return pJog1->getPontos();
+}
+
+bool JardimDoEden::todosInimigosMortos() const {
+    for (const auto& enemy : weakEnemies) {
+        if (enemy.estaVivo()) return false;
+    }
+    return true;
+}
+
+bool JardimDoEden::jogadoresMortos() const {
+    return (!pJog1->estaVivo() && !pJog2->estaVivo());
+}
+
+//o código abaixo foi realizado com auxílio da AI Gemini
 
 json JardimDoEden::salvar() const {
     json data;

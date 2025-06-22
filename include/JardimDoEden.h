@@ -61,18 +61,9 @@ class JardimDoEden : public Fase {
         void renderizar(sf::RenderWindow& window) override;
 
 
-        int getPontuacaoTotalJogadores() const override {
-            return pJog1->getPontos();
-        }
+        int getPontuacaoTotalJogadores() const override;
 
-        bool todosInimigosMortos() const {
-            for (const auto& enemy : weakEnemies) {
-                if (enemy.estaVivo()) return false;
-            }
-            return true;
-        }
+        bool todosInimigosMortos() const;
 
-        bool jogadoresMortos() const override {
-            return (!pJog1->estaVivo() && !pJog2->estaVivo());
-        }
+        bool jogadoresMortos() const override;
 };

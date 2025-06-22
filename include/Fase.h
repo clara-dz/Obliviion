@@ -22,8 +22,7 @@ class Fase {
         std::vector<Obstaculo*> obstaculos;
         sf::Texture barrierTex, fireTex;
         
-        // virtual void criarObstaculos() = 0;
-        GerenciadorColisoes* colisor = GerenciadorColisoes::getInstancia();
+        GerenciadorColisoes* colisor = GerenciadorColisoes::getInstancia(); //Singleton, para evitar conflito (ter várias instâncias)
 
     public:
         Jogador* pJog1;
