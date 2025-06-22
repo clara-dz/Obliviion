@@ -49,10 +49,16 @@ void InfernoDeDante::criarBosses(){
     if (!emoBossTexture.loadFromFile("../assets/images/emoboss.png")) {
         std::cerr << "Error loading boss texture!\n";
     }
+    if (!emoBossProjTexture.loadFromFile("../assets/images/rock.png")) {
+        std::cerr << "Error loading emoBoy texture!\n";
+    }
 
     for (int i = 0; i < maxBosses; ++i) {
         EmoBoss boss(750 - (100 * i), 200, 20, emoBossTexture);
-        // emo.setJogadores(pJog1, pJog2); // Set players for tracking
+        boss.setJogadores(pJog1, pJog2); // Set players for tracking
+
+        boss.setTexProjetil(&emoBossProjTexture);
+        
         bosses.push_back(boss);
         std::cout << "Rendering boss: " << bosses.size() << std::endl;
 

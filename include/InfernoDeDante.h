@@ -41,6 +41,7 @@ class InfernoDeDante : public Fase {
         
         std::vector<EmoBoss> bosses;
         sf::Texture emoBossTexture;
+        sf::Texture emoBossProjTexture;
 
         std::vector<Obstaculos::Plataforma> plataformas;
         sf::Texture plataformaEsqTex, plataformaDirTex, plataformaMeioTex;

@@ -11,7 +11,7 @@
 #include "Config.h"
 
 extern const unsigned int SCREEN_WIDTH;
-extern const unsigned int FLOOR_HEIGHT;
+extern const unsigned int SCREEN_HEIGHT;
 using json = nlohmann::json;
 
 
@@ -37,7 +37,7 @@ std::vector<std::pair<std::string, int>> lerPontuacoes() {
     return pontuacoes;
 }
 
-Game::Game() : window(sf::VideoMode(SCREEN_WIDTH, FLOOR_HEIGHT), "Obliviion") {
+Game::Game() : window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Obliviion") {
     if (!font.loadFromFile("../assets/fonts/arial.ttf")) {
         std::cerr << "Failed to load font.\n";
         exit(1);

@@ -22,6 +22,7 @@ void EmoBoy::executar(float deltaTime) {
     if (pJog2->isAlive){
         attackPlayer(deltaTime, pJog2);
     }
+
     if (isFlashing && flashClock.getElapsedTime().asSeconds() > flashDuration) {
         sprite.setColor(sf::Color::White);  // Reset to normal
         isFlashing = false;
@@ -57,4 +58,4 @@ void EmoBoy::attackPlayer(float deltaTime, Jogador* pJogador) {
 void EmoBoy::setJogadores(Jogador* j1, Jogador* j2) {
         pJog1 = j1;
         pJog2 = j2;
-    }
+}
