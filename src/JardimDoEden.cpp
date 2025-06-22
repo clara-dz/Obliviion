@@ -38,8 +38,7 @@ void JardimDoEden::criarInimMedios(){
 }
 
 void JardimDoEden::criarObsMedios(){
-    if (!barrierTex.loadFromFile("../assets/images/smoke.png") ||
-        !fireTex.loadFromFile("../assets/images/fire.gif")) {
+    if (!barrierTex.loadFromFile("../assets/images/stone_96x96.png")) {
         std::cerr << "Error loading platform textures!\n";
         exit(1);
     }

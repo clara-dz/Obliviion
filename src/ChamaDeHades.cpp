@@ -5,6 +5,8 @@ ChamaDeHades::ChamaDeHades(const sf::Texture& texture, float x, float y) {
     sprite.setPosition(x, y);
 }
 
+ChamaDeHades::~ChamaDeHades() {}
+
 void ChamaDeHades::obstaculizar(Jogador& jogador) {
     float knockbackSpeed = 500.f;
 
