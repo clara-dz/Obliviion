@@ -1,7 +1,4 @@
-#include <nlohmann/json.hpp>
 #include "Fase.h"
-
-using json = nlohmann::json;
 
 
 Fase::~Fase() {
@@ -12,9 +9,4 @@ Fase::~Fase() {
     if (colisor) {
         colisor->resetar(); // Reset collision manager
     }
-}
-
-json Fase::salvar(json data) const {
-    data["level"] = levelName;
-    return data;
 }

@@ -3,7 +3,11 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <nlohmann/json.hpp>
 #include "Floor.h"
+
+using json = nlohmann::json;
+
 
 JardimDoEden::JardimDoEden(Jogador* j1, Jogador* j2)
     : Fase("Jardim do Eden", j1, j2),
@@ -164,3 +168,10 @@ void JardimDoEden::renderizar(sf::RenderWindow& window) {
 
     colisor->renderizarProjeteis(window);
 }
+
+
+json JardimDoEden::salvar(json data) const {
+    data["levelName"] = levelName;
+
+    return data;
+}   

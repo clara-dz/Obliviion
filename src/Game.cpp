@@ -279,6 +279,7 @@ void Game::salvarPontuacao(const std::string& nome, int pontos) {
 void Game::salvarJogo() {
     json saveData;
 
+    saveData["token"] = "ObliviionSaveData";
     saveData["playerMode"] = playerMode;
     saveData = currentLevel->salvar(saveData);
 

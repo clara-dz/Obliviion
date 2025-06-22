@@ -3,6 +3,7 @@
 // using namespace Obstaculos;
 
 #include <SFML/Graphics.hpp>
+#include <nlohmann/json.hpp>
 #include <vector>
 
 #include "Jogador.h"
@@ -17,6 +18,9 @@
 
 #include "ObstaculoMedio.h"
 #include "Smoke.h"
+
+
+using json = nlohmann::json;
 
 
 class JardimDoEden : public Fase {
@@ -56,6 +60,9 @@ class JardimDoEden : public Fase {
         void loadLevel() override;
         void executar(float deltaTime) override;
         void renderizar(sf::RenderWindow& window) override;
+
+        json salvar(json data) const override;
+
         int getPontuacaoTotalJogadores() const override {
             return pJog1->getPontos();
         }

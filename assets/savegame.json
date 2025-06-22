@@ -1,4 +1,5 @@
 {
-    "level": "Garden of Eden",
-    "playerMode": 0
+    "levelName": "Jardim do Eden",
+    "playerMode": 0,
+    "token": "ObliviionSaveData"
 }
