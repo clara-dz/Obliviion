@@ -15,7 +15,7 @@
 
 #include "EmoBoss.h"
 #include "EmoBoy.h"
-#include "InimigoFraco.h"
+#include "EmoGirl.h"
 
 #include "BarreiraDoLimbo.h"
 
@@ -31,8 +31,8 @@ class JardimDoEden : public Fase {
 
         Floor floor;
 
-        std::vector<InimigoFraco> weakEnemies;
-        sf::Texture inimigoFracoTexture;
+        std::vector<EmoGirl> weakEnemies;
+        sf::Texture EmoGirlTexture;
 
         std::vector<EmoBoy> mediumEnemies;
         sf::Texture emoBoyTexture;

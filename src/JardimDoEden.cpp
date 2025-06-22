@@ -16,12 +16,12 @@ JardimDoEden::JardimDoEden(Jogador* j1, Jogador* j2)
 
 
 void JardimDoEden::criarInimFracos(){
-    if (!inimigoFracoTexture.loadFromFile("../assets/images/inimigoFraco.png")) {
+    if (!EmoGirlTexture.loadFromFile("../assets/images/emogirl.png")) {
         std::cerr << "Error loading enemy texture!\n";
     }
     
     for (int i = 0; i < maxInimigosFracos; ++i) {
-        InimigoFraco enemy(750 - (70 * i), 200, 20, inimigoFracoTexture);
+        EmoGirl enemy(750 - (70 * i), 200, 20, EmoGirlTexture);
         weakEnemies.push_back(enemy);
     }
 }
