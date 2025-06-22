@@ -15,6 +15,7 @@ InfernoDeDante::InfernoDeDante(Jogador* j1, Jogador* j2)
       floor("../assets/images/tile1.png", 1000, 500)
     {}
 
+InfernoDeDante::~InfernoDeDante() {}
 
 void InfernoDeDante::criarInimFracos(){
     if (!EmoGirlTexture.loadFromFile("../assets/images/emogirl.png")) {
@@ -37,6 +38,18 @@ void InfernoDeDante::criarInimMedios(){
         EmoBoy emo(400 - (70 * i), 200, 20, emoBoyTexture);
         emo.setJogadores(pJog1, pJog2); // Set players for tracking
         mediumEnemies.push_back(emo);
+    }
+}
+
+void InfernoDeDante::criarBosses(){
+    if (!emoBossTexture.loadFromFile("../assets/images/emoboy.png")) {
+        std::cerr << "Error loading boss texture!\n";
+    }
+
+    for (int i = 0; i < maxBosses; ++i) {
+        EmoBoss boss(750 - (100 * i), 200, 20, emoBossTexture);
+        // emo.setJogadores(pJog1, pJog2); // Set players for tracking
+        bosses.push_back(boss);
     }
 }
 
@@ -99,6 +112,10 @@ void InfernoDeDante::loadLevel() {
     for (auto& inimigo : mediumEnemies) {
         colisor->incluirInimigos(&inimigo);
     }
+
+    for (auto& inimigo : bosses) {
+        colisor->incluirInimigos(&inimigo);
+    }
 }
 
 void InfernoDeDante::executar(float deltaTime) {
@@ -141,6 +158,39 @@ void InfernoDeDante::executar(float deltaTime) {
             colisor->tratarColisaoJogsInimigs(*pJog2, enemy);
         }
     }
+
+    for (auto& enemy : weakEnemies) {
+        if (!enemy.isAlive) continue; 
+        
+        enemy.executar(deltaTime);
+        colisor->checarColisoes(enemy, floor, plataformas);
+        
+        if (pJog1->isAlive) {
+            colisor->checarColisaoEntrePersonagens(*pJog1, enemy);
+            colisor->tratarColisaoJogsInimigs(*pJog1, enemy);
+        }
+        if (pJog2->isAlive) {
+            colisor->checarColisaoEntrePersonagens(*pJog2, enemy);
+            colisor->tratarColisaoJogsInimigs(*pJog2, enemy);
+        }
+    }
+
+    for (auto& enemy : bosses) {
+        if (!enemy.isAlive) continue; 
+        
+        enemy.executar(deltaTime);
+        colisor->checarColisoes(enemy, floor, plataformas);
+        
+        if (pJog1->isAlive) {
+            colisor->checarColisaoEntrePersonagens(*pJog1, enemy);
+            colisor->tratarColisaoJogsInimigs(*pJog1, enemy);
+        }
+        if (pJog2->isAlive) {
+            colisor->checarColisaoEntrePersonagens(*pJog2, enemy);
+            colisor->tratarColisaoJogsInimigs(*pJog2, enemy);
+        }
+    }
+    
     colisor->atualizarProjeteis(deltaTime);
     colisor->tratarColisaoProjeteis();
     colisor->removerProjeteisInativos();

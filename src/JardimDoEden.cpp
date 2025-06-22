@@ -15,6 +15,7 @@ JardimDoEden::JardimDoEden(Jogador* j1, Jogador* j2)
       floor("../assets/images/tile1.png", 1000, 500)
     {}
 
+JardimDoEden::~JardimDoEden() {}
 
 void JardimDoEden::criarInimFracos(){
     if (!EmoGirlTexture.loadFromFile("../assets/images/emogirl.png")) {
@@ -42,7 +43,7 @@ void JardimDoEden::criarInimMedios(){
 
 void JardimDoEden::criarBosses(){
     if (!emoBossTexture.loadFromFile("../assets/images/emoboss.png")) {
-        std::cerr << "Error loading emoBoy texture!\n";
+        std::cerr << "Error loading boss texture!\n";
     }
 
     for (int i = 0; i < maxBosses; ++i) {
@@ -51,7 +52,6 @@ void JardimDoEden::criarBosses(){
         bosses.push_back(boss);
     }
 }
-
 
 void JardimDoEden::criarObsMedios(){
     if (!barrierTex.loadFromFile("../assets/images/stone_96x96.png")) {

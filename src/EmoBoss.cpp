@@ -12,7 +12,7 @@ EmoBoss::EmoBoss(int x, int y, int speed, const sf::Texture& texture)
 
 void EmoBoss::executar(float deltaTime) {
     applyGravity(deltaTime);
-    sprite.move(velocityX * deltaTime, 0.f);
+    // sprite.move(velocityX * deltaTime, 0.f);
 }
 
 Projetil* EmoBoss::atirar() {

@@ -25,9 +25,9 @@ using json = nlohmann::json;
 
 class JardimDoEden : public Fase {
     private:
-        const int maxInimigosFracos = 3;    
-        const int maxIniminMedio = 2;
-        const int maxBosses = 0;
+        const int maxInimigosFracos = 7;    
+        const int maxIniminMedio = 7;
+        const int maxBosses = 0; //não cria boss
 
         PlayerMode mode = PlayerMode::SinglePlayer;
 
@@ -39,7 +39,7 @@ class JardimDoEden : public Fase {
         std::vector<EmoBoy> mediumEnemies;
         sf::Texture emoBoyTexture;
         
-        std::vector<EmoBoss> bosses;
+        std::vector<EmoBoss> bosses; //está na lógica de verificação
         sf::Texture emoBossTexture;
 
         std::vector<Obstaculos::Plataforma> plataformas;
@@ -57,12 +57,15 @@ class JardimDoEden : public Fase {
     public:
         JardimDoEden(Jogador* j1, Jogador* j2);
 
+        ~JardimDoEden();
+
         json salvar() const override;
+
         void loadLevel() override;
         
         void executar(float deltaTime) override;
-        void renderizar(sf::RenderWindow& window) override;
 
+        void renderizar(sf::RenderWindow& window) override;
 
         int getPontuacaoTotalJogadores() const override;
 
