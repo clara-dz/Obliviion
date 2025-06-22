@@ -37,8 +37,8 @@ class JardimDoEden : public Fase {
         std::vector<EmoBoy> mediumEnemies;
         sf::Texture emoBoyTexture;
         
-       // std::vector<EmoBoss> bosses;
-        // sf::Texture emoBossTexture;
+        std::vector<EmoBoss> bosses;
+        sf::Texture emoBossTexture;
 
         std::vector<Obstaculos::Plataforma> plataformas;
         sf::Texture plataformaEsqTex, plataformaDirTex, plataformaMeioTex;
