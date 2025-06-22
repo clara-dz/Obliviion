@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Obstaculo.h"
 #include <iostream>
 
