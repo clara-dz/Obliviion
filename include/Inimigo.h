@@ -14,7 +14,7 @@ class Inimigo : public Personagem {
         Inimigo(int x, int y, int speed) : Personagem(x, y, speed) {}
         virtual ~Inimigo() = default;
         virtual void danificar(Jogador& p);
-        json salvar();
+        json salvar() const;
 
         virtual void executar(float deltaTime) = 0;
 };

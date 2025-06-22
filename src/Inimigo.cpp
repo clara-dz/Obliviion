@@ -10,7 +10,7 @@ void Inimigo::danificar(Jogador& p) {
     }
 };
 
-json Inimigo::salvar() {
+json Inimigo::salvar() const {
     json data;
     data["numVida"] = numVidas;
     data["x"] = x;

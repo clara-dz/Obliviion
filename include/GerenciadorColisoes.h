@@ -42,6 +42,9 @@ class GerenciadorColisoes {
             pJog2 = j2;
         }
 
+        std::set <Projetil*>& getListaProjeteis() {
+            return listaProjeteis;
+        }
         void resetar();
         void incluirInimigos(Inimigo* pI);
         void incluirObstaculo(Obstaculo* pO);

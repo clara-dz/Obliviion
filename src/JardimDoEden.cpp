@@ -191,11 +191,30 @@ json JardimDoEden::salvar() const {
     data["player2"] = pJog2->salvar();
 
     data["weakEnemies"] = json::array();
-    // for (auto& enemy : weakEnemies) {
-    //     if (enemy.isAlive) {
-    //         data["weakEnemies"].push_back(enemy.salvar(json::object()));
-    //     }
-    // }
+    for (auto& enemy : weakEnemies) {
+        if (enemy.isAlive) {
+            data["weakEnemies"].push_back(enemy.salvar());
+        }
+    }
+
+    data["mediumEnemies"] = json::array();
+    for (auto& enemy : mediumEnemies) {
+        if (enemy.isAlive) {
+            data["mediumEnemies"].push_back(enemy.salvar());
+        }
+    }
+
+    data["bosses"] = json::array(); // Assuming you have strong enemies to save
+    for (auto& enemy : bosses) {
+        if (enemy.isAlive) {
+            data["bosses"].push_back(enemy.salvar());
+        }
+    }
+
+    data["projectiles"] = json::array();
+    for (const auto& proj : colisor->getListaProjeteis()) {
+        data["projectiles"].push_back(proj->salvar());
+    }
 
     return data;
 }   
