@@ -55,8 +55,6 @@ Game::Game() : window(sf::VideoMode(800, 600), "Obliviion") {
     pJog1 = new Jogador(playerTexture);
     pJog2 = new Jogador(player2Texture);
 
-
-    sf::Texture texProjJogador;
     texProjJogador.loadFromFile("../assets/images/rock.png");
     pJog1->setTexProjetil(&texProjJogador);
     pJog2->setTexProjetil(&texProjJogador);

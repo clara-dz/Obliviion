@@ -42,7 +42,9 @@ class Game {
     private:
         sf::Texture playerTexture;
         sf::Texture player2Texture;
+        sf::Texture texProjJogador;
         
+
         GameState gameState = GameState::StartMenu;
         TelaGameOver telaGameOver;
 
