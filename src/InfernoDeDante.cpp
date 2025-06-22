@@ -5,6 +5,9 @@
 #include <sstream>
 #include <nlohmann/json.hpp>
 #include "Floor.h"
+#include <cstdlib>
+#include <ctime>
+
 #include "Config.h"
 
 extern const unsigned int SCREEN_WIDTH;
@@ -25,8 +28,10 @@ void InfernoDeDante::criarInimFracos(){
     if (!EmoGirlTexture.loadFromFile("../assets/images/emogirl.png")) {
         std::cerr << "Error loading enemy texture!\n";
     }
+
+    int n_randomico = 3 + (rand()%(maxInimigosFracos - 2));
     
-    for (int i = 0; i < maxInimigosFracos; ++i) {
+    for (int i = 0; i < n_randomico; ++i) {
         // TODO: make moving left random
         EmoGirl enemy(750 - (70 * i), 200, 2, EmoGirlTexture);
         weakEnemies.push_back(enemy);
@@ -53,7 +58,9 @@ void InfernoDeDante::criarBosses(){
         std::cerr << "Error loading emoBoy texture!\n";
     }
 
-    for (int i = 0; i < maxBosses; ++i) {
+    int n_randomico = 3 + (rand()%(maxBosses - 2));
+    
+    for (int i = 0; i < n_randomico; ++i) {
         EmoBoss boss(750 - (100 * i), 200, 20, emoBossTexture);
         boss.setJogadores(pJog1, pJog2); // Set players for tracking
 
