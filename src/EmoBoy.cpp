@@ -22,10 +22,14 @@ void EmoBoy::executar(float deltaTime) {
     if (pJog2->isAlive){
         attackPlayer(deltaTime, pJog2);
     }
+    if (isFlashing && flashClock.getElapsedTime().asSeconds() > flashDuration) {
+        sprite.setColor(sf::Color::White);  // Reset to normal
+        isFlashing = false;
+    }
 }
 
 void EmoBoy::attackPlayer(float deltaTime, Jogador* pJogador) {
-    // deltaTime *= tamanho;
+    deltaTime /= tamanho;
     sf::Vector2f playerPos = pJogador->getPosition();
     sf::Vector2f myPos = sprite.getPosition();
 

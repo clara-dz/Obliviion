@@ -27,4 +27,9 @@ void EmoGirl::executar(float deltaTime) {
             movingLeft = true; // switch direction
         }
     }
+
+    if (isFlashing && flashClock.getElapsedTime().asSeconds() > flashDuration) {
+        sprite.setColor(sf::Color::White);  // Reset to normal
+        isFlashing = false;
+    }
 }

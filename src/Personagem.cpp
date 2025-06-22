@@ -17,7 +17,7 @@ void Personagem::tomarDano(int nivelDano) {
         numVidas = 0; // Ensure numVidas does not go below zero
         isVisible = false;
     }
-    // isFlashing = true;
+    isFlashing = true;
     flashDuration = 0.2f;
     sprite.setColor(sf::Color::Red);
     flashClock.restart();

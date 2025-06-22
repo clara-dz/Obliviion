@@ -161,7 +161,6 @@ void Game::processarTelaGameOver() {
 }
 
 void Game::executar() {
-    // if (menu->isOpened()) return;
     if (menu->isOpened()) {
         return;
     }
