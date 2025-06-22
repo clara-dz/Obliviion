@@ -35,6 +35,7 @@ class Game {
         
         void run();
         void salvarJogo();
+        void carregarJogo();
 
         void salvarDataBuffer(json saveData);
         void iniciarFase(std::string NomeFase);

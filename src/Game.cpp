@@ -298,3 +298,25 @@ void Game::salvarDataBuffer(json saveData) {
         std::cerr << "Erro ao salvar jogo.\n";
     }
 }
+
+
+void Game::carregarJogo() {
+    std::ifstream in("../assets/savegame.json");
+    if (!in.is_open()) {
+        std::cerr << "Erro ao abrir o arquivo de salvamento." << std::endl;
+        return;
+    }
+
+    json saveData;
+    in >> saveData;
+
+    if (saveData["token"] != "ObliviionSaveData") {
+        std::cerr << "Arquivo de salvamento inválido." << std::endl;
+        return;
+    }
+
+    // playerMode = saveData["playerMode"];
+    // currentLevel->carregar(saveData);
+
+    iniciarFase("Jardim do Éden");
+}
