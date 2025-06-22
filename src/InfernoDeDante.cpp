@@ -8,6 +8,10 @@
 #include <cstdlib>
 #include <ctime>
 
+#include "Config.h"
+
+extern const unsigned int SCREEN_WIDTH;
+extern const unsigned int FLOOR_HEIGHT;
 
 using json = nlohmann::json;
 
@@ -15,7 +19,7 @@ using json = nlohmann::json;
 
 InfernoDeDante::InfernoDeDante(Jogador* j1, Jogador* j2)
     : Fase("Jardim do Eden", j1, j2),
-      floor("../assets/images/tile1.png", 1000, 500)
+      floor("../assets/images/tile1.png", SCREEN_WIDTH, FLOOR_HEIGHT)
     {}
 
 InfernoDeDante::~InfernoDeDante() {}
@@ -104,14 +108,14 @@ void InfernoDeDante::criarPlataformas() {
 void InfernoDeDante::loadLevel() {
     loadBackgroundTexture("../assets/images/background2.png");
     criarPlataformas();
-    criarObsMedios();
+    // criarObsMedios();
     criarInimFracos();
     criarInimMedios();
     criarBosses();
 
-    for (auto& o : obstaculos) {
-        colisor->incluirObstaculo(o);
-    }
+    // for (auto& o : obstaculos) {
+    //     colisor->incluirObstaculo(o);
+    // }
     
     colisor->setJogadores(pJog1, pJog2);
     
