@@ -22,6 +22,6 @@ Projetil* EmoBoss::atirar() {
     return new Projetil(*texProjetil, sprite.getPosition(), vel, Dono::Inimigo);
 }
 
-void Jogador::setTexProjetil(const sf::Texture* tex) {
+void EmoBoss::setTexProjetil(const sf::Texture* tex) {
     texProjetil = tex;
 }

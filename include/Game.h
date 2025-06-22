@@ -51,6 +51,7 @@ class Game {
 
         // Gerenciadores::GerenciadorGrafico GG;
         Fase* currentLevel;
+        std::string currentLevelName;
         Menu* menu;
         
         sf::RenderWindow window;
@@ -62,4 +63,5 @@ class Game {
         void executar();
         void renderizar();
         void salvarPontuacao(const std::string& nome, int pontos);
+        void trocarFase();
 };

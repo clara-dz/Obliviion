@@ -7,6 +7,7 @@
 #include <nlohmann/json.hpp>
 #include "Game.h"
 #include "Jogador.h"
+#include "InfernoDeDante.h"
 
 using json = nlohmann::json;
 
@@ -39,7 +40,7 @@ Game::Game() : window(sf::VideoMode(800, 600), "Obliviion") {
         exit(1);
     }
 
-    std::vector<std::string> options = {"Continuar", "Score", "Salvar", "Carregar", "Sair"};
+    std::vector<std::string> options = {"Continuar", "Sair", "Score", "Salvar", "Carregar"};
     menu = new Menu(options, font);
 
     if (!playerTexture.loadFromFile("../assets/images/player.png")) {
@@ -64,16 +65,24 @@ Game::Game() : window(sf::VideoMode(800, 600), "Obliviion") {
 }
 
 void Game::iniciarFase(std::string NomeFase) {
-    // if (currentLevel) {
-    //     delete currentLevel;  // Clean up previous level
-    //     currentLevel = nullptr;
-    // }
-    
+    currentLevelName = NomeFase;
+
     if (playerMode == PlayerMode::SinglePlayer) {
         std::cout << "Why are you playing alone? :(" << std::endl;
         pJog2->die();
     }
-    currentLevel = new JardimDoEden(pJog1, pJog2);
+
+    if (currentLevelName == "Jardim do Éden") {
+        std::cout << "Loading Jardim do Éden level..." << std::endl;
+        currentLevel = new JardimDoEden(pJog1, pJog2);
+    } else if (currentLevelName == "Inferno de Dante") {
+        std::cout << "Loading Inferno de Dante level..." << std::endl;
+        currentLevel = new InfernoDeDante(pJog1, pJog2);
+    } else {
+        std::cerr << "Unknown level: " << currentLevelName << std::endl;
+        return;
+    }
+
     currentLevel->loadLevel();
     gameState = GameState::Playing;
 }
@@ -199,11 +208,7 @@ void Game::executar() {
             break;
 
         case GameState::NextLevel:
-            // carregarProximoNivel();
-            // Here you can load the next level or reset the current one
-            std::cout << "Loading next level..." << std::endl;
-            // For now, we just reset the current level
-            window.close();
+            trocarFase();
             break;
 
         case GameState::GameOver:
@@ -358,4 +363,22 @@ void Game::carregarJogo() {
     // },
     // "playerMode": 0,
     // "projectiles": [],
+}
+
+void Game::trocarFase() {
+    std::cout << "Trocando de fase...\n";
+
+    // Clean up safely
+    if (currentLevel) {
+        delete currentLevel;
+        currentLevel = nullptr;
+    }
+
+    // Start next level
+    if (currentLevelName == "Jardim do Éden") {
+        iniciarFase("Inferno de Dante");
+    } else {
+        std::cout << "Fim do jogo! Não há mais fases." << std::endl;
+        gameState = GameState::Victory;
+    }
 }
