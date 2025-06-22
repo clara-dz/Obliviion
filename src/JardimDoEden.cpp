@@ -22,7 +22,8 @@ void JardimDoEden::criarInimFracos(){
     }
     
     for (int i = 0; i < maxInimigosFracos; ++i) {
-        EmoGirl enemy(750 - (70 * i), 200, 20, EmoGirlTexture);
+        // TODO: make moving left random
+        EmoGirl enemy(750 - (70 * i), 200, 2, EmoGirlTexture);
         weakEnemies.push_back(enemy);
     }
 }

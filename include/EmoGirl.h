@@ -4,18 +4,14 @@
 
 class EmoGirl : public Inimigo { // Inimigo Fraco
 private:
-    float raio;
+    float raio = 60.f;
+    float traveled = 0.f;
+    bool movingLeft;
 
 public:
-    EmoGirl(int x, int y, int speed, const sf::Texture& texture);
+    EmoGirl(int x, int y, int speed, const sf::Texture& texture, bool movingLeft = true);
     void executar(float deltaTime) override;
     
-    // {
-    //     // Simple patrolling logic (placeholder)
-    //     applyGravity(deltaTime);
-    //     sprite.move(velocityX * deltaTime, 0.f);
-    //     sprite.move(-speed * deltaTime, 0.f); // moves left slowly
-    // }
 
     // void renderizar(sf::RenderWindow& window) override {
     //     window.draw(sprite);
