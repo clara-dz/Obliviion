@@ -1,0 +1,16 @@
+#include "EmoBoss.h"
+
+EmoBoss::EmoBoss(int x, int y, int speed, const sf::Texture& texture)
+: Inimigo(x, y, speed) {
+
+    nivelMaldade = 3; // O triplo do Inimigo fraco
+    sprite.setPosition(static_cast<float>(x), static_cast<float>(y));
+    startFalling();
+    sprite.setTexture(texture);
+    numVidas = 3; //o triplo do inimigo fraco
+}
+
+void EmoBoss::executar(float deltaTime) {
+    applyGravity(deltaTime);
+    sprite.move(velocityX * deltaTime, 0.f);
+}
