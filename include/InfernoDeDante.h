@@ -25,8 +25,8 @@ using json = nlohmann::json;
 
 class InfernoDeDante : public Fase {
     private:
-        const int maxInimigosFracos = 1;    //não cria inimigoFraco
-        const int maxIniminMedio = 0;
+        const int maxInimigosFracos = 7; 
+        const int maxIniminMedio = 0; //não cria inimigoFraco
         const int maxBosses = 3;
 
         PlayerMode mode = PlayerMode::SinglePlayer;

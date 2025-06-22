@@ -5,6 +5,9 @@
 #include <sstream>
 #include <nlohmann/json.hpp>
 #include "Floor.h"
+#include <cstdlib>
+#include <ctime>
+
 
 using json = nlohmann::json;
 
@@ -21,8 +24,10 @@ void InfernoDeDante::criarInimFracos(){
     if (!EmoGirlTexture.loadFromFile("../assets/images/emogirl.png")) {
         std::cerr << "Error loading enemy texture!\n";
     }
+
+    int n_randomico = 3 + (rand()%(maxInimigosFracos - 2));
     
-    for (int i = 0; i < maxInimigosFracos; ++i) {
+    for (int i = 0; i < n_randomico; ++i) {
         // TODO: make moving left random
         EmoGirl enemy(750 - (70 * i), 200, 2, EmoGirlTexture);
         weakEnemies.push_back(enemy);
