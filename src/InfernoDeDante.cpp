@@ -51,9 +51,11 @@ void InfernoDeDante::criarBosses(){
         std::cerr << "Error loading boss texture!\n";
     }
 
-    for (int i = 0; i < maxBosses; ++i) {
+    int n_randomico = 3 + (rand()%(maxBosses - 2));
+    
+    for (int i = 0; i < n_randomico; ++i) {
         EmoBoss boss(750 - (100 * i), 200, 20, emoBossTexture);
-        // emo.setJogadores(pJog1, pJog2); // Set players for tracking
+        
         bosses.push_back(boss);
         std::cout << "Rendering boss: " << bosses.size() << std::endl;
 

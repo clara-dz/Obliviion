@@ -3,6 +3,8 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <cstdlib>
+#include <ctime>
 #include <nlohmann/json.hpp>
 #include "Floor.h"
 
@@ -22,8 +24,10 @@ void JardimDoEden::criarInimFracos(){
         std::cerr << "Error loading enemy texture!\n";
     }
     
-    for (int i = 0; i < maxInimigosFracos; ++i) {
-        // TODO: make moving left random
+    int n_randomico = 3 + (rand()%(maxInimigosFracos - 2));
+    
+    for (int i = 0; i < n_randomico; ++i) {
+        
         EmoGirl enemy(750 - (70 * i), 200, 2, EmoGirlTexture);
         weakEnemies.push_back(enemy);
     }
@@ -33,8 +37,10 @@ void JardimDoEden::criarInimMedios(){
     if (!emoBoyTexture.loadFromFile("../assets/images/emoboy.png")) {
         std::cerr << "Error loading emoBoy texture!\n";
     }
-
-    for (int i = 0; i < maxIniminMedio; ++i) {
+    
+    int n_randomico = 3 + (rand()%(maxIniminMedio - 2));
+    
+    for (int i = 0; i < n_randomico; ++i) {
         EmoBoy emo(400 - (70 * i), 200, 20, emoBoyTexture);
         emo.setJogadores(pJog1, pJog2); // Set players for tracking
         mediumEnemies.push_back(emo);

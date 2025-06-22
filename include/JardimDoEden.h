@@ -26,7 +26,7 @@ using json = nlohmann::json;
 class JardimDoEden : public Fase {
     private:
         const int maxInimigosFracos = 7;    
-        const int maxIniminMedio = 7;
+        const int maxIniminMedio = 5;
         const int maxBosses = 0; //não cria boss
 
         PlayerMode mode = PlayerMode::SinglePlayer;
