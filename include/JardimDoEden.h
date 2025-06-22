@@ -27,6 +27,8 @@ class JardimDoEden : public Fase {
     private:
         const int maxInimigosFracos = 3;    
         const int maxIniminMedio = 2;
+        const int maxBosses = 0;
+
         PlayerMode mode = PlayerMode::SinglePlayer;
 
         Floor floor;
@@ -50,6 +52,7 @@ class JardimDoEden : public Fase {
         void criarObsMedios();
         void criarInimMedios();
         void criarInimFracos();
+        void criarBosses();
 
     public:
         JardimDoEden(Jogador* j1, Jogador* j2);

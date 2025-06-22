@@ -40,6 +40,19 @@ void JardimDoEden::criarInimMedios(){
     }
 }
 
+void JardimDoEden::criarBosses(){
+    if (!emoBossTexture.loadFromFile("../assets/images/emoboss.png")) {
+        std::cerr << "Error loading emoBoy texture!\n";
+    }
+
+    for (int i = 0; i < maxBosses; ++i) {
+        EmoBoss boss(200 - (100 * i), 200, 20, emoBossTexture);
+        // emo.setJogadores(pJog1, pJog2); // Set players for tracking
+        bosses.push_back(boss);
+    }
+}
+
+
 void JardimDoEden::criarObsMedios(){
     if (!barrierTex.loadFromFile("../assets/images/stone_96x96.png")) {
         std::cerr << "Error loading platform textures!\n";
