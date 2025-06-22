@@ -28,7 +28,6 @@ namespace Obstaculos {
         void obstaculizar(Jogador& jogador) override {};
 
         void executar(float deltaTime) override;
-        json salvar(json data) override { return data; };
         void obstaculizar(Jogador*p); //ainda n sei para que serve
     };
 

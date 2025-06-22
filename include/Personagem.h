@@ -40,9 +40,6 @@ class Personagem : public Entidade {
             }
         }
 
-        json salvar(json data) override;
-        void carregar() override;
-
         void stopFalling() {
             velocityY = 0.f;
             isOnGround = true;

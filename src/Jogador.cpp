@@ -89,3 +89,17 @@ Projetil* Jogador::atirar() {
     sf::Vector2f vel = { 10.f, 0.f };
     return new Projetil(*texProjetil, sprite.getPosition(), vel, Dono::Jogador);
 }
+
+json Jogador::salvar() {
+    json data;
+    data["isAlive"] = isAlive;
+    data["numVidas"] = numVidas;
+    data["x"] = sprite.getPosition().x;
+    data["y"] = sprite.getPosition().y;
+
+    data["velocityX"] = velocityX;
+    data["velocityY"] = velocityY;
+    data["isOnGround"] = isOnGround;
+
+    return data;
+}

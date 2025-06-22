@@ -10,7 +10,7 @@ class ChamaDeHades : public Obstaculo {
     public:
         ChamaDeHades(const sf::Texture& texture, float x, float y);
         
-        ~ChamaDeHades();
+        ~ChamaDeHades() = default;
 
         void obstaculizar(Jogador& jogador) override;
 

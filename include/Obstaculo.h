@@ -24,6 +24,4 @@ public:
     virtual void obstaculizar(Jogador& jogador) = 0;
 
     virtual void executar(float deltaTime) override = 0;
-    json salvar(json data) override { return data; };
-    void carregar() override {};
 };

@@ -22,8 +22,8 @@ class Entidade : public Ente {
         virtual ~Entidade() {}
 
         virtual void executar(float deltaTime) override = 0;
-        virtual json salvar(json data) = 0;
-        virtual void carregar() = 0;
+        // virtual json salvar() = 0;
+        // virtual void carregar() = 0;
 
         void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override {
             if (!isVisible) return;

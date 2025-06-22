@@ -1,7 +1,10 @@
 #pragma once
 #include "Personagem.h"
 #include "Projetil.h"
-// #include "Inimigo.h"
+#include <nlohmann/json.hpp>
+
+
+using json = nlohmann::json;
 
 class Inimigo;
 
@@ -34,7 +37,7 @@ class Jogador : public Personagem {
 
         // void colidir(Inimigo* pIn);
         void setEhJog2(bool flag) { ehJog2 = flag; }
-        // void salvar() override;
+        json salvar();
 
     private:
         bool ehJog2 = false;

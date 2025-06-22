@@ -2,6 +2,10 @@
 
 #include "Obstaculo.h"
 #include <iostream>
+#include <nlohmann/json.hpp>
+
+
+using json = nlohmann::json;
 
 class BarreiraDoLimbo : public Obstaculo {
     public:
@@ -19,4 +23,5 @@ class BarreiraDoLimbo : public Obstaculo {
         }
 
         void executar(float deltaTime) override {}
+
     };

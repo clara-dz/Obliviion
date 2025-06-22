@@ -1,7 +1,24 @@
 {
     "levelName": "Jardim do Eden",
-    "player1": "ok",
-    "player2": "ok",
+    "player1": {
+        "isAlive": false,
+        "isOnGround": false,
+        "numVidas": 0,
+        "velocityX": 0.0,
+        "velocityY": 238.49130249023438,
+        "x": 261.36846923828125,
+        "y": 5815.85791015625
+    },
+    "player2": {
+        "isAlive": true,
+        "isOnGround": false,
+        "numVidas": 5,
+        "velocityX": 0.0,
+        "velocityY": 0.0,
+        "x": 200.0,
+        "y": 347.0
+    },
     "playerMode": 1,
-    "token": "ObliviionSaveData"
+    "token": "ObliviionSaveData",
+    "weakEnemies": []
 }

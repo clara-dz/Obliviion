@@ -54,7 +54,7 @@ class JardimDoEden : public Fase {
     public:
         JardimDoEden(Jogador* j1, Jogador* j2);
 
-        json salvar(json data) const override;
+        json salvar() const override;
         void loadLevel() override;
         
         void executar(float deltaTime) override;

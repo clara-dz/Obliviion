@@ -167,8 +167,6 @@ void JardimDoEden::renderizar(sf::RenderWindow& window) {
     if (pJog2->isAlive)
         pJog2->renderizar(window);
 
-    // if (mode == PlayerMode::TwoPlayers) {}
-
     for (auto& enemy : weakEnemies) {
         if (enemy.isAlive) // Only render alive enemies
         enemy.renderizar(window);
@@ -186,22 +184,19 @@ void JardimDoEden::renderizar(sf::RenderWindow& window) {
 }
 
 
-json JardimDoEden::salvar(json data) const {
+json JardimDoEden::salvar() const {
+    json data;
+    
     data["levelName"] = levelName;
+    data["player1"] = pJog1->salvar();
+    data["player2"] = pJog2->salvar();
 
-    if (pJog1->isAlive) {
-        // data["player1"] = pJog1->salvar(json::object());
-        data["player1"] = "ok";
-    } else {
-        data["player1"] = nullptr;
-    }
-
-    if (pJog2->isAlive) {
-        // data["player2"] = pJog2->salvar(json::object());
-        data["player2"] = "ok";
-    } else {
-        data["player2"] = nullptr;
-    }
+    data["weakEnemies"] = json::array();
+    // for (auto& enemy : weakEnemies) {
+    //     if (enemy.isAlive) {
+    //         data["weakEnemies"].push_back(enemy.salvar(json::object()));
+    //     }
+    // }
 
     return data;
 }   
