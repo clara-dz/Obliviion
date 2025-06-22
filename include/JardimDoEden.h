@@ -13,6 +13,7 @@
 #include "Plataforma.h"
 #include "Floor.h"
 
+#include "EmoBoss.h"
 #include "EmoBoy.h"
 #include "InimigoFraco.h"
 
@@ -30,14 +31,15 @@ class JardimDoEden : public Fase {
         PlayerMode mode = PlayerMode::SinglePlayer;
 
         Floor floor;
-        // Jogador player;
-        // Jogador player2;
 
         std::vector<InimigoFraco> weakEnemies;
         sf::Texture inimigoFracoTexture;
 
         std::vector<EmoBoy> mediumEnemies;
         sf::Texture emoBoyTexture;
+        
+        std::vector<EmoBoss> bosses;
+        sf::Texture emoBossTexture;
         
         // std::vector<Obstaculo*> obstaculos;
         // sf::Texture smokeTex, fireTex;

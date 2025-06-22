@@ -5,7 +5,7 @@
 #include <vector>
 #include <SFML/System/Clock.hpp>
 
-class Chefao : public Inimigo { // Nome: EmoBoss
+class EmoBoss : public Inimigo { // Nome: EmoBoss
 private:
     short int forca;
     int vida;
@@ -19,8 +19,8 @@ private:
 
 public:
     // O construtor precisa de duas texturas: uma para o chefe e outra para seus projéteis
-    Chefao(const sf::Texture& texture, const sf::Texture& textura_projetil, int x = 0, int y = 0);
-    ~Chefao();
+    EmoBoss(const sf::Texture& texture, const sf::Texture& textura_projetil, int x = 0, int y = 0);
+    ~EmoBoss();
 
     void executar(float deltaTime) override;
     // void danificar(Jogador* pJogador) override {};
