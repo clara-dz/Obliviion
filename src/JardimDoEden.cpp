@@ -14,23 +14,30 @@ JardimDoEden::JardimDoEden(Jogador* j1, Jogador* j2)
       floor("../assets/images/tile1.png", 1000, 500)
     {}
 
-void JardimDoEden::loadLevel() {
-    loadBackgroundTexture("../assets/images/background1.png");
 
+void JardimDoEden::criarInimFracos(){
     if (!inimigoFracoTexture.loadFromFile("../assets/images/inimigoFraco.png")) {
         std::cerr << "Error loading enemy texture!\n";
     }
+    
+    for (int i = 0; i < maxInimigosFracos; ++i) {
+        InimigoFraco enemy(750 - (70 * i), 200, 20, inimigoFracoTexture);
+        weakEnemies.push_back(enemy);
+    }
+}
+
+void JardimDoEden::criarInimMedios(){
     if (!emoBoyTexture.loadFromFile("../assets/images/emoboy.png")) {
         std::cerr << "Error loading emoBoy texture!\n";
     }
 
-    if (!plataformaEsqTex.loadFromFile("../assets/images/platLeft.png") ||
-        !plataformaMeioTex.loadFromFile("../assets/images/platMid.png") ||
-        !plataformaDirTex.loadFromFile("../assets/images/platRight.png")) {
-        std::cerr << "Error loading platform textures!\n";
-        exit(1);
+    for (int i = 0; i < maxIniminMedio; ++i) {
+        EmoBoy emo(400 - (70 * i), 200, 20, emoBoyTexture);
+        mediumEnemies.push_back(emo);
     }
+}
 
+void JardimDoEden::criarObsMedios(){
     if (!smokeTex.loadFromFile("../assets/images/smoke.png") ||
         !fireTex.loadFromFile("../assets/images/fire.gif")) {
         std::cerr << "Error loading platform textures!\n";
@@ -38,6 +45,15 @@ void JardimDoEden::loadLevel() {
     }
 
     obstaculos.push_back(new Smoke(smokeTex, 400, 450));
+}
+
+void JardimDoEden::criarPlataformas() {
+    if (!plataformaEsqTex.loadFromFile("../assets/images/platLeft.png") ||
+        !plataformaMeioTex.loadFromFile("../assets/images/platMid.png") ||
+        !plataformaDirTex.loadFromFile("../assets/images/platRight.png")) {
+        std::cerr << "Error loading platform textures!\n";
+        exit(1);
+    }
 
     // Load platform layout from CSV file
     std::ifstream file("../assets/maps/jardimDoEden.csv");
@@ -57,26 +73,26 @@ void JardimDoEden::loadLevel() {
         ss >> x >> comma >> y >> comma >> length;
         plataformas.emplace_back(plataformaEsqTex, plataformaMeioTex, plataformaDirTex, x, y, length);
     }
+}
+
+
+void JardimDoEden::loadLevel() {
+    loadBackgroundTexture("../assets/images/background1.png");
+    criarPlataformas();
+    criarObsMedios();
+    criarInimFracos();
+    criarInimMedios();
 
     for (auto& o : obstaculos) {
         colisor->incluirObstaculo(o);
     }
-
-    for (int i = 0; i < maxInimigosFracos; ++i) {
-        InimigoFraco enemy(750 - (70 * i), 200, 20, inimigoFracoTexture);
-        weakEnemies.push_back(enemy);
-    }
-
-    for (int i = 0; i < maxIniminMedio; ++i) {
-        EmoBoy emo(400 - (70 * i), 200, 20, emoBoyTexture);
-        mediumEnemies.push_back(emo);
-    }
-
-    // colisor->resetar();
+    
     colisor->setJogadores(pJog1, pJog2);
+    
     for (auto& inimigo : weakEnemies) {
         colisor->incluirInimigos(&inimigo);
     }
+
     for (auto& inimigo : mediumEnemies) {
         colisor->incluirInimigos(&inimigo);
     }

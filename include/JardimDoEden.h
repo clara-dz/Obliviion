@@ -40,7 +40,7 @@ class JardimDoEden : public Fase {
         
         std::vector<EmoBoss> bosses;
         sf::Texture emoBossTexture;
-        
+
         // std::vector<Obstaculo*> obstaculos;
         // sf::Texture smokeTex, fireTex;
 
@@ -50,12 +50,11 @@ class JardimDoEden : public Fase {
         sf::Texture texProjJogador;
 
     protected:
-        void criarInimMedios();
+        void criarPlataformas();
         void criarObsMedios();
+        void criarInimMedios();
         void criarInimFracos();
-        void criarObsFracos();
 
-        
     public:
         JardimDoEden(Jogador* j1, Jogador* j2);
 
