@@ -25,13 +25,15 @@ using json = nlohmann::json;
 
 class InfernoDeDante : public Fase {
     private:
-        const int maxInimigosFracos = 3;    
-        const int maxIniminMedio = 2;
+        const int maxInimigosFracos = 1;    //não cria inimigoFraco
+        const int maxIniminMedio = 0;
+        const int maxBosses = 1;
+
         PlayerMode mode = PlayerMode::SinglePlayer;
 
         Floor floor;
 
-        std::vector<EmoGirl> weakEnemies;
+        std::vector<EmoGirl> weakEnemies;  //está na lógica de verificação
         sf::Texture EmoGirlTexture;
 
         std::vector<EmoBoy> mediumEnemies;
@@ -50,16 +52,20 @@ class InfernoDeDante : public Fase {
         void criarObsMedios();
         void criarInimMedios();
         void criarInimFracos();
+        void criarBosses();
 
     public:
         InfernoDeDante(Jogador* j1, Jogador* j2);
 
+        ~InfernoDeDante();
+
         json salvar() const override;
+
         void loadLevel() override;
         
         void executar(float deltaTime) override;
-        void renderizar(sf::RenderWindow& window) override;
 
+        void renderizar(sf::RenderWindow& window) override;
 
         int getPontuacaoTotalJogadores() const override;
 
