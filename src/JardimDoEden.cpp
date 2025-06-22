@@ -5,6 +5,10 @@
 #include <sstream>
 #include <nlohmann/json.hpp>
 #include "Floor.h"
+#include "Config.h"
+
+extern const unsigned int SCREEN_WIDTH;
+extern const unsigned int FLOOR_HEIGHT;
 
 using json = nlohmann::json;
 
@@ -12,7 +16,7 @@ using json = nlohmann::json;
 
 JardimDoEden::JardimDoEden(Jogador* j1, Jogador* j2)
     : Fase("Jardim do Eden", j1, j2),
-      floor("../assets/images/tile1.png", 1000, 500)
+      floor("../assets/images/tile1.png", (SCREEN_WIDTH + 200), FLOOR_HEIGHT)
     {}
 
 JardimDoEden::~JardimDoEden() {}
