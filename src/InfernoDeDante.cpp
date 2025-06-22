@@ -101,7 +101,7 @@ void InfernoDeDante::criarPlataformas() {
 void InfernoDeDante::loadLevel() {
     loadBackgroundTexture("../assets/images/background2.png");
     criarPlataformas();
-    criarObsMedios();
+    // criarObsMedios();
     criarInimFracos();
     criarInimMedios();
     criarBosses();
