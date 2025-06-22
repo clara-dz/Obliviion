@@ -40,7 +40,15 @@ Game::Game() : window(sf::VideoMode(800, 600), "Obliviion") {
         exit(1);
     }
 
-    std::vector<std::string> options = {"Continuar", "Sair", "Score", "Salvar", "Carregar"};
+    std::vector<std::string> options = {
+        "Continuar",
+        "Sair",
+        "Score",
+        "Salvar",
+        "Carregar",
+        "Jardim do Eden",
+        "Inferno de Dante"
+    };
     menu = new Menu(options, font);
 
     if (!playerTexture.loadFromFile("../assets/images/player.png")) {
@@ -191,6 +199,16 @@ void Game::executar() {
         gameState = GameState::Ranking;
         return;
     };
+
+    if (selected == "Jardim do Eden") {
+        iniciarFase("Jardim do Éden");
+        return;
+    }
+    
+    if (selected == "Inferno de Dante") {
+        iniciarFase("Inferno de Dante");
+        return;
+    }
     
     float deltaTime = clock.restart().asSeconds();
     if (deltaTime < 1.f / 144.f)

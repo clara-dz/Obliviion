@@ -56,6 +56,12 @@ void Menu::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
                     close();
                 } else if (items[selectedIndex] == "Sair") {
                     window.close();
+                } else if (items[selectedIndex] == "Jardim do Eden") {
+                    // Handle Jardim do Éden selection
+                    close();
+                } else if (items[selectedIndex] == "Inferno de Dante") {
+                    // Handle Inferno de Dante selection
+                    close();
                 }
                 break;
             default:
