@@ -12,6 +12,7 @@ class Jogador : public Personagem {
     protected:
         int pontos = 0;
         const sf::Texture* texProjetil;
+        
     public:
         Jogador(const sf::Texture& texture);
         
@@ -22,10 +23,12 @@ class Jogador : public Personagem {
         }
         
         bool upKeyPressedLastFrame = false;
-        void setTexProjetil(const sf::Texture* tex);
+
         void addPontos(int pts) { pontos += pts; }
         int getPontos() const { return pontos; }
+        
         Projetil* atirar();
+        void setTexProjetil(const sf::Texture* tex);
 
         void setPosition(sf::Vector2f pos) { sprite.setPosition(pos); }
         sf::Vector2f getPosition() const { return sprite.getPosition(); }
