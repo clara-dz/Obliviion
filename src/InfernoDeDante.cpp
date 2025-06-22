@@ -106,9 +106,9 @@ void InfernoDeDante::loadLevel() {
     criarInimMedios();
     criarBosses();
 
-    for (auto& o : obstaculos) {
-        colisor->incluirObstaculo(o);
-    }
+    // for (auto& o : obstaculos) {
+    //     colisor->incluirObstaculo(o);
+    // }
     
     colisor->setJogadores(pJog1, pJog2);
     
