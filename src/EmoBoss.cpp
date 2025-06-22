@@ -13,6 +13,10 @@ EmoBoss::EmoBoss(int x, int y, int speed, const sf::Texture& texture)
 void EmoBoss::executar(float deltaTime) {
     applyGravity(deltaTime);
     // sprite.move(velocityX * deltaTime, 0.f);
+    if (isFlashing && flashClock.getElapsedTime().asSeconds() > flashDuration) {
+        sprite.setColor(sf::Color::White);  // Reset to normal
+        isFlashing = false;
+    }
 }
 
 Projetil* EmoBoss::atirar() {

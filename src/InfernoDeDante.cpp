@@ -42,7 +42,7 @@ void InfernoDeDante::criarInimMedios(){
 }
 
 void InfernoDeDante::criarBosses(){
-    if (!emoBossTexture.loadFromFile("../assets/images/emoboy.png")) {
+    if (!emoBossTexture.loadFromFile("../assets/images/emoboss.png")) {
         std::cerr << "Error loading boss texture!\n";
     }
 
@@ -50,6 +50,8 @@ void InfernoDeDante::criarBosses(){
         EmoBoss boss(750 - (100 * i), 200, 20, emoBossTexture);
         // emo.setJogadores(pJog1, pJog2); // Set players for tracking
         bosses.push_back(boss);
+        std::cout << "Rendering boss: " << bosses.size() << std::endl;
+
     }
 }
 
@@ -98,6 +100,7 @@ void InfernoDeDante::loadLevel() {
     criarObsMedios();
     criarInimFracos();
     criarInimMedios();
+    criarBosses();
 
     for (auto& o : obstaculos) {
         colisor->incluirObstaculo(o);
@@ -224,6 +227,11 @@ void InfernoDeDante::renderizar(sf::RenderWindow& window) {
     }
 
     for (auto& enemy : mediumEnemies) {
+        if (enemy.isAlive) // Only render alive enemies
+        enemy.renderizar(window);
+    }
+
+    for (auto& enemy : bosses) {
         if (enemy.isAlive) // Only render alive enemies
         enemy.renderizar(window);
     }
