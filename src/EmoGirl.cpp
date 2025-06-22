@@ -10,4 +10,7 @@ EmoGirl::EmoGirl(int x, int y, int speed, const sf::Texture& texture)
 
 void EmoGirl::executar(float deltaTime) {
         applyGravity(deltaTime);
-        sprite.move(velocityX * deltaTime, 0.f);}
+        sprite.move(-speed * deltaTime, 0.f); // moves left slowly
+        // sprite.move(velocityX * deltaTime, 0.f);
+}
+

@@ -10,7 +10,6 @@ EmoBoy::EmoBoy(int x, int y, int speed, const sf::Texture& texture)
 }
 
 void EmoBoy::executar(float deltaTime) {
-    
     applyGravity(deltaTime);
-    sprite.move(velocityX * deltaTime, 0.f);
+    sprite.move(-speed * deltaTime, 0.f); // moves left slowly
 }
