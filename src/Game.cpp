@@ -323,5 +323,40 @@ void Game::carregarJogo() {
 
     // playerMode = saveData["playerMode"];
     // currentLevel->carregar(saveData);
-    iniciarFase(saveData["levelName"]);
+
+    for (auto& enemy : saveData["mediumEnemies"]) {
+        std::cout << enemy.dump(4) << std::endl;
+    }
+    for (auto& enemy : saveData["mediumEnemies"]) {
+        std::cout << enemy.dump(4) << std::endl;
+    }
+        for (auto& enemy : saveData["mediumEnemies"]) {
+        std::cout << enemy.dump(4) << std::endl;
+    }
+
+    currentLevel = new JardimDoEden(pJog1, pJog2);
+    currentLevel->loadLevel();
+    gameState = GameState::Playing;
+
+    // "levelName": "Jardim do Eden",
+    // "player1": {
+    //     "isAlive": true,
+    //     "isOnGround": false,
+    //     "numVidas": 5,
+    //     "velocityX": 0.0,
+    //     "velocityY": 0.0,
+    //     "x": 237.0883026123047,
+    //     "y": 344.0
+    // },
+    // "player2": {
+    //     "isAlive": false,
+    //     "isOnGround": false,
+    //     "numVidas": 0,
+    //     "velocityX": 0.0,
+    //     "velocityY": 6133.53515625,
+    //     "x": 200.0,
+    //     "y": 3768143.5
+    // },
+    // "playerMode": 0,
+    // "projectiles": [],
 }
