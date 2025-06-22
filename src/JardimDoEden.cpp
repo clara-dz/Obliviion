@@ -38,13 +38,13 @@ void JardimDoEden::criarInimMedios(){
 }
 
 void JardimDoEden::criarObsMedios(){
-    if (!smokeTex.loadFromFile("../assets/images/smoke.png") ||
+    if (!barrierTex.loadFromFile("../assets/images/smoke.png") ||
         !fireTex.loadFromFile("../assets/images/fire.gif")) {
         std::cerr << "Error loading platform textures!\n";
         exit(1);
     }
 
-    obstaculos.push_back(new Smoke(smokeTex, 400, 450));
+    obstaculos.push_back(new BarreiraDoLimbo(barrierTex, 400, 450));
 }
 
 void JardimDoEden::criarPlataformas() {

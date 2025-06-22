@@ -1,6 +1,10 @@
 #pragma once
 #include "Entidade.h"
 #include "Jogador.h"
+#include <nlohmann/json.hpp>
+
+
+using json = nlohmann::json;
 
 
 class Obstaculo : public Entidade {
@@ -17,9 +21,9 @@ public:
         return sprite.getGlobalBounds();
     }
 
-    virtual void afetar(Jogador& jogador) = 0;
+    virtual void obstaculizar(Jogador& jogador) = 0;
 
     virtual void executar(float deltaTime) override = 0;
-    void salvar() override {};
+    json salvar(json data) override { return data; };
     void carregar() override {};
 };

@@ -1,5 +1,9 @@
 #include <iostream>
 #include "Personagem.h"
+#include <nlohmann/json.hpp>
+
+
+using json = nlohmann::json;
 
 void Personagem::tomarDano(int nivelDano) {
     std::cout << "Damage: " << nivelDano << "|" << numVidas << std::endl;
@@ -19,5 +23,21 @@ void Personagem::tomarDano(int nivelDano) {
     flashClock.restart();
 
     std::cout << "remaining life: " << numVidas << std::endl;
+}
 
+json Personagem::salvar(json data) {
+    data["numVidas"] = numVidas;
+    // data["isAlive"] = isAlive;
+    // data["position"] = { x, y }; // Assuming x and y are member variables of Entidade
+
+    // // Add more attributes as needed
+    // data["velocityX"] = velocityX;
+    // data["velocityY"] = velocityY;
+    // data["isOnGround"] = isOnGround;
+
+    return data;
+}
+
+void Personagem::carregar() {
+    // Implement loading logic here
 }

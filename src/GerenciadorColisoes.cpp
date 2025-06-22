@@ -164,10 +164,10 @@ void GerenciadorColisoes::tratarColisaoJogsObstacs() {
     for (auto* obst : listaObstaculos) {
         sf::FloatRect bounds = obst->getBounds();       
         if (pJog1 && obst->getBounds().intersects(pJog1->getBounds())) {
-            obst->afetar(*pJog1);
+            obst->obstaculizar(*pJog1);
         }
         if (pJog2 && obst->getBounds().intersects(pJog2->getBounds())) {
-            obst->afetar(*pJog2);
+            obst->obstaculizar(*pJog2);
         }
     }
 }

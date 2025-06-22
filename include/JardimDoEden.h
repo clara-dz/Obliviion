@@ -17,8 +17,7 @@
 #include "EmoBoy.h"
 #include "InimigoFraco.h"
 
-#include "ObstaculoMedio.h"
-#include "Smoke.h"
+#include "BarreiraDoLimbo.h"
 
 
 using json = nlohmann::json;
@@ -40,9 +39,6 @@ class JardimDoEden : public Fase {
         
         std::vector<EmoBoss> bosses;
         sf::Texture emoBossTexture;
-
-        // std::vector<Obstaculo*> obstaculos;
-        // sf::Texture smokeTex, fireTex;
 
         std::vector<Obstaculos::Plataforma> plataformas;
         sf::Texture plataformaEsqTex, plataformaDirTex, plataformaMeioTex;

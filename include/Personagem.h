@@ -1,5 +1,9 @@
 #pragma once
 #include "Entidade.h"
+#include <nlohmann/json.hpp>
+
+
+using json = nlohmann::json;
 
 class Personagem : public Entidade {
     protected:
@@ -36,12 +40,8 @@ class Personagem : public Entidade {
             }
         }
 
-        void salvar() override {
-            // Implement saving logic here
-        };
-        void carregar() override {
-            // Implement loading logic here
-        };
+        json salvar(json data) override;
+        void carregar() override;
 
         void stopFalling() {
             velocityY = 0.f;

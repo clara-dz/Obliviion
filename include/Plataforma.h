@@ -1,6 +1,10 @@
 #pragma once
 #include "Obstaculo.h"
 #include "Jogador.h"
+#include <nlohmann/json.hpp>
+
+
+using json = nlohmann::json;
 
 namespace Obstaculos {
 
@@ -21,10 +25,10 @@ namespace Obstaculos {
 
         void desenhar(sf::RenderWindow& window);
         const std::vector<sf::FloatRect> getBounds() const;
-        void afetar(Jogador& jogador) override {};
+        void obstaculizar(Jogador& jogador) override {};
 
         void executar(float deltaTime) override;
-        void salvar() override {};
+        json salvar(json data) override { return data; };
         void obstaculizar(Jogador*p); //ainda n sei para que serve
     };
 

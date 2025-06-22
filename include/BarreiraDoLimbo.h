@@ -2,14 +2,14 @@
 #include "Obstaculo.h"
 #include <iostream>
 
-class Smoke : public Obstaculo {
+class BarreiraDoLimbo : public Obstaculo {
     public:
-        Smoke(const sf::Texture& texture, float x, float y) {
+        BarreiraDoLimbo(const sf::Texture& texture, float x, float y) {
             sprite.setTexture(texture);
             sprite.setPosition(x, y);
         }
 
-        void afetar(Jogador& jogador) override {
+        void obstaculizar(Jogador& jogador) override {
             float knockbackSpeed = 500.f;
 
             jogador.setVelocityX(-1 * knockbackSpeed);

@@ -1,6 +1,10 @@
 #pragma once
 
 #include "Entidade.h"
+#include <nlohmann/json.hpp>
+
+
+using json = nlohmann::json;
 
 enum class Dono { Jogador, Inimigo };
 
@@ -33,7 +37,7 @@ class Projetil : public Entidade {
             sprite.move(velocidade * deltaTime);
         };
 
-        void salvar() override {};
+        json salvar(json data) override { return data; };
         void carregar() override {};
 
         sf::FloatRect getBounds() const {

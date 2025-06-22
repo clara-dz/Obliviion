@@ -3,25 +3,26 @@
 #include <SFML/Graphics.hpp>
 #include "Ente.h"
 #include <iostream>
+#include <nlohmann/json.hpp>
+
+
+using json = nlohmann::json;
 
 class Entidade : public Ente {
     protected:
         sf::Sprite sprite; //tirar daqui pois já está em ENTE.H
         int x, y; //é passada para as classes filhas
         bool isVisible;
-        void salvarDataBuffer();
 
     public:
 
         Entidade() : x(0), y(0), isVisible(true) {}              //a classe tem duas funções inicializadoras
-
         Entidade(int x, int y) : x(x), y(y), isVisible(true) {}
         
         virtual ~Entidade() {}
 
         virtual void executar(float deltaTime) override = 0;
-        
-        virtual void salvar() = 0;
+        virtual json salvar(json data) = 0;
         virtual void carregar() = 0;
 
         void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override {

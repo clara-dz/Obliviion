@@ -20,7 +20,7 @@ class Fase {
         sf::Sprite backgroundSprite;
 
         std::vector<Obstaculo*> obstaculos;
-        sf::Texture smokeTex, fireTex;
+        sf::Texture barrierTex, fireTex;
         
         // virtual void criarObstaculos() = 0;
         GerenciadorColisoes* colisor = GerenciadorColisoes::getInstancia();
