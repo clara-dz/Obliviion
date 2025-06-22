@@ -28,6 +28,7 @@ class Jogador : public Personagem {
         Projetil* atirar();
 
         void setPosition(sf::Vector2f pos) { sprite.setPosition(pos); }
+        sf::Vector2f getPosition() const { return sprite.getPosition(); }
         void executar(float deltaTime) override;
         void renderizar(sf::RenderWindow& window) override;
         void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override;

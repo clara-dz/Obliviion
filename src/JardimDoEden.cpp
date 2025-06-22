@@ -35,6 +35,7 @@ void JardimDoEden::criarInimMedios(){
 
     for (int i = 0; i < maxIniminMedio; ++i) {
         EmoBoy emo(400 - (70 * i), 200, 20, emoBoyTexture);
+        emo.setJogadores(pJog1, pJog2); // Set players for tracking
         mediumEnemies.push_back(emo);
     }
 }
