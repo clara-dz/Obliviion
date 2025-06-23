@@ -11,13 +11,4 @@ private:
 public:
     EmoGirl(int x, int y, int speed, const sf::Texture& texture, bool movingLeft = true);
     void executar(float deltaTime) override;
-    
-
-    // void renderizar(sf::RenderWindow& window) override {
-    //     window.draw(sprite);
-    // }
-
-    // void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override {
-    //     target.draw(sprite, states);
-    // }
 };

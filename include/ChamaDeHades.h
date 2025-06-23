@@ -11,13 +11,10 @@ namespace Entidades {
 
             public:
                 ChamaDeHades(const sf::Texture& texture, float x, float y);
-
                 ~ChamaDeHades();
 
                 void obstaculizar(Jogador& jogador) override;
-
                 void executar(float deltaTime) override;
-
             };
     }
 }

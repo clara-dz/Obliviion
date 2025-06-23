@@ -5,7 +5,7 @@
 
 class EmoBoy : public Inimigo { //Inimigo Médio
 private:
-    int tamanho = 2; //professor quer, é preciso utilizar
+    int tamanho = 2;
     Jogador* pJog1;
     Jogador* pJog2;
 
