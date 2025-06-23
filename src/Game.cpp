@@ -204,11 +204,13 @@ void Game::executar() {
     };
 
     if (selected == "Jardim do Eden") {
+        currentLevel->reset();
         iniciarFase("Jardim do Éden");
         return;
     }
     
     if (selected == "Inferno de Dante") {
+        currentLevel->reset();
         iniciarFase("Inferno de Dante");
         return;
     }
