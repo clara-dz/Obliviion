@@ -9,10 +9,8 @@ using json = nlohmann::json;
 namespace Entidades {    
     namespace Obstaculos {
         class Obstaculo : public Entidades::Entidade {
-        protected:
-            bool danoso;
-
         public:
+            bool danoso = true;
             sf::RectangleShape hitbox; // Hitbox do obstáculo
 
             Obstaculo() = default;
