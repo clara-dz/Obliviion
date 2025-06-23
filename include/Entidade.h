@@ -8,24 +8,27 @@
 
 using json = nlohmann::json;
 
-class Entidade : public Ente {
-    protected:
-        sf::Sprite sprite; //tirar daqui pois já está em ENTE.H
-        int x, y; //é passada para as classes filhas
-        bool isVisible;
 
-    public:
+namespace Entidades {
+    class Entidade : public Ente {
+        protected:
+            sf::Sprite sprite; //tirar daqui pois já está em ENTE.H
+            int x, y; //é passada para as classes filhas
+            bool isVisible;
 
-        Entidade();           //a classe tem duas funções inicializadoras
-        Entidade(int x, int y);
-        
-        virtual ~Entidade() {}
+        public:
 
-        virtual void executar(float deltaTime) override = 0;
+            Entidade();           //a classe tem duas funções inicializadoras
+            Entidade(int x, int y);
 
-        void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override;
+            virtual ~Entidade() {}
 
-        void renderizar(sf::RenderWindow& window) override;
+            virtual void executar(float deltaTime) override = 0;
 
-        void setSprite(const sf::Texture& texture);
-};
+            void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override;
+
+            void renderizar(sf::RenderWindow& window) override;
+
+            void setSprite(const sf::Texture& texture);
+    };
+}

@@ -4,7 +4,7 @@
 using json = nlohmann::json;
 
 
-json Projetil::salvar() {
+json Entidades::Projetil::salvar() {
     json data;
     
     data["posicao"] = { sprite.getPosition().x, sprite.getPosition().y };

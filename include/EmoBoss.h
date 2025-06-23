@@ -23,6 +23,6 @@ public:
     void attackPlayer(float deltaTime, Jogador* pJogador);
     void setJogadores(Jogador* j1, Jogador* j2);
     
-    Projetil* atirar();
+    Entidades::Projetil* atirar();
     void setTexProjetil(const sf::Texture* tex);
 };

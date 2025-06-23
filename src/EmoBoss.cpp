@@ -54,18 +54,18 @@ void EmoBoss::attackPlayer(float deltaTime, Jogador* pJogadorAlvo) {
 
     // Shooting logic
     if (shootClock.getElapsedTime().asSeconds() >= shootCooldown) {
-        Projetil* proj = atirar();
+        Entidades::Projetil* proj = atirar();
         GerenciadorColisoes::getInstancia()->incluirProjetil(proj);
 
         shootClock.restart();
     }
 }
 
-Projetil* EmoBoss::atirar() {
+Entidades::Projetil* EmoBoss::atirar() {
     std::cout << "Big Boss Shooting\n";
 
     sf::Vector2f vel = { -10.f, 0.f };
-    return new Projetil(*texProjetil, sprite.getPosition(), vel, Dono::Inimigo);
+    return new Entidades::Projetil(*texProjetil, sprite.getPosition(), vel, Dono::Inimigo);
 }
 
 void EmoBoss::setTexProjetil(const sf::Texture* tex) {

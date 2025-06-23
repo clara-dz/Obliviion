@@ -12,13 +12,13 @@ namespace Listas {
 
     class ListaEntidades {
     private:
-        Lista<Entidade> LEs;
+        Lista<Entidades::Entidade> LEs;
 
     public:
         ListaEntidades() = default;
         ~ListaEntidades() = default;
 
-        void incluir(Entidade* pE);
+        void incluir(Entidades::Entidade* pE);
         void atualizar(float deltaTime);
         int getTamanho() const {
             return LEs.getTamanho();
@@ -26,7 +26,7 @@ namespace Listas {
         void renderizar(sf::RenderWindow& window);        
         void limpar();
 
-        Lista<Entidade>& getLista() {
+        Lista<Entidades::Entidade>& getLista() {
             return LEs;
         }
     };

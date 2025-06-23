@@ -26,7 +26,7 @@ void GerenciadorColisoes::incluirObstaculo(Obstaculos::Obstaculo* pO) {
         listaObstaculos.push_back(pO);
 }
 
-void GerenciadorColisoes::incluirProjetil(Projetil* pJ) {
+void GerenciadorColisoes::incluirProjetil(Entidades::Projetil* pJ) {
     if (pJ)
         listaProjeteis.insert(pJ);
 }

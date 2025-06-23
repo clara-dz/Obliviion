@@ -38,7 +38,7 @@ void Jogador::executar(float deltaTime) {
             bool upNow = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
 
             if (upNow && !upKeyPressedLastFrame) {
-                Projetil* novoProj = atirar();
+                Entidades::Projetil* novoProj = atirar();
                 GerenciadorColisoes::getInstancia()->incluirProjetil(novoProj);
             }
 
@@ -58,7 +58,7 @@ void Jogador::executar(float deltaTime) {
             bool upNow = sf::Keyboard::isKeyPressed(sf::Keyboard::LControl);
 
             if (upNow && !upKeyPressedLastFrame) {
-                Projetil* novoProj = atirar();
+                Entidades::Projetil* novoProj = atirar();
                 GerenciadorColisoes::getInstancia()->incluirProjetil(novoProj);
             }
 
@@ -97,11 +97,11 @@ void Jogador::setTexProjetil(const sf::Texture* tex) {
 
 void Jogador::setPosition(sf::Vector2f pos) { sprite.setPosition(pos); }
 
-Projetil* Jogador::atirar() {
+Entidades::Projetil* Jogador::atirar() {
     std::cout << "Pontos " << ehJog2 << " : " << getPontos() << "\n";
 
     sf::Vector2f vel = { 10.f, 0.f };
-    return new Projetil(*texProjetil, sprite.getPosition(), vel, Dono::Jogador);
+    return new Entidades::Projetil(*texProjetil, sprite.getPosition(), vel, Dono::Jogador);
 }
 void Jogador::reduzirVelocidade(float fator) {
     speed *= fator;

@@ -20,9 +20,9 @@ class GerenciadorColisoes {
     
         Jogador* pJog1;
         Jogador* pJog2;
-        std::vector<Inimigo*>   listaInimigos;
-        std::vector<Obstaculos::Obstaculo*>   listaObstaculos;
-        std::set<Projetil*>     listaProjeteis;
+        std::vector<Inimigo*> listaInimigos;
+        std::vector<Obstaculos::Obstaculo*> listaObstaculos;
+        std::set<Entidades::Projetil*> listaProjeteis;
 
     public:
         static GerenciadorColisoes* getInstancia() {
@@ -42,13 +42,13 @@ class GerenciadorColisoes {
             pJog2 = j2;
         }
 
-        std::set <Projetil*>& getListaProjeteis() {
+        std::set <Entidades::Projetil*>& getListaProjeteis() {
             return listaProjeteis;
         }
         void resetar();
         void incluirInimigos(Inimigo* pI);
         void incluirObstaculo(Obstaculos::Obstaculo* pO);
-        void incluirProjetil(Projetil* pJ);
+        void incluirProjetil(Entidades::Projetil* pJ);
 
         
         void checarColisoes(Personagem& Personagem, const Floor& floor, const std::vector<Obstaculos::Plataforma>& plataformas);

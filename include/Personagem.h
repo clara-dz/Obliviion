@@ -5,7 +5,7 @@
 
 using json = nlohmann::json;
 
-class Personagem : public Entidade {
+class Personagem : public Entidades::Entidade {
     protected:
         int numVidas;
 

@@ -7,7 +7,7 @@
 using json = nlohmann::json;
 
 namespace Obstaculos {
-    class Obstaculo : public Entidade {
+    class Obstaculo : public Entidades::Entidade {
     protected:
         bool danoso;
 

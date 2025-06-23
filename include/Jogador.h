@@ -26,7 +26,7 @@ class Jogador : public Personagem {
 
         int getPontos() const;
         
-        Projetil* atirar();
+        Entidades::Projetil* atirar();
 
         void setTexProjetil(const sf::Texture* tex);
 

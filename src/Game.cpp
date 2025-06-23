@@ -406,6 +406,8 @@ void Game::gerenciarInimigos(float deltaTime,
                             Jogador* pJog1, 
                             Jogador* pJog2) 
 {
+    // aplica atualizações visuais e lógicas a cada inimigo da fase
+    // com base em sua posição, tempo de jogo e a proximidade dos jogadores
     for (int i = 0; i < listaInimigos.getTamanho(); ++i) {
         Jogador* inimigo = pJog1;
         if (!inimigo || !inimigo->isAlive)
