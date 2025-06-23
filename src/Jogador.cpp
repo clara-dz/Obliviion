@@ -7,12 +7,13 @@
 Jogador::Jogador(const sf::Texture& texture) {
     sprite.setTexture(texture);
     sprite.setPosition(375.f, 275.f);
-    numVidas = 5;
+    numVidas = 20;
     isAlive = true;
     isVisible = true;
 }
 
 void Jogador::executar(float deltaTime) {
+    if (!isAlive) return; // If the player is not alive, skip execution
     if (knockbackTimer > 0.f) {
         knockbackTimer -= deltaTime;
     } else {

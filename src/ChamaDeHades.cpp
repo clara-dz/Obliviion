@@ -8,11 +8,10 @@ ChamaDeHades::ChamaDeHades(const sf::Texture& texture, float x, float y) {
 ChamaDeHades::~ChamaDeHades(){}
 
 void ChamaDeHades::obstaculizar(Jogador& jogador) {
-    float knockbackSpeed = 500.f;
-
-    jogador.setVelocityX(-1 * knockbackSpeed*danosidade);
-    jogador.setVelocityY(-15.f);
-    jogador.setKnockbackTimer(30.f);
+    if (jogador.isAlive) {
+        jogador.tomarDano(danosidade);
+        std::cout << "Jogador atingido pela Chama de Hades! Dano: " << danosidade << std::endl;
+    }
 }
 
 void ChamaDeHades::executar(float deltaTime) {}
