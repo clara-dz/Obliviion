@@ -68,7 +68,10 @@ void JardimDoEden::criarObsMedios(){
         exit(1);
     }
 
+    obstaculos.push_back(new BarreiraDoLimbo(barrierTex, 80, 180));
     obstaculos.push_back(new BarreiraDoLimbo(barrierTex, 400, 450));
+    obstaculos.push_back(new BarreiraDoLimbo(barrierTex, 600, 120));
+
 }
 
 void JardimDoEden::criarPlataformas() {
