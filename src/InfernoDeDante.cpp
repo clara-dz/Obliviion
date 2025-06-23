@@ -18,7 +18,7 @@ using json = nlohmann::json;
 //A implementação desta classe foi realizada com auxílio da AI ChatGPT
 
 Fases::InfernoDeDante::InfernoDeDante(Jogador* j1, Jogador* j2)
-    : Fase("Jardim do Eden", j1, j2),
+    : Fase("Inferno de Dante", j1, j2),
       floor("../assets/images/tile1.png", SCREEN_WIDTH, FLOOR_HEIGHT)
     {}
 

@@ -1,70 +1,86 @@
 {
-    "bosses": [],
-    "levelName": "Jardim do Eden",
-    "mediumEnemies": [
+    "bosses": [
         {
-            "nivelMaldade": 2,
-            "numVida": 2,
-            "x": 400,
+            "nivelMaldade": 3,
+            "numVida": 3,
+            "x": 550,
             "y": 200
         },
         {
-            "nivelMaldade": 2,
-            "numVida": 2,
-            "x": 330,
-            "y": 200
-        },
-        {
-            "nivelMaldade": 2,
-            "numVida": 2,
-            "x": 260,
-            "y": 200
-        },
-        {
-            "nivelMaldade": 2,
-            "numVida": 2,
-            "x": 190,
+            "nivelMaldade": 3,
+            "numVida": 3,
+            "x": 450,
             "y": 200
         }
     ],
+    "levelName": "Inferno de Dante",
+    "mediumEnemies": [],
     "player1": {
         "isAlive": true,
         "isOnGround": true,
         "numVidas": 20,
         "velocityX": 0.0,
         "velocityY": 0.0,
-        "x": 50.0,
+        "x": 340.6696472167969,
         "y": 444.0
     },
     "player2": {
         "isAlive": true,
-        "isOnGround": false,
-        "numVidas": 16,
+        "isOnGround": true,
+        "numVidas": 18,
         "velocityX": 0.0,
-        "velocityY": 21.319543838500977,
-        "x": 2.3605573177337646,
-        "y": 264.97772216796875
+        "velocityY": 0.0,
+        "x": 2.291229009628296,
+        "y": 447.0000305175781
     },
     "playerMode": 1,
-    "projectiles": [],
+    "projectiles": [
+        {
+            "ativo": true,
+            "dono": 0,
+            "posicao": [
+                758.5984497070313,
+                444.0
+            ],
+            "tempoDeVida": 8.21894645690918,
+            "velocidade": [
+                10.0,
+                0.0
+            ]
+        },
+        {
+            "ativo": true,
+            "dono": 1,
+            "posicao": [
+                428.24603271484375,
+                111.00001525878906
+            ],
+            "tempoDeVida": 38.75968933105469,
+            "velocidade": [
+                -10.0,
+                0.0
+            ]
+        },
+        {
+            "ativo": true,
+            "dono": 1,
+            "posicao": [
+                437.5474853515625,
+                111.00001525878906
+            ],
+            "tempoDeVida": 38.75968933105469,
+            "velocidade": [
+                -10.0,
+                0.0
+            ]
+        }
+    ],
     "token": "ObliviionSaveData",
     "weakEnemies": [
         {
             "nivelMaldade": 1,
             "numVida": 1,
-            "x": 750,
-            "y": 200
-        },
-        {
-            "nivelMaldade": 1,
-            "numVida": 1,
-            "x": 680,
-            "y": 200
-        },
-        {
-            "nivelMaldade": 1,
-            "numVida": 1,
-            "x": 610,
+            "x": 540,
             "y": 200
         }
     ]
