@@ -67,6 +67,7 @@ class GerenciadorColisoes {
             return listaObstaculos.size();
         }
         // void executar();
+        void checarQuedaMortal(Personagem* personagem);
 
     private:
         const bool verificarColisao(Personagem& p1, Personagem& p2);

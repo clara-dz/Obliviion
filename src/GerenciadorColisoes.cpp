@@ -1,5 +1,9 @@
 #include "GerenciadorColisoes.h"
 #include <iostream>
+#include "Config.h"
+
+extern const unsigned int SCREEN_WIDTH;
+extern const unsigned int SCREEN_HEIGHT;
 
 
 GerenciadorColisoes* GerenciadorColisoes::instancia = nullptr;
@@ -177,4 +181,11 @@ void GerenciadorColisoes::reset() {
     listaInimigos.clear();
     listaObstaculos.clear();
     listaProjeteis.clear();
+}
+
+void GerenciadorColisoes::checarQuedaMortal(Personagem* personagem) {
+    if (personagem && personagem->isAlive && personagem->getPosition().y > FLOOR_HEIGHT + 100) {
+        std::cout << "Queda mortal detectada para o personagem." << std::endl;
+        personagem->tomarDano(personagem->getNumVidas()); // Causa dano letal
+    }
 }

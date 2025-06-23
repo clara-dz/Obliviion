@@ -140,14 +140,19 @@ void JardimDoEden::executar(float deltaTime) {
         
         enemy.executar(deltaTime);
         colisor->checarColisoes(enemy, floor, plataformas);
+        colisor->checarQuedaMortal(&enemy);
+
         
         if (pJog1->isAlive) {
             colisor->checarColisaoEntrePersonagens(*pJog1, enemy);
             colisor->tratarColisaoJogsInimigs(*pJog1, enemy);
+            colisor->checarQuedaMortal(pJog1);
+
         }
         if (pJog2->isAlive) {
             colisor->checarColisaoEntrePersonagens(*pJog2, enemy);
             colisor->tratarColisaoJogsInimigs(*pJog2, enemy);
+            colisor->checarQuedaMortal(pJog2);
         }
     }
 
