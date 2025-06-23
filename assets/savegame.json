@@ -1,24 +1,49 @@
 {
     "bosses": [],
     "levelName": "Jardim do Eden",
-    "mediumEnemies": [],
+    "mediumEnemies": [
+        {
+            "nivelMaldade": 2,
+            "numVida": 2,
+            "x": 400,
+            "y": 200
+        },
+        {
+            "nivelMaldade": 2,
+            "numVida": 2,
+            "x": 330,
+            "y": 200
+        },
+        {
+            "nivelMaldade": 2,
+            "numVida": 2,
+            "x": 260,
+            "y": 200
+        },
+        {
+            "nivelMaldade": 2,
+            "numVida": 2,
+            "x": 190,
+            "y": 200
+        }
+    ],
     "player1": {
-        "isAlive": false,
-        "isOnGround": false,
-        "numVidas": 0,
-        "velocityX": -500.0,
-        "velocityY": -15.0,
-        "x": 457.8939208984375,
-        "y": 144.0
+        "isAlive": true,
+        "isOnGround": true,
+        "numVidas": 20,
+        "velocityX": 0.0,
+        "velocityY": 0.0,
+        "x": 50.0,
+        "y": 444.0
     },
     "player2": {
         "isAlive": true,
         "isOnGround": false,
-        "numVidas": 18,
+        "numVidas": 16,
         "velocityX": 0.0,
-        "velocityY": 0.0,
-        "x": 23.97247314453125,
-        "y": 447.0
+        "velocityY": 21.319543838500977,
+        "x": 2.3605573177337646,
+        "y": 264.97772216796875
     },
     "playerMode": 1,
     "projectiles": [],
@@ -40,12 +65,6 @@
             "nivelMaldade": 1,
             "numVida": 1,
             "x": 610,
-            "y": 200
-        },
-        {
-            "nivelMaldade": 1,
-            "numVida": 1,
-            "x": 540,
             "y": 200
         }
     ]

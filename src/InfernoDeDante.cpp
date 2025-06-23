@@ -342,5 +342,36 @@ void InfernoDeDante::removeInimigos() {
 }
 
 void InfernoDeDante::carregar(json saveData) {
+    colisor->setJogadores(pJog1, pJog2);
+    if (saveData.contains("weakEnemies")) {
+        for (const auto& enemyData : saveData["weakEnemies"]) { 
+            EmoGirl enemy(750, 200, 2, EmoGirlTexture);
+            std::cout << enemyData["x"] << " " << enemyData["y"] << std::endl;
+            enemy.setVida(enemyData["numVida"]);
+            weakEnemies.push_back(enemy);
+            colisor->incluirInimigos(&enemy);
+        }
+    }
+    if (saveData.contains("mediumEnemies")) {
+        for (const auto& enemyData : saveData["mediumEnemies"]) { 
+            EmoBoy enemy(750, 200, 2, emoBoyTexture);
+            enemy.setJogadores(pJog1, pJog2); // Set players for tracking
+            enemy.setPosition(sf::Vector2f(enemyData["x"], enemyData["y"]));
+            enemy.setVida(enemyData["numVida"]);
 
+            mediumEnemies.push_back(enemy);
+            colisor->incluirInimigos(&enemy);
+        }
+    }
+    if (saveData.contains("bosses")) {
+        for (const auto& enemyData : saveData["bosses"]) { 
+            EmoBoy enemy(750, 200, 2, emoBossTexture);
+            enemy.setJogadores(pJog1, pJog2); // Set players for tracking
+            enemy.setPosition(sf::Vector2f(enemyData["x"], enemyData["y"]));
+            enemy.setVida(enemyData["numVida"]);
+
+            mediumEnemies.push_back(enemy);
+            colisor->incluirInimigos(&enemy);
+        }
+    }
 }
