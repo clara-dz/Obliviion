@@ -1,31 +1,23 @@
 #pragma once
 
 #include "Obstaculo.h"
-#include <iostream>
-#include <nlohmann/json.hpp>
+#include "Jogador.h"
+#include <SFML/Graphics.hpp>
 
-
-using json = nlohmann::json;
-
-namespace Entidades {    
+namespace Entidades {
     namespace Obstaculos {
+
         class BarreiraDoLimbo : public Obstaculo {
-            public:
-                BarreiraDoLimbo(const sf::Texture& texture, float x, float y) {
-                    sprite.setTexture(texture);
-                    sprite.setPosition(x, y);
-                }
+        private:
+            float largura;
 
-                void obstaculizar(Jogador& jogador) override {
-                    float knockbackSpeed = 500.f;
+        public:
+            BarreiraDoLimbo(const sf::Texture& texture, float x, float y);
 
-                    jogador.setVelocityX(-1 * knockbackSpeed);
-                    jogador.setVelocityY(-15.f);
-                    jogador.setKnockbackTimer(30.f);
-                }
+            void obstaculizar(Jogador& jogador) override;
+            void executar(float deltaTime) override;
+            bool temLarguraMinima(float valor) const;
+        };
 
-                void executar(float deltaTime) override {}
-
-            };
     }
 }
