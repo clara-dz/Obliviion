@@ -7,7 +7,7 @@ extern const unsigned int SCREEN_WIDTH;
 EmoBoss::EmoBoss(int x, int y, int speed, const sf::Texture& texture)
 : Inimigo(x, y, speed) {
 
-    nivelMaldade = 3; // O triplo do Inimigo fraco
+    nivelMaldade = forca; // O triplo do Inimigo fraco
     sprite.setPosition(static_cast<float>(x), static_cast<float>(y));
     startFalling();
     sprite.setTexture(texture);

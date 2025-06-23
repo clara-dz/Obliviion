@@ -9,7 +9,7 @@ protected:
     const sf::Texture* texProjetil;
 
 private:
-    short int forca = 2; //dano que o projétil causa no jogador é o dobro do dano q jogador causa em inimigos
+    short int forca = 5; //dano que causa no jogador
     Jogador* pJog1;
     Jogador* pJog2;
 
