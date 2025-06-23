@@ -21,7 +21,7 @@ namespace Fases {
             sf::Texture backgroundTexture;
             sf::Sprite backgroundSprite;
 
-            std::vector<Obstaculo*> obstaculos;
+            std::vector<Obstaculos::Obstaculo*> obstaculos;
             sf::Texture barrierTex, fireTex;
 
             GerenciadorColisoes* colisor = GerenciadorColisoes::getInstancia(); //Singleton, para evitar conflito (ter várias instâncias)

@@ -21,7 +21,7 @@ class GerenciadorColisoes {
         Jogador* pJog1;
         Jogador* pJog2;
         std::vector<Inimigo*>   listaInimigos;
-        std::vector<Obstaculo*>   listaObstaculos;
+        std::vector<Obstaculos::Obstaculo*>   listaObstaculos;
         std::set<Projetil*>     listaProjeteis;
 
     public:
@@ -47,7 +47,7 @@ class GerenciadorColisoes {
         }
         void resetar();
         void incluirInimigos(Inimigo* pI);
-        void incluirObstaculo(Obstaculo* pO);
+        void incluirObstaculo(Obstaculos::Obstaculo* pO);
         void incluirProjetil(Projetil* pJ);
 
         

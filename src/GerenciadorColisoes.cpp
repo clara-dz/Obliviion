@@ -21,7 +21,7 @@ void GerenciadorColisoes::incluirInimigos(Inimigo* pI) {
         listaInimigos.push_back(pI);
 }
 
-void GerenciadorColisoes::incluirObstaculo(Obstaculo* pO) {
+void GerenciadorColisoes::incluirObstaculo(Obstaculos::Obstaculo* pO) {
     if (pO)
         listaObstaculos.push_back(pO);
 }

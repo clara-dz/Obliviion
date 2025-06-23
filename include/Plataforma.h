@@ -7,7 +7,6 @@
 using json = nlohmann::json;
 
 namespace Obstaculos {
-
     class Plataforma : public Obstaculo {
     private:
         sf::Sprite cantoEsquerdo; // Sprite para o canto esquerdo da plataforma
