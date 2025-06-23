@@ -63,7 +63,7 @@ class Personagem : public Entidade {
 
         virtual void setVida(int vida);
 
-        virtual sf::Vector2f getPosition() const { return sprite.getPosition(); }
+        virtual sf::Vector2f getPosition() const;
 
         virtual int getNumVidas() const { return numVidas; }
 };
