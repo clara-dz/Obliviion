@@ -56,27 +56,20 @@ namespace Fases {
 
         public:
             JardimDoEden(Jogador* j1, Jogador* j2);
-
             ~JardimDoEden();
 
             json salvar() const override;
 
             void loadLevel() override;
-
             void executar(float deltaTime) override;
-
             void renderizar(sf::RenderWindow& window) override;
-
-            int getPontuacaoTotalJogadores() const override;
+            void carregar(json saveData) override;
+            void removeInimigos() override;
+            void reset();
 
             bool todosInimigosMortos() const;
-
             bool jogadoresMortos() const override;
-
-            void reset();
-            void removeInimigos() override;
-
-            void carregar(json saveData) override;
-
+            
+            int getPontuacaoTotalJogadores() const override;
     };
 }

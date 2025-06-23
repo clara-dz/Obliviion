@@ -120,3 +120,8 @@ json Jogador::salvar() {
 
     return data;
 }
+
+void Jogador::setEhJog2(bool flag) { ehJog2 = flag; }
+void Jogador::setAlive(bool alive) { isAlive = alive; }
+void Jogador::setOnGround(bool onGround) { isOnGround = onGround; }
+void Jogador::setNumVidas(int vidas) { numVidas = vidas; }
