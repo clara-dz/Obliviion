@@ -16,26 +16,16 @@ class Entidade : public Ente {
 
     public:
 
-        Entidade() : x(0), y(0), isVisible(true) {}              //a classe tem duas funções inicializadoras
-        Entidade(int x, int y) : x(x), y(y), isVisible(true) {}
+        Entidade();           //a classe tem duas funções inicializadoras
+        Entidade(int x, int y);
         
         virtual ~Entidade() {}
 
         virtual void executar(float deltaTime) override = 0;
-        // virtual json salvar() = 0;
-        // virtual void carregar() = 0;
 
-        void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override {
-            if (!isVisible) return;
-            target.draw(sprite, states);
-        }
+        void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override;
 
-        void renderizar(sf::RenderWindow& window) override {
-            if (isVisible)
-                window.draw(sprite);
-        }
+        void renderizar(sf::RenderWindow& window) override;
 
-        void setSprite(const sf::Texture& texture) {
-            sprite.setTexture(texture);
-        }
+        void setSprite(const sf::Texture& texture);
 };

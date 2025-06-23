@@ -17,6 +17,8 @@ class Ente {
 
         // Funções a serem usadas por suas classes filhas
         virtual void executar(float deltaTime) = 0;
+
         virtual void renderizar(sf::RenderWindow& window) = 0;
+        
         virtual void desenhar(sf::RenderTarget& target, sf::RenderStates states) const = 0;
 };

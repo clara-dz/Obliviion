@@ -26,54 +26,40 @@ class Personagem : public Entidade {
     public:
         bool isAlive;
 
-        Personagem() : Entidade(), speed(5), isAlive(true), numVidas(1) {}
-        Personagem(int x, int y, int speed, int vidas = 1)
-            : Entidade(x, y), speed(speed), isAlive(true), numVidas(vidas) {}
+        Personagem();
+        Personagem(int x, int y, int speed, int vidas = 1);
         
-        virtual ~Personagem() = default;
+        virtual ~Personagem();
 
-        virtual void applyGravity(float deltaTime) {
-            if (!isOnGround) {
-                float currentGravity = (velocityY < 0.f) ? gravityUp : gravityDown;
-                velocityY += currentGravity * deltaTime;
-                sprite.move(0.f, velocityY * deltaTime);
-            }
-        }
+        virtual void applyGravity(float deltaTime);
 
-        void stopFalling() {
-            velocityY = 0.f;
-            isOnGround = true;
-        }
+        void stopFalling();
 
-        void startFalling() {
-            isOnGround = false;
-        }
+        void startFalling();
 
-        void setVelocityX(float vx) { velocityX = vx; }
+        void setVelocityX(float vx);
 
-        float getVelocityX() const { return velocityX; }
+        float getVelocityX() const;
 
-        void setVelocityY(float vy) { velocityY = vy; }
+        void setVelocityY(float vy);
 
-        float getVelocityY() const { return velocityY; }   
+        float getVelocityY() const;  
         
-        void setKnockbackTimer(float t) { knockbackTimer = t; }
+        void setKnockbackTimer(float t);
 
-        bool isFlashingNow() const { return isFlashing; }
+        bool isFlashingNow() const;
 
-        bool estaVivo() const { return isAlive; }
+        bool estaVivo() const;
 
-        virtual void executar(float deltaTime) override {
-            // Implement character movement logic here (e.g., for the player or enemy)
-        }
-        
-        virtual sf::FloatRect getBounds() const { return sprite.getGlobalBounds(); }
+        virtual void executar(float deltaTime) override;
 
-        virtual void move(sf::Vector2f delta) { sprite.move(delta); }
+        virtual sf::FloatRect getBounds() const;
 
-        virtual void setPosition(sf::Vector2f pos) { sprite.setPosition(pos); }
+        virtual void move(sf::Vector2f delta);
+
+        virtual void setPosition(sf::Vector2f pos);
 
         virtual void tomarDano(int nivelDano = 1);
 
-        virtual void setVida(int vida) {numVidas = vida; };
+        virtual void setVida(int vida);
 };
