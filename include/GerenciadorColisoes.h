@@ -59,6 +59,8 @@ class GerenciadorColisoes {
         void atualizarProjeteis(float dt); 
         void tratarColisaoProjeteis();
         void removerProjeteisInativos();
+
+        void reset();
         
         void tratarColisaoJogsObstacs();
         int getListaObstaculosSize() const {

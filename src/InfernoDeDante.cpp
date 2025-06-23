@@ -310,4 +310,13 @@ json InfernoDeDante::salvar() const {
     }
 
     return data;
-}   
+}
+
+void InfernoDeDante::reset() {
+    weakEnemies.clear();
+    mediumEnemies.clear();
+    bosses.clear();
+    plataformas.clear();
+    obstaculos.clear();
+    colisor->reset();
+}

@@ -258,4 +258,13 @@ json JardimDoEden::salvar() const {
     }
 
     return data;
-}   
+}
+
+void JardimDoEden::reset() {
+    weakEnemies.clear();
+    mediumEnemies.clear();
+    bosses.clear();
+    plataformas.clear();
+    obstaculos.clear();
+    colisor->reset();
+}

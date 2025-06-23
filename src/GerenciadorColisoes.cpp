@@ -171,3 +171,9 @@ void GerenciadorColisoes::tratarColisaoJogsObstacs() {
         }
     }
 }
+
+void GerenciadorColisoes::reset() {
+    listaInimigos.clear();
+    listaObstaculos.clear();
+    listaProjeteis.clear();
+}
