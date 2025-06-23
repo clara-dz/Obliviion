@@ -47,6 +47,8 @@ class Fase {
         bool getIsCompleted() const { return isCompleted; }
         void setCompleted(bool completed) { isCompleted = completed; }
 
+        virtual void carregar(json saveData) = 0;
+
         // Common method to load background texture
         void loadBackgroundTexture(const std::string& textureFile) {
             if (!backgroundTexture.loadFromFile(textureFile)) {

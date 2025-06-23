@@ -64,4 +64,5 @@ class Game {
         void renderizar();
         void salvarPontuacao(const std::string& nome, int pontos);
         void trocarFase();
+        void carregarJogadores(json saveData);
 };

@@ -31,7 +31,6 @@ void JardimDoEden::criarInimFracos(){
     int n_randomico = 3 + (rand()%(maxInimigosFracos - 2));
     
     for (int i = 0; i < n_randomico; ++i) {
-        
         EmoGirl enemy(750 - (70 * i), 200, 2, EmoGirlTexture);
         weakEnemies.push_back(enemy);
     }
@@ -215,6 +214,12 @@ bool JardimDoEden::todosInimigosMortos() const {
     for (const auto& enemy : weakEnemies) {
         if (enemy.estaVivo()) return false;
     }
+    for (const auto& enemy : mediumEnemies) {
+        if (enemy.estaVivo()) return false;
+    }
+    for (const auto& enemy : bosses) {
+        if (enemy.estaVivo()) return false;
+    }
     return true;
 }
 
@@ -267,4 +272,17 @@ void JardimDoEden::reset() {
     plataformas.clear();
     obstaculos.clear();
     colisor->reset();
+}
+
+void JardimDoEden::carregar(json saveData) {
+    colisor->setJogadores(pJog1, pJog2);
+    if (saveData.contains("weakEnemies")) {
+        for (const auto& enemyData : saveData["weakEnemies"]) { 
+            EmoGirl enemy(enemyData["x"], enemyData["y"], 2, EmoGirlTexture);
+            enemy.setVida(enemyData["numVida"]);
+            weakEnemies.push_back(enemy);
+            colisor->incluirInimigos(&enemy);
+
+        }
+    }
 }

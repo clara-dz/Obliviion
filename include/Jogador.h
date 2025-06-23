@@ -43,6 +43,10 @@ class Jogador : public Personagem {
         void setEhJog2(bool flag) { ehJog2 = flag; }
         json salvar();
 
+        void setAlive(bool alive) { isAlive = alive; }
+        void setOnGround(bool onGround) { isOnGround = onGround; }
+        void setNumVidas(int vidas) { numVidas = vidas; }
+
     private:
         bool ehJog2 = false;
         float speed = 5.f;

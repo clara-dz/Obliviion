@@ -74,4 +74,7 @@ class JardimDoEden : public Fase {
         bool jogadoresMortos() const override;
 
         void reset();
+
+        void carregar(json saveData) override;
+
 };

@@ -267,6 +267,12 @@ bool InfernoDeDante::todosInimigosMortos() const {
     for (const auto& enemy : weakEnemies) {
         if (enemy.estaVivo()) return false;
     }
+    for (const auto& enemy : mediumEnemies) {
+        if (enemy.estaVivo()) return false;
+    }
+    for (const auto& enemy : bosses) {
+        if (enemy.estaVivo()) return false;
+    }
     return true;
 }
 
@@ -319,4 +325,8 @@ void InfernoDeDante::reset() {
     plataformas.clear();
     obstaculos.clear();
     colisor->reset();
+}
+
+void InfernoDeDante::carregar(json saveData) {
+
 }

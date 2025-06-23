@@ -348,8 +348,7 @@ void Game::carregarJogo() {
         return;
     }
 
-    // playerMode = saveData["playerMode"];
-    // currentLevel->carregar(saveData);
+    playerMode = saveData["playerMode"];
 
     for (auto& enemy : saveData["mediumEnemies"]) {
         std::cout << enemy.dump(4) << std::endl;
@@ -361,31 +360,43 @@ void Game::carregarJogo() {
         std::cout << enemy.dump(4) << std::endl;
     }
 
-    currentLevel = new JardimDoEden(pJog1, pJog2);
-    currentLevel->loadLevel();
-    gameState = GameState::Playing;
+    if (saveData["levelName"] == "Jardim do Eden") {
+        currentLevel->reset();
+        iniciarFase("Jardim do Éden");
+    } else if (saveData["levelName"] == "Inferno de Dante") {
+        currentLevel->reset();
+        iniciarFase("Inferno de Dante");
+    } else {
+        std::cerr << "Fase desconhecida: " << saveData["levelName"] << std::endl;
+        return;
+    }
 
-    // "levelName": "Jardim do Eden",
-    // "player1": {
-    //     "isAlive": true,
-    //     "isOnGround": false,
-    //     "numVidas": 5,
-    //     "velocityX": 0.0,
-    //     "velocityY": 0.0,
-    //     "x": 237.0883026123047,
-    //     "y": 344.0
-    // },
-    // "player2": {
-    //     "isAlive": false,
-    //     "isOnGround": false,
-    //     "numVidas": 0,
-    //     "velocityX": 0.0,
-    //     "velocityY": 6133.53515625,
-    //     "x": 200.0,
-    //     "y": 3768143.5
-    // },
-    // "playerMode": 0,
-    // "projectiles": [],
+    currentLevel->reset();
+    carregarJogadores(saveData);
+    currentLevel->carregar(saveData);
+}
+
+void Game::carregarJogadores(json saveData) {
+
+    if (saveData.contains("player1")) {
+        auto& player1Data = saveData["player1"];
+        pJog1->setAlive(player1Data["isAlive"]);
+        pJog1->setOnGround(player1Data["isOnGround"]);
+        pJog1->setNumVidas(player1Data["numVidas"]);
+        pJog1->setVelocityX(player1Data["velocityX"]);
+        pJog1->setVelocityY(player1Data["velocityY"]);
+        pJog1->setPosition(sf::Vector2f(player1Data["x"], player1Data["y"]));
+    }
+
+    if (saveData.contains("player2")) {
+        auto& player2Data = saveData["player2"];
+        pJog2->setAlive(player2Data["isAlive"]);
+        pJog2->setOnGround(player2Data["isOnGround"]);
+        pJog2->setNumVidas(player2Data["numVidas"]);
+        pJog2->setVelocityX(player2Data["velocityX"]);
+        pJog2->setVelocityY(player2Data["velocityY"]);
+        pJog2->setPosition(sf::Vector2f(player2Data["x"], player2Data["y"]));
+    }
 }
 
 void Game::trocarFase() {

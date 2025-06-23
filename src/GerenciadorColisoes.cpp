@@ -104,6 +104,7 @@ void GerenciadorColisoes::tratarColisaoProjeteis() {
                 if (!inimigo || !inimigo->isAlive)
                     continue;
                 if (inimigo && proj->getBounds().intersects(inimigo->getBounds())) {
+                    std::cout << "proj1133f" << std::endl;
                     bool estavaVivo = inimigo->isAlive;
                     inimigo->tomarDano(1);
                     proj->desativar();
