@@ -84,7 +84,7 @@ void InfernoDeDante::criarPlataformas() {
     }
 
     //mapa para as posições das plataformas. Sugestão do ChatGPT
-    std::ifstream file("../assets/maps/jardimDoEden.csv");
+    std::ifstream file("../assets/maps/InfernoDeDante.csv");
     if (!file.is_open()) {
         std::cerr << "Error opening level map file!\n";
         exit(1);
