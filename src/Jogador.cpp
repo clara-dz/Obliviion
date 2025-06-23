@@ -11,6 +11,17 @@ Jogador::Jogador(const sf::Texture& texture) {
     isAlive = true;
     isVisible = true;
 }
+Jogador::~Jogador() {}
+
+void Jogador::die() {
+    isAlive = false;
+    isVisible = false;
+    numVidas = 0; // Ensure numVidas does not go below zero
+}
+
+void Jogador::addPontos(int pts) { pontos += pts; }
+
+int Jogador::getPontos() const { return pontos; }
 
 void Jogador::executar(float deltaTime) {
     if (!isAlive) return; // If the player is not alive, skip execution
@@ -84,12 +95,17 @@ void Jogador::setTexProjetil(const sf::Texture* tex) {
     texProjetil = tex;
 }
 
+void Jogador::setPosition(sf::Vector2f pos) { sprite.setPosition(pos); }
+
 Projetil* Jogador::atirar() {
     std::cout << "Pontos " << ehJog2 << " : " << getPontos() << "\n";
 
     sf::Vector2f vel = { 10.f, 0.f };
     return new Projetil(*texProjetil, sprite.getPosition(), vel, Dono::Jogador);
 }
+void Jogador::reduzirVelocidade(float fator) {
+    speed *= fator;
+};
 
 json Jogador::salvar() {
     json data;
