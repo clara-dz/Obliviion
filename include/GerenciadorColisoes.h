@@ -1,16 +1,16 @@
 #pragma once
 
-#include <vector>
-#include <list>
-#include <set>
-
 #include "Jogador.h"
+#include <vector>
+#include <set>
 #include "Floor.h"
 #include "Inimigo.h"
 #include "Obstaculo.h"
+#include <list>
 #include "Projetil.h"
 #include "Entidade.h"
 #include "Plataforma.h"
+#include "Lista.h"
 
 
 class GerenciadorColisoes {
@@ -67,6 +67,7 @@ class GerenciadorColisoes {
             return listaObstaculos.size();
         }
         // void executar();
+        void checarQuedaMortal(Personagem* personagem);
 
     private:
         const bool verificarColisao(Personagem& p1, Personagem& p2);

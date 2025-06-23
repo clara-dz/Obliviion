@@ -10,6 +10,7 @@
 #include "GerenciadorGrafico.h"
 #include "PlayerMode.h"
 #include "TelaGameOver.h"
+#include "ListaEntidades.h"
 
 using json = nlohmann::json;
 
@@ -44,7 +45,7 @@ class Game {
         sf::Texture playerTexture;
         sf::Texture player2Texture;
         sf::Texture texProjJogador;
-        
+        Listas::ListaEntidades listaInimigos;
 
         GameState gameState = GameState::StartMenu;
         TelaGameOver telaGameOver;
@@ -65,4 +66,8 @@ class Game {
         void salvarPontuacao(const std::string& nome, int pontos);
         void trocarFase();
         void carregarJogadores(json saveData);
+        void gerenciarInimigos(float deltaTime, 
+                                Listas::ListaEntidades& listaInimigos, 
+                                Jogador* pJog1, 
+                                Jogador* pJog2);
 };

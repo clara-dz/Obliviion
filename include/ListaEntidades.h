@@ -15,11 +15,14 @@ namespace Listas {
         Lista<Entidade> LEs;
 
     public:
-        ListaEntidades();
-        ~ListaEntidades();
+        ListaEntidades() = default;
+        ~ListaEntidades() = default;
 
         void incluir(Entidade* pE);
         void atualizar(float deltaTime);
+        int getTamanho() const {
+            return LEs.getTamanho();
+        }
         void renderizar(sf::RenderWindow& window);        
         void limpar();
 

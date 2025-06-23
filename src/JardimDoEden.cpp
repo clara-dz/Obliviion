@@ -68,7 +68,10 @@ void JardimDoEden::criarObsMedios(){
         exit(1);
     }
 
+    obstaculos.push_back(new BarreiraDoLimbo(barrierTex, 80, 180));
     obstaculos.push_back(new BarreiraDoLimbo(barrierTex, 400, 450));
+    obstaculos.push_back(new BarreiraDoLimbo(barrierTex, 600, 120));
+
 }
 
 void JardimDoEden::criarPlataformas() {
@@ -137,14 +140,19 @@ void JardimDoEden::executar(float deltaTime) {
         
         enemy.executar(deltaTime);
         colisor->checarColisoes(enemy, floor, plataformas);
+        colisor->checarQuedaMortal(&enemy);
+
         
         if (pJog1->isAlive) {
             colisor->checarColisaoEntrePersonagens(*pJog1, enemy);
             colisor->tratarColisaoJogsInimigs(*pJog1, enemy);
+            colisor->checarQuedaMortal(pJog1);
+
         }
         if (pJog2->isAlive) {
             colisor->checarColisaoEntrePersonagens(*pJog2, enemy);
             colisor->tratarColisaoJogsInimigs(*pJog2, enemy);
+            colisor->checarQuedaMortal(pJog2);
         }
     }
 

@@ -73,12 +73,15 @@ void InfernoDeDante::criarBosses(){
 }
 
 void InfernoDeDante::criarObsMedios(){
-    if (!barrierTex.loadFromFile("../assets/images/stone_96x96.png")) {
+    if (!barrierTex.loadFromFile("../assets/images/chama.png")) {
         std::cerr << "Error loading platform textures!\n";
         exit(1);
     }
 
-    obstaculos.push_back(new BarreiraDoLimbo(barrierTex, 400, 450));
+    obstaculos.push_back(new ChamaDeHades(barrierTex, 100, 100));
+    obstaculos.push_back(new ChamaDeHades(barrierTex, 300, 200));
+    obstaculos.push_back(new ChamaDeHades(barrierTex, 400, 420));
+    obstaculos.push_back(new ChamaDeHades(barrierTex, 600, 100));
 }
 
 void InfernoDeDante::criarPlataformas() {
@@ -114,14 +117,14 @@ void InfernoDeDante::criarPlataformas() {
 void InfernoDeDante::loadLevel() {
     loadBackgroundTexture("../assets/images/background2.png");
     criarPlataformas();
-    // criarObsMedios();
+    criarObsMedios();
     criarInimFracos();
     criarInimMedios();
     criarBosses();
 
-    // for (auto& o : obstaculos) {
-    //     colisor->incluirObstaculo(o);
-    // }
+    for (auto& o : obstaculos) {
+        colisor->incluirObstaculo(o);
+    }
     
     colisor->setJogadores(pJog1, pJog2);
     
@@ -200,14 +203,18 @@ void InfernoDeDante::executar(float deltaTime) {
         
         enemy.executar(deltaTime);
         colisor->checarColisoes(enemy, floor, plataformas);
+        colisor->checarQuedaMortal(&enemy);
+
         
         if (pJog1->isAlive) {
             colisor->checarColisaoEntrePersonagens(*pJog1, enemy);
             colisor->tratarColisaoJogsInimigs(*pJog1, enemy);
+            colisor->checarQuedaMortal(pJog1);
         }
         if (pJog2->isAlive) {
             colisor->checarColisaoEntrePersonagens(*pJog2, enemy);
             colisor->tratarColisaoJogsInimigs(*pJog2, enemy);
+            colisor->checarQuedaMortal(pJog2);
         }
     }
     

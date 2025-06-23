@@ -64,7 +64,7 @@ void EmoBoss::attackPlayer(float deltaTime, Jogador* pJogadorAlvo) {
 Projetil* EmoBoss::atirar() {
     std::cout << "Big Boss Shooting\n";
 
-    sf::Vector2f vel = { 10.f, 0.f };
+    sf::Vector2f vel = { -10.f, 0.f };
     return new Projetil(*texProjetil, sprite.getPosition(), vel, Dono::Inimigo);
 }
 

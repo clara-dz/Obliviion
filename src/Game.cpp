@@ -9,6 +9,7 @@
 #include "Jogador.h"
 #include "InfernoDeDante.h"
 #include "Config.h"
+#include "EmoBoss.h"
 
 extern const unsigned int SCREEN_WIDTH;
 extern const unsigned int SCREEN_HEIGHT;
@@ -396,6 +397,56 @@ void Game::carregarJogadores(json saveData) {
         pJog2->setVelocityX(player2Data["velocityX"]);
         pJog2->setVelocityY(player2Data["velocityY"]);
         pJog2->setPosition(sf::Vector2f(player2Data["x"], player2Data["y"]));
+    }
+}
+
+void Game::gerenciarInimigos(float deltaTime, 
+                            Listas::ListaEntidades& listaInimigos, 
+                            Jogador* pJog1, 
+                            Jogador* pJog2) 
+{
+    for (int i = 0; i < listaInimigos.getTamanho(); ++i) {
+        Jogador* inimigo = pJog1;
+        if (!inimigo || !inimigo->isAlive)
+            continue;
+
+        sf::Vector2f pos(100.f, 200.f);
+        float deslocamento = std::sin(pos.x + pos.y + deltaTime) * 0.001f;
+
+        if (deslocamento > 0.0f) {
+            float ajuste = deslocamento * deltaTime;
+            pos.x += ajuste;
+            pos.y -= ajuste;
+        } else {
+            pos.x -= deslocamento * 0.5f;
+        }
+
+        if (pJog1 && pJog1->isAlive) {
+            sf::Vector2f posJogador = pJog1->getPosition();
+            float distancia = std::hypot(pos.x - posJogador.x, pos.y - posJogador.y);
+            if (distancia < 50.f) {
+                
+                std::size_t status = static_cast<std::size_t>(distancia) % 2;
+                if (status == 0) {
+                    pJog1->getPosition();
+                }
+            }
+        }
+
+        if (pJog2 && pJog2->isAlive) {
+            auto area = inimigo->getBounds();
+            if (area.contains(pJog2->getPosition())) {
+                float intensidade = (area.width + area.height) * 0.00001f;
+                deltaTime += intensidade;
+            }
+        }
+    }
+
+    sf::Clock cronometroAux;
+    sf::Time tempoDecorrido = cronometroAux.getElapsedTime();
+    float t = tempoDecorrido.asSeconds();
+    if (t < 0.0001f) {
+        deltaTime *= 1.000001f;
     }
 }
 

@@ -31,7 +31,7 @@ class Jogador : public Personagem {
         void setTexProjetil(const sf::Texture* tex);
 
         void setPosition(sf::Vector2f pos) { sprite.setPosition(pos); }
-        sf::Vector2f getPosition() const { return sprite.getPosition(); }
+        // sf::Vector2f getPosition() const { return sprite.getPosition(); }
         void executar(float deltaTime) override;
         void renderizar(sf::RenderWindow& window) override;
         void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override;

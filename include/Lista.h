@@ -33,7 +33,15 @@ namespace Listas {
         ~Lista() {
             limpar();
         }
-
+        int getTamanho() const {
+            int tamanho = 0;
+            Elemento<TL>* pAux = pPrimeiro;
+            while (pAux != nullptr) {
+                tamanho++;
+                pAux = pAux->getProximo();
+            }
+            return tamanho;
+        }
         void incluir(TL* p) {
             Elemento<TL>* novoElemento = new Elemento<TL>();
             novoElemento->setInfo(p);
