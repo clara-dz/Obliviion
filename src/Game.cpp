@@ -372,7 +372,7 @@ void Game::carregarJogo() {
         return;
     }
 
-    currentLevel->reset();
+    currentLevel->removeInimigos();
     carregarJogadores(saveData);
     currentLevel->carregar(saveData);
 }

@@ -39,6 +39,7 @@ class Fase {
         virtual bool jogadoresMortos() const = 0;
         virtual json salvar() const = 0;
         virtual void reset() = 0;
+        virtual void removeInimigos() = 0;
         
         virtual int getPontuacaoTotalJogadores() const = 0;
         

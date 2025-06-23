@@ -183,6 +183,11 @@ void GerenciadorColisoes::reset() {
     listaProjeteis.clear();
 }
 
+void GerenciadorColisoes::removerInimigos() {
+    listaInimigos.clear();
+    listaProjeteis.clear();
+}
+
 void GerenciadorColisoes::checarQuedaMortal(Personagem* personagem) {
     if (personagem && personagem->isAlive && personagem->getPosition().y > FLOOR_HEIGHT + 100) {
         std::cout << "Queda mortal detectada para o personagem." << std::endl;

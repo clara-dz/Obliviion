@@ -75,6 +75,7 @@ class InfernoDeDante : public Fase {
         bool jogadoresMortos() const override;
 
         void reset();
+        void removeInimigos() override;
 
         void carregar(json saveData) override;
 };

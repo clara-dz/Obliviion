@@ -294,3 +294,10 @@ void JardimDoEden::carregar(json saveData) {
         }
     }
 }
+
+void JardimDoEden::removeInimigos() {
+    weakEnemies.clear();
+    mediumEnemies.clear();
+    bosses.clear();
+    colisor->removerInimigos();
+}

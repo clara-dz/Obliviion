@@ -334,6 +334,13 @@ void InfernoDeDante::reset() {
     colisor->reset();
 }
 
+void InfernoDeDante::removeInimigos() {
+    weakEnemies.clear();
+    mediumEnemies.clear();
+    bosses.clear();
+    colisor->removerInimigos();
+}
+
 void InfernoDeDante::carregar(json saveData) {
 
 }
