@@ -15,36 +15,39 @@ class Jogador : public Personagem {
         
     public:
         Jogador(const sf::Texture& texture);
+
+        ~Jogador();
         
-        void die() {
-            isAlive = false;
-            isVisible = false;
-            numVidas = 0; // Ensure numVidas does not go below zero
-        }
+        void die();
         
         bool upKeyPressedLastFrame = false;
 
-        void addPontos(int pts) { pontos += pts; }
-        int getPontos() const { return pontos; }
+        void addPontos(int pts);
+
+        int getPontos() const;
         
         Projetil* atirar();
+
         void setTexProjetil(const sf::Texture* tex);
 
-        void setPosition(sf::Vector2f pos) { sprite.setPosition(pos); }
-        // sf::Vector2f getPosition() const { return sprite.getPosition(); }
+        void setPosition(sf::Vector2f pos);
+       
         void executar(float deltaTime) override;
-        void renderizar(sf::RenderWindow& window) override;
-        void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override;
-        void reduzirVelocidade(float fator) {
-            speed *= fator;
-        };
 
-        // void colidir(Inimigo* pIn);
+        void renderizar(sf::RenderWindow& window) override;
+
+        void desenhar(sf::RenderTarget& target, sf::RenderStates states) const override;
+
+        void reduzirVelocidade(float fator);
+
         void setEhJog2(bool flag) { ehJog2 = flag; }
+
         json salvar();
 
         void setAlive(bool alive) { isAlive = alive; }
+
         void setOnGround(bool onGround) { isOnGround = onGround; }
+        
         void setNumVidas(int vidas) { numVidas = vidas; }
 
     private:
