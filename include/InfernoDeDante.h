@@ -22,60 +22,61 @@
 
 using json = nlohmann::json;
 
+namespace Fases {
+    class InfernoDeDante : public Fase {
+        private:
+            const int maxInimigosFracos = 7; 
+            const int maxIniminMedio = 0; //não cria inimigoFraco
+            const int maxBosses = 6;
 
-class InfernoDeDante : public Fase {
-    private:
-        const int maxInimigosFracos = 7; 
-        const int maxIniminMedio = 0; //não cria inimigoFraco
-        const int maxBosses = 6;
+            PlayerMode mode = PlayerMode::SinglePlayer;
 
-        PlayerMode mode = PlayerMode::SinglePlayer;
+            Floor floor;
 
-        Floor floor;
+            std::vector<EmoGirl> weakEnemies;  //está na lógica de verificação
+            sf::Texture EmoGirlTexture;
 
-        std::vector<EmoGirl> weakEnemies;  //está na lógica de verificação
-        sf::Texture EmoGirlTexture;
+            std::vector<EmoBoy> mediumEnemies;
+            sf::Texture emoBoyTexture;
 
-        std::vector<EmoBoy> mediumEnemies;
-        sf::Texture emoBoyTexture;
-        
-        std::vector<EmoBoss> bosses;
-        sf::Texture emoBossTexture;
-        sf::Texture emoBossProjTexture;
+            std::vector<EmoBoss> bosses;
+            sf::Texture emoBossTexture;
+            sf::Texture emoBossProjTexture;
 
-        std::vector<Obstaculos::Plataforma> plataformas;
-        sf::Texture plataformaEsqTex, plataformaDirTex, plataformaMeioTex;
+            std::vector<Obstaculos::Plataforma> plataformas;
+            sf::Texture plataformaEsqTex, plataformaDirTex, plataformaMeioTex;
 
-        sf::Texture texProjJogador;
+            sf::Texture texProjJogador;
 
-    protected:
-        void criarPlataformas();
-        void criarObsMedios();
-        void criarInimMedios();
-        void criarInimFracos();
-        void criarBosses();
+        protected:
+            void criarPlataformas();
+            void criarObsMedios();
+            void criarInimMedios();
+            void criarInimFracos();
+            void criarBosses();
 
-    public:
-        InfernoDeDante(Jogador* j1, Jogador* j2);
+        public:
+            InfernoDeDante(Jogador* j1, Jogador* j2);
 
-        ~InfernoDeDante();
+            ~InfernoDeDante();
 
-        json salvar() const override;
+            json salvar() const override;
 
-        void loadLevel() override;
-        
-        void executar(float deltaTime) override;
+            void loadLevel() override;
 
-        void renderizar(sf::RenderWindow& window) override;
+            void executar(float deltaTime) override;
 
-        int getPontuacaoTotalJogadores() const override;
+            void renderizar(sf::RenderWindow& window) override;
 
-        bool todosInimigosMortos() const;
+            int getPontuacaoTotalJogadores() const override;
 
-        bool jogadoresMortos() const override;
+            bool todosInimigosMortos() const;
 
-        void reset();
-        void removeInimigos() override;
+            bool jogadoresMortos() const override;
 
-        void carregar(json saveData) override;
-};
+            void reset();
+            void removeInimigos() override;
+
+            void carregar(json saveData) override;
+    };
+}

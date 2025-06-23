@@ -11,10 +11,11 @@
 #include "Config.h"
 #include "EmoBoss.h"
 
-extern const unsigned int SCREEN_WIDTH;
-extern const unsigned int SCREEN_HEIGHT;
+using namespace Fases;
 using json = nlohmann::json;
 
+extern const unsigned int SCREEN_WIDTH;
+extern const unsigned int SCREEN_HEIGHT;
 
 std::vector<std::pair<std::string, int>> lerPontuacoes() {
     std::ifstream arquivo("../assets/ranking.csv");

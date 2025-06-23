@@ -16,14 +16,14 @@ using json = nlohmann::json;
 
 //A implementação desta classe foi realizada com auxílio da AI ChatGPT
 
-JardimDoEden::JardimDoEden(Jogador* j1, Jogador* j2)
+Fases::JardimDoEden::JardimDoEden(Jogador* j1, Jogador* j2)
     : Fase("Jardim do Eden", j1, j2),
       floor("../assets/images/tile1.png", (SCREEN_WIDTH + 200), FLOOR_HEIGHT)
     {}
 
-JardimDoEden::~JardimDoEden() {}
+Fases::JardimDoEden::~JardimDoEden() {}
 
-void JardimDoEden::criarInimFracos(){
+void Fases::JardimDoEden::criarInimFracos(){
     if (!EmoGirlTexture.loadFromFile("../assets/images/emogirl.png")) {
         std::cerr << "Error loading enemy texture!\n";
     }
@@ -36,7 +36,7 @@ void JardimDoEden::criarInimFracos(){
     }
 }
 
-void JardimDoEden::criarInimMedios(){
+void Fases::JardimDoEden::criarInimMedios(){
     if (!emoBoyTexture.loadFromFile("../assets/images/emoboy.png")) {
         std::cerr << "Error loading emoBoy texture!\n";
     }
@@ -50,7 +50,7 @@ void JardimDoEden::criarInimMedios(){
     }
 }
 
-void JardimDoEden::criarBosses(){
+void Fases::JardimDoEden::criarBosses(){
     if (!emoBossTexture.loadFromFile("../assets/images/emoboss.png")) {
         std::cerr << "Error loading boss texture!\n";
     }
@@ -62,7 +62,7 @@ void JardimDoEden::criarBosses(){
     }
 }
 
-void JardimDoEden::criarObsMedios(){
+void Fases::JardimDoEden::criarObsMedios(){
     if (!barrierTex.loadFromFile("../assets/images/stone_96x96.png")) {
         std::cerr << "Error loading platform textures!\n";
         exit(1);
@@ -74,7 +74,7 @@ void JardimDoEden::criarObsMedios(){
 
 }
 
-void JardimDoEden::criarPlataformas() {
+void Fases::JardimDoEden::criarPlataformas() {
     if (!plataformaEsqTex.loadFromFile("../assets/images/platLeft.png") ||
         !plataformaMeioTex.loadFromFile("../assets/images/platMid.png") ||
         !plataformaDirTex.loadFromFile("../assets/images/platRight.png")) {
@@ -104,7 +104,7 @@ void JardimDoEden::criarPlataformas() {
 }
 
 
-void JardimDoEden::loadLevel() {
+void Fases::JardimDoEden::loadLevel() {
     loadBackgroundTexture("../assets/images/background1.png");
     criarPlataformas();
     criarObsMedios();
@@ -126,7 +126,7 @@ void JardimDoEden::loadLevel() {
     }
 }
 
-void JardimDoEden::executar(float deltaTime) {
+void Fases::JardimDoEden::executar(float deltaTime) {
     pJog1->executar(deltaTime);
     pJog2->executar(deltaTime);
     if (pJog1->isAlive)
@@ -183,7 +183,7 @@ void JardimDoEden::executar(float deltaTime) {
     }
 }
 
-void JardimDoEden::renderizar(sf::RenderWindow& window) {
+void Fases::JardimDoEden::renderizar(sf::RenderWindow& window) {
     drawBackground(window);
     floor.renderizar(window);
     for (auto* obst : obstaculos) {
@@ -214,11 +214,11 @@ void JardimDoEden::renderizar(sf::RenderWindow& window) {
     colisor->renderizarProjeteis(window);
 }
 
-int JardimDoEden::getPontuacaoTotalJogadores() const {
+int Fases::JardimDoEden::getPontuacaoTotalJogadores() const {
     return pJog1->getPontos();
 }
 
-bool JardimDoEden::todosInimigosMortos() const {
+bool Fases::JardimDoEden::todosInimigosMortos() const {
     for (const auto& enemy : weakEnemies) {
         if (enemy.estaVivo()) return false;
     }
@@ -231,13 +231,13 @@ bool JardimDoEden::todosInimigosMortos() const {
     return true;
 }
 
-bool JardimDoEden::jogadoresMortos() const {
+bool Fases::JardimDoEden::jogadoresMortos() const {
     return (!pJog1->estaVivo() && !pJog2->estaVivo());
 }
 
 //o código abaixo foi realizado com auxílio da AI Gemini
 
-json JardimDoEden::salvar() const {
+json Fases::JardimDoEden::salvar() const {
     json data;
     
     data["levelName"] = levelName;
@@ -273,7 +273,7 @@ json JardimDoEden::salvar() const {
     return data;
 }
 
-void JardimDoEden::reset() {
+void Fases::JardimDoEden::reset() {
     weakEnemies.clear();
     mediumEnemies.clear();
     bosses.clear();
@@ -282,7 +282,7 @@ void JardimDoEden::reset() {
     colisor->reset();
 }
 
-void JardimDoEden::carregar(json saveData) {
+void Fases::JardimDoEden::carregar(json saveData) {
     colisor->setJogadores(pJog1, pJog2);
     if (saveData.contains("weakEnemies")) {
         for (const auto& enemyData : saveData["weakEnemies"]) { 
@@ -318,7 +318,7 @@ void JardimDoEden::carregar(json saveData) {
 }
 
 
-void JardimDoEden::removeInimigos() {
+void Fases::JardimDoEden::removeInimigos() {
     weakEnemies.clear();
     mediumEnemies.clear();
     bosses.clear();

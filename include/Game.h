@@ -51,7 +51,7 @@ class Game {
         TelaGameOver telaGameOver;
 
         // Gerenciadores::GerenciadorGrafico GG;
-        Fase* currentLevel;
+        Fases::Fase* currentLevel;
         std::string currentLevelName;
         Menu* menu;
         

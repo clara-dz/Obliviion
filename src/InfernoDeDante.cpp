@@ -17,14 +17,14 @@ using json = nlohmann::json;
 
 //A implementação desta classe foi realizada com auxílio da AI ChatGPT
 
-InfernoDeDante::InfernoDeDante(Jogador* j1, Jogador* j2)
+Fases::InfernoDeDante::InfernoDeDante(Jogador* j1, Jogador* j2)
     : Fase("Jardim do Eden", j1, j2),
       floor("../assets/images/tile1.png", SCREEN_WIDTH, FLOOR_HEIGHT)
     {}
 
-InfernoDeDante::~InfernoDeDante() {}
+Fases::InfernoDeDante::~InfernoDeDante() {}
 
-void InfernoDeDante::criarInimFracos(){
+void Fases::InfernoDeDante::criarInimFracos(){
     if (!EmoGirlTexture.loadFromFile("../assets/images/emogirl.png")) {
         std::cerr << "Error loading enemy texture!\n";
     }
@@ -38,7 +38,7 @@ void InfernoDeDante::criarInimFracos(){
     }
 }
 
-void InfernoDeDante::criarInimMedios(){
+void Fases::InfernoDeDante::criarInimMedios(){
     if (!emoBoyTexture.loadFromFile("../assets/images/emoboy.png")) {
         std::cerr << "Error loading emoBoy texture!\n";
     }
@@ -50,7 +50,7 @@ void InfernoDeDante::criarInimMedios(){
     }
 }
 
-void InfernoDeDante::criarBosses(){
+void Fases::InfernoDeDante::criarBosses(){
     if (!emoBossTexture.loadFromFile("../assets/images/emoboss.png")) {
         std::cerr << "Error loading boss texture!\n";
     }
@@ -72,7 +72,7 @@ void InfernoDeDante::criarBosses(){
     }
 }
 
-void InfernoDeDante::criarObsMedios(){
+void Fases::InfernoDeDante::criarObsMedios(){
     if (!barrierTex.loadFromFile("../assets/images/chama.png")) {
         std::cerr << "Error loading platform textures!\n";
         exit(1);
@@ -84,7 +84,7 @@ void InfernoDeDante::criarObsMedios(){
     obstaculos.push_back(new ChamaDeHades(barrierTex, 600, 100));
 }
 
-void InfernoDeDante::criarPlataformas() {
+void Fases::InfernoDeDante::criarPlataformas() {
     if (!plataformaEsqTex.loadFromFile("../assets/images/platLeft.png") ||
         !plataformaMeioTex.loadFromFile("../assets/images/platMid.png") ||
         !plataformaDirTex.loadFromFile("../assets/images/platRight.png")) {
@@ -114,7 +114,7 @@ void InfernoDeDante::criarPlataformas() {
 }
 
 
-void InfernoDeDante::loadLevel() {
+void Fases::InfernoDeDante::loadLevel() {
     loadBackgroundTexture("../assets/images/background2.png");
     criarPlataformas();
     criarObsMedios();
@@ -141,7 +141,7 @@ void InfernoDeDante::loadLevel() {
     }
 }
 
-void InfernoDeDante::executar(float deltaTime) {
+void Fases::InfernoDeDante::executar(float deltaTime) {
     pJog1->executar(deltaTime);
     pJog2->executar(deltaTime);
     if (pJog1->isAlive)
@@ -230,7 +230,7 @@ void InfernoDeDante::executar(float deltaTime) {
     }
 }
 
-void InfernoDeDante::renderizar(sf::RenderWindow& window) {
+void Fases::InfernoDeDante::renderizar(sf::RenderWindow& window) {
     drawBackground(window);
     floor.renderizar(window);
     for (auto* obst : obstaculos) {
@@ -266,11 +266,11 @@ void InfernoDeDante::renderizar(sf::RenderWindow& window) {
     colisor->renderizarProjeteis(window);
 }
 
-int InfernoDeDante::getPontuacaoTotalJogadores() const {
+int Fases::InfernoDeDante::getPontuacaoTotalJogadores() const {
     return pJog1->getPontos();
 }
 
-bool InfernoDeDante::todosInimigosMortos() const {
+bool Fases::InfernoDeDante::todosInimigosMortos() const {
     for (const auto& enemy : weakEnemies) {
         if (enemy.estaVivo()) return false;
     }
@@ -283,13 +283,13 @@ bool InfernoDeDante::todosInimigosMortos() const {
     return true;
 }
 
-bool InfernoDeDante::jogadoresMortos() const {
+bool Fases::InfernoDeDante::jogadoresMortos() const {
     return (!pJog1->estaVivo() && !pJog2->estaVivo());
 }
 
 //o código abaixo foi realizado com auxílio da AI Gemini
 
-json InfernoDeDante::salvar() const {
+json Fases::InfernoDeDante::salvar() const {
     json data;
     
     data["levelName"] = levelName;
@@ -325,7 +325,7 @@ json InfernoDeDante::salvar() const {
     return data;
 }
 
-void InfernoDeDante::reset() {
+void Fases::InfernoDeDante::reset() {
     weakEnemies.clear();
     mediumEnemies.clear();
     bosses.clear();
@@ -334,14 +334,14 @@ void InfernoDeDante::reset() {
     colisor->reset();
 }
 
-void InfernoDeDante::removeInimigos() {
+void Fases::InfernoDeDante::removeInimigos() {
     weakEnemies.clear();
     mediumEnemies.clear();
     bosses.clear();
     colisor->removerInimigos();
 }
 
-void InfernoDeDante::carregar(json saveData) {
+void Fases::InfernoDeDante::carregar(json saveData) {
     colisor->setJogadores(pJog1, pJog2);
     if (saveData.contains("weakEnemies")) {
         for (const auto& enemyData : saveData["weakEnemies"]) { 

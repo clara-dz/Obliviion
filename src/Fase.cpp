@@ -1,7 +1,7 @@
 #include "Fase.h"
 
 
-Fase::~Fase() {
+Fases::Fase::~Fase() {
     for (auto* obstaculo : obstaculos) {
         delete obstaculo; // Clean up dynamically allocated obstacles
     }
