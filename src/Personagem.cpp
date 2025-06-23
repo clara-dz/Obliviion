@@ -76,3 +76,4 @@ using json = nlohmann::json;
 
             std::cout << "remaining life: " << numVidas << std::endl;
 }
+        sf::Vector2f Personagem::getPosition() const { return sprite.getPosition(); }
