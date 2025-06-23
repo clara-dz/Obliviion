@@ -11,10 +11,9 @@ enum class Dono { Jogador, Inimigo };
 namespace Entidades {
     class Projetil : public Entidade {
         protected:        
-            sf::Vector2f velocidade;
-            Dono dono;
             bool ativo = true;
-
+            Dono dono;
+            sf::Vector2f velocidade;
             float tempoDeVida; // seconds
 
         public:
@@ -23,30 +22,15 @@ namespace Entidades {
                 sprite.setTexture(tex);        // inherited from Entidade
                 sprite.setPosition(pos);       // sets initial position
             }
-
             ~Projetil() = default;
 
-            void executar(float deltaTime) override {
-                if (!ativo) return;
-
-                tempoDeVida -= deltaTime;
-                if (tempoDeVida <= 0.f) {
-                    desativar();
-                    return;
-                }
-
-                sprite.move(velocidade * deltaTime);
-            };
-
+            void executar(float deltaTime) override;
             json salvar();
-            // void carregar() override {};
 
-            sf::FloatRect getBounds() const {
-                return sprite.getGlobalBounds();
-            }
+            sf::FloatRect getBounds() const;
 
-            Dono getDono() const { return dono; }
-            bool estaAtivo() const { return ativo; }
-            void desativar() { ativo = false; }
+            Dono getDono() const;
+            bool estaAtivo() const;
+            void desativar();
     };
 }

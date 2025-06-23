@@ -15,3 +15,23 @@ json Entidades::Projetil::salvar() {
     
     return data;
 }
+
+void Entidades::Projetil::executar(float deltaTime) {
+    if (!ativo) return;
+
+    tempoDeVida -= deltaTime;
+    if (tempoDeVida <= 0.f) {
+        desativar();
+        return;
+    }
+
+    sprite.move(velocidade * deltaTime);
+};
+
+sf::FloatRect Entidades::Projetil::getBounds() const {
+    return sprite.getGlobalBounds();
+}
+
+Dono Entidades::Projetil::getDono() const { return dono; }
+bool Entidades::Projetil::estaAtivo() const { return ativo; }
+void Entidades::Projetil::desativar() { ativo = false; }
