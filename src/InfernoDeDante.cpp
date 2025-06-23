@@ -78,10 +78,10 @@ void Fases::InfernoDeDante::criarObsMedios(){
         exit(1);
     }
 
-    obstaculos.push_back(new Obstaculos::ChamaDeHades(barrierTex, 100, 100));
-    obstaculos.push_back(new Obstaculos::ChamaDeHades(barrierTex, 300, 200));
-    obstaculos.push_back(new Obstaculos::ChamaDeHades(barrierTex, 400, 420));
-    obstaculos.push_back(new Obstaculos::ChamaDeHades(barrierTex, 600, 100));
+    obstaculos.push_back(new Entidades::Obstaculos::ChamaDeHades(barrierTex, 100, 100));
+    obstaculos.push_back(new Entidades::Obstaculos::ChamaDeHades(barrierTex, 300, 200));
+    obstaculos.push_back(new Entidades::Obstaculos::ChamaDeHades(barrierTex, 400, 420));
+    obstaculos.push_back(new Entidades::Obstaculos::ChamaDeHades(barrierTex, 600, 100));
 }
 
 void Fases::InfernoDeDante::criarPlataformas() {

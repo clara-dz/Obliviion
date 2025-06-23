@@ -2,20 +2,22 @@
 #include "Obstaculo.h"
 #include <iostream>
 
-namespace Obstaculos {
-    class ChamaDeHades : public Obstaculo { //obs difícil
+namespace Entidades {    
+    namespace Obstaculos {
+        class ChamaDeHades : public Obstaculo { //obs difícil
 
-        private:
-            short int danosidade = 2; //duas vezes mais danoso que obs médio
+            private:
+                short int danosidade = 2; //duas vezes mais danoso que obs médio
 
-        public:
-            ChamaDeHades(const sf::Texture& texture, float x, float y);
+            public:
+                ChamaDeHades(const sf::Texture& texture, float x, float y);
 
-            ~ChamaDeHades();
+                ~ChamaDeHades();
 
-            void obstaculizar(Jogador& jogador) override;
+                void obstaculizar(Jogador& jogador) override;
 
-            void executar(float deltaTime) override;
+                void executar(float deltaTime) override;
 
-        };
+            };
+    }
 }

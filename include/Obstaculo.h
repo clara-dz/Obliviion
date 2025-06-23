@@ -6,23 +6,25 @@
 
 using json = nlohmann::json;
 
-namespace Obstaculos {
-    class Obstaculo : public Entidades::Entidade {
-    protected:
-        bool danoso;
+namespace Entidades {    
+    namespace Obstaculos {
+        class Obstaculo : public Entidades::Entidade {
+        protected:
+            bool danoso;
 
-    public:
-        sf::RectangleShape hitbox; // Hitbox do obstáculo
+        public:
+            sf::RectangleShape hitbox; // Hitbox do obstáculo
 
-        Obstaculo() = default;
-        virtual ~Obstaculo() = default;
+            Obstaculo() = default;
+            virtual ~Obstaculo() = default;
 
-        sf::FloatRect getBounds() const {
-            return sprite.getGlobalBounds();
-        }
+            sf::FloatRect getBounds() const {
+                return sprite.getGlobalBounds();
+            }
 
-        virtual void obstaculizar(Jogador& jogador) = 0;
+            virtual void obstaculizar(Jogador& jogador) = 0;
 
-        virtual void executar(float deltaTime) override = 0;
-    };
+            virtual void executar(float deltaTime) override = 0;
+        };
+    }
 }

@@ -21,7 +21,7 @@ void GerenciadorColisoes::incluirInimigos(Inimigo* pI) {
         listaInimigos.push_back(pI);
 }
 
-void GerenciadorColisoes::incluirObstaculo(Obstaculos::Obstaculo* pO) {
+void GerenciadorColisoes::incluirObstaculo(Entidades::Obstaculos::Obstaculo* pO) {
     if (pO)
         listaObstaculos.push_back(pO);
 }
@@ -31,7 +31,7 @@ void GerenciadorColisoes::incluirProjetil(Entidades::Projetil* pJ) {
         listaProjeteis.insert(pJ);
 }
 
-void GerenciadorColisoes::checarColisoes(Personagem& personagem, const Floor& floor, const std::vector<Obstaculos::Plataforma>& plataformas) {
+void GerenciadorColisoes::checarColisoes(Personagem& personagem, const Floor& floor, const std::vector<Entidades::Obstaculos::Plataforma>& plataformas) {
     sf::FloatRect characterBounds = personagem.getBounds();
 
     // First check collision with the floor

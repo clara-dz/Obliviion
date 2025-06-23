@@ -1,7 +1,7 @@
 #include "Plataforma.h"
 #include <iostream>
 
-namespace Obstaculos {
+namespace Entidades::Obstaculos {
 
     Plataforma::Plataforma(const sf::Texture& leftTex, const sf::Texture& middleTex,
                            const sf::Texture& rightTex, float startX, float startY, int length)

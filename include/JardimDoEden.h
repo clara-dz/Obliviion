@@ -42,7 +42,7 @@ namespace Fases {
             std::vector<EmoBoss> bosses; //está na lógica de verificação
             sf::Texture emoBossTexture;
 
-            std::vector<Obstaculos::Plataforma> plataformas;
+            std::vector<Entidades::Obstaculos::Plataforma> plataformas;
             sf::Texture plataformaEsqTex, plataformaDirTex, plataformaMeioTex;
 
             sf::Texture texProjJogador;
